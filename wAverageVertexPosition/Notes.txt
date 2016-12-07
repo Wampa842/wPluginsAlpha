@@ -1,0 +1,12 @@
+﻿Copy array of selected vertices into a list. Initialize a List<int> variable to store matched indices.
+
+Iterate through all items of the list.
+For each vertex i:
+	If it's not in the capture group:
+		Initialize a list that contains a capture group. Add i.
+		For each vertex j:
+			If the magnitude of the ij vector is less or equal to threshold, add j to the list.
+		Take the average of the positions in the capture group.
+		For each item in the capture group:
+			move it to the average position
+			add it to the matched list

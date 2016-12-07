@@ -1,0 +1,156 @@
+The event handler:
+
+private void MenuItem_NearVertexJoin_Click(object sender, EventArgs e)
+    {
+      OutMsgForm outMsgForm = (OutMsgForm) null;
+      try
+      {
+        if (this.PmxDraw.GetSelectedCount(PMXDraw.SelectObjectType.Vertex) <= 1)
+          return;
+        float result = 1f / 1000f;
+        bool flag = false;
+        using (InputDialog inputDialog = new InputDialog())
+        {
+          inputDialog.TextString = result.ToString();
+          inputDialog.Text = "対象距離";
+          if (inputDialog.ShowDialog((IWin32Window) this) == DialogResult.OK)
+          {
+            flag = true;
+            float.TryParse(inputDialog.TextString, out result);
+          }
+        }
+        if (!flag)
+          return;
+        if ((double) result < 0.0)
+        {
+          int num = (int) MessageBox.Show("距離設定が正しくありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        else
+        {
+          outMsgForm = new OutMsgForm();
+          outMsgForm.TextLabel.Text = "処理中";
+          outMsgForm.SetPosition((Control) this);
+          outMsgForm.Cursor = Cursors.WaitCursor;
+          outMsgForm.Size = new Size(171, 95);
+          outMsgForm.Show((IWin32Window) this);
+          Application.DoEvents();
+          LegacyUndoBuffer buf = this.m_undoManager.ConvertUndoBuffer(LegacyUndoType.All, -1);
+          if (CE.JoinNearVertex(this.PmxDraw.Pmx, this.PmxDraw.GetSelectedIndices(PMXDraw.SelectObjectType.Vertex, true), result, this.MenuItem_VertexJoin_AvgNormal.Checked) <= 0)
+            return;
+          this.m_undoManager.SetUndo(buf);
+          this.PmxDraw.UpdateModel();
+          this.PmxDraw.SetUpdateTypeFlag(PMXDraw.UpdateType.Vertex, true);
+          this.PmxDraw.SetUpdateTypeFlag(PMXDraw.UpdateType.Face, true);
+          this.PmxDraw.SetUpdateTypeFlag(PMXDraw.UpdateType.Matetial, true);
+          this.PmxDraw.SetUpdateTypeFlag(PMXDraw.UpdateType.Morph, true);
+          this.PmxDraw.SetUpdateTypeFlag(PMXDraw.UpdateType.FrameNode, true);
+        }
+      }
+      catch (Exception ex)
+      {
+      }
+      finally
+      {
+        if (outMsgForm != null)
+        {
+          outMsgForm.Cursor = Cursors.Default;
+          outMsgForm.Close();
+        }
+        this.Cursor = Cursors.Default;
+      }
+    }
+
+	
+The method itself:
+
+public static int JoinNearVertex(PmxS pmx, int[] ix, float d, bool avgNormal)
+    {
+      if (ix.Length <= 1)
+        return 0;
+      List<List<int>> intListList = new List<List<int>>(ix.Length);
+      Dictionary<int, int> dictionary1 = new Dictionary<int, int>(ix.Length);
+      float num1 = d * d;
+      for (int index1 = 0; index1 < ix.Length; ++index1)
+      {
+        int key1 = ix[index1];
+        if (!dictionary1.ContainsKey(key1))
+        {
+          dictionary1.Add(key1, 0);
+          List<int> intList = new List<int>(ix.Length);
+          Vector3 position = pmx.VertexList[key1].Position;
+          for (int index2 = 0; index2 < ix.Length; ++index2)
+          {
+            int key2 = ix[index2];
+            if (!dictionary1.ContainsKey(key2))
+            {
+              Vector3 vector3 = Vector3.op_Subtraction(pmx.VertexList[key2].Position, position);
+              if ((double) (float) (vector3.X * vector3.X + vector3.Y * vector3.Y + vector3.Z * vector3.Z) < (double) num1)
+              {
+                intList.Add(key2);
+                dictionary1.Add(key2, 0);
+              }
+            }
+          }
+          if (intList.Count > 0)
+          {
+            intList.Insert(0, key1);
+            intListList.Add(intList);
+          }
+        }
+      }
+      if (intListList.Count <= 0)
+        return 0;
+      int num2 = 0;
+      List<int> intList1 = new List<int>(ix.Length);
+      pmx.CreateMaterialFace();
+      for (int index1 = 0; index1 < intListList.Count; ++index1)
+      {
+        num2 += intListList[index1].Count;
+        ix = intListList[index1].ToArray();
+        PmxVertex vertex = pmx.VertexList[ix[0]];
+        if (avgNormal)
+          CE.AverageNormals(pmx.VertexList, ix);
+        Vector3 vector3;
+        // ISSUE: explicit reference operation
+        ((Vector3) @vector3).\u002Ector((float) vertex.Position.X, (float) vertex.Position.Y, (float) vertex.Position.Z);
+        Dictionary<PmxVertex, int> dictionary2 = new Dictionary<PmxVertex, int>(ix.Length);
+        for (int index2 = 1; index2 < ix.Length; ++index2)
+        {
+          dictionary2.Add(pmx.VertexList[ix[index2]], index2);
+          vector3 = Vector3.op_Addition(vector3, pmx.VertexList[ix[index2]].Position);
+        }
+        vector3 = Vector3.op_Division(vector3, (float) ix.Length);
+        vertex.Position = V3.op_Implicit(new V3((float) vector3.X, (float) vector3.Y, (float) vector3.Z));
+        for (int index2 = 0; index2 < pmx.MaterialList.Count; ++index2)
+        {
+          for (int index3 = pmx.MaterialList[index2].FaceList.Count - 1; index3 >= 0; --index3)
+          {
+            PmxFace face = pmx.MaterialList[index2].FaceList[index3];
+            if (dictionary2.ContainsKey(face.V0))
+              face.V0 = vertex;
+            if (dictionary2.ContainsKey(face.V1))
+              face.V1 = vertex;
+            if (dictionary2.ContainsKey(face.V2))
+              face.V2 = vertex;
+          }
+        }
+        for (int index2 = ix.Length - 1; index2 >= 1; --index2)
+          intList1.Add(ix[index2]);
+      }
+      for (int index1 = 0; index1 < pmx.MaterialList.Count; ++index1)
+      {
+        for (int index2 = pmx.MaterialList[index1].FaceList.Count - 1; index2 >= 0; --index2)
+        {
+          PmxFace face = pmx.MaterialList[index1].FaceList[index2];
+          if (face.V0 == face.V1 && face.V1 == face.V2)
+            pmx.MaterialList[index1].FaceList.RemoveAt(index2);
+        }
+      }
+      intList1.Sort();
+      pmx.UpdateRef(PmxObjectIndexManager.ObjectType.All);
+      for (int index = intList1.Count - 1; index >= 0; --index)
+        pmx.VertexList.RemoveAt(intList1[index]);
+      pmx.NormalizeFromRef(true);
+      pmx.ClearMaterialFace();
+      return num2;
+    }
