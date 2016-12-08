@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wMorphScale", "wMorphScale\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wApplyMorph", "wApplyMorph\wApplyMorph.csproj", "{235BB387-4A71-438A-81FB-42C45A97391C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wMeasuringTape", "wMeasuringTape\wMeasuringTape.csproj", "{FEDA7B67-D191-4FE7-B60C-4A64DF84926F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{235BB387-4A71-438A-81FB-42C45A97391C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{235BB387-4A71-438A-81FB-42C45A97391C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{235BB387-4A71-438A-81FB-42C45A97391C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEDA7B67-D191-4FE7-B60C-4A64DF84926F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEDA7B67-D191-4FE7-B60C-4A64DF84926F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEDA7B67-D191-4FE7-B60C-4A64DF84926F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEDA7B67-D191-4FE7-B60C-4A64DF84926F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

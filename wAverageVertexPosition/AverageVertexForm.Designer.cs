@@ -36,6 +36,7 @@
             this.normalCheck = new System.Windows.Forms.CheckBox();
             this.thresholdCheck = new System.Windows.Forms.CheckBox();
             this.infoLink = new System.Windows.Forms.LinkLabel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.thresholdNumber)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,10 +89,10 @@
             this.thresholdNumber.Size = new System.Drawing.Size(135, 20);
             this.thresholdNumber.TabIndex = 3;
             this.thresholdNumber.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
-            196608});
+            0});
             // 
             // positionCheck
             // 
@@ -128,7 +129,7 @@
             // 
             // infoLink
             // 
-            this.infoLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.infoLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.infoLink.AutoSize = true;
             this.infoLink.Location = new System.Drawing.Point(263, 94);
             this.infoLink.Name = "infoLink";
@@ -137,11 +138,22 @@
             this.infoLink.TabStop = true;
             this.infoLink.Text = "(?)";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(76, 156);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AverageVertexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 118);
+            this.ClientSize = new System.Drawing.Size(294, 227);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.infoLink);
             this.Controls.Add(this.thresholdCheck);
             this.Controls.Add(this.normalCheck);
@@ -169,5 +181,6 @@
         private System.Windows.Forms.CheckBox normalCheck;
         private System.Windows.Forms.CheckBox thresholdCheck;
         private System.Windows.Forms.LinkLabel infoLink;
+        private System.Windows.Forms.Button button1;
     }
 }

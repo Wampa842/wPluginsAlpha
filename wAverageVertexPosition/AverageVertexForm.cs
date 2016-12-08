@@ -29,69 +29,82 @@ namespace wAverageVertexPosition
 
         private bool IsWithinRange(IPXVertex v1, IPXVertex v2, double range)
         {
-            //if ((v1.Position - v2.Position).Length() <= range) return true;
-            //else return false;
-            double MaxRange = range * range;
-            V3 Dist = v1.Position - v2.Position;
-            if (Dist.LengthSq() <= MaxRange) return true;
+            if (Math.Abs((v1.Position - v2.Position).Length()) <= range) return true;
             else return false;
         }
 
-        private List<List<int>> ScanGroups(int[] selected, double range)
+        private void CountRepeating(List<int> data)
         {
-            PleaseWaitForm progress = new PleaseWaitForm();
-            progress.UpdateProgress(0, 0, selected.Length);
-            progress.TopMost = true;
-            progress.Show();
-
-            List<int> Group = new List<int>();
-            List<List<int>> ListOfGroups = new List<List<int>>();
-            //int[] Matched = new int[Selected.Length];
-            List<int> Matched = new List<int>();
-            for(int i = 0; i < selected.Length; ++i)
+            bool ok = true;
+            List<int> a = new List<int>();
+            foreach(int d in data)
             {
-                //Only continue if i is not in Matched[].
-                if (!Matched.Contains(selected[i]))
+                if (a.Contains(d))
                 {
-                    Matched.Add(selected[i]);
-                    Group.Clear();  //Funny note: I was having a hard time figuring out why groups missed one item. Turns out, I called the Clear method AFTER adding i.
-                    //Fuck my life.
-                    Group.Add(selected[i]);
-                    //Possible point of optimization - should get back to this later.
-                    for (int j = 0; j < selected.Length; ++j)
+                    MessageBox.Show("Duplicate: " + d.ToString());
+                    ok = false;
+                }
+                a.Add(d);
+            }
+            MessageBox.Show(ok.ToString());
+        }
+
+        private List<List<int>> ScanGroups(IPXPmx pmx, int[] selected, double range)
+        {
+            IList<IPXVertex> verts = pmx.Vertex;
+            List<List<int>> ListOfGroups = new List<List<int>>();
+            List<int> Source = selected.ToList();
+            List<int> Group = new List<int>();
+            List<int> Matched = new List<int>();
+
+            ListOfGroups.Clear();
+            for(int i = 0; i < Source.Count; ++i)
+            {
+                Group.Clear();
+                if (!Matched.Contains(Source[i]))
+                {
+                    Group.Add(Source[i]);
+                    Matched.Add(Source[i]);
+                    for (int j = 0; j < Source.Count; ++j)
                     {
-                        if (!Matched.Contains(selected[j]) && IsWithinRange(Scene.Vertex[Selected[i]], Scene.Vertex[Selected[j]], range))
+                        if (!Matched.Contains(Source[j]))
                         {
-                            Matched.Add(selected[j]);
-                            Group.Add(selected[j]);
+                            if(IsWithinRange(verts[Source[i]], verts[Source[j]], range))
+                            {
+                                Group.Add(Source[j]);
+                                Matched.Add(Source[j]);
+                            }
                         }
                     }
-                    ListOfGroups.Add(Group);
-                    progress.UpdateProgress(i, 0, selected.Length);
+                    //ListOfGroups.Add(Group);
+                    AverageVerts(pmx, Group, false);
+                    //MessageBox.Show(ListOfGroups.Last().Count.ToString());
+                    //MessageBox.Show("Items in group: " + Group.Count);
                 }
-                MessageBox.Show(i.ToString());
+                //else MessageBox.Show(Source[i] + " is already in the list");
             }
-            progress.Close();
+
+            //MessageBox.Show(ListOfGroups[0].Count.ToString());
             return ListOfGroups;
         }
 
         private int AverageVerts(IPXPmx pmx, List<int> indices, bool normal)
         {
             V3 Sum = new V3();
-            int Count = 0;
-            foreach(int index in indices)
+            int i = 0;
+            for (i = 0; i < indices.Count; ++i)
             {
-                //MessageBox.Show(index.ToString());
-                Sum += pmx.Vertex[index].Position;
-                Count++;
+                Sum += pmx.Vertex[indices[i]].Position;
+                //Count = i;
             }
-            V3 Avg = Sum / Count;
-            MessageBox.Show(Avg.X.ToString() + "\n" + Avg.Y.ToString() + "\n" + Avg.Z.ToString());
+            //if(i <= 0) MessageBox.Show("heck");
+            V3 Avg = Sum / i;
+            //MessageBox.Show(Avg.X.ToString() + "\n" + Avg.Y.ToString() + "\n" + Avg.Z.ToString());
             foreach(int index in indices)
             {
                 pmx.Vertex[index].Position = Avg;
             }
-            return Count;
+            return i;
         }
 
         private int ProcessVerts(IPXPmx pmx, bool useThreshold, bool avgNormals, out int p_GroupsCount)
@@ -100,12 +113,28 @@ namespace wAverageVertexPosition
             int GroupsCount = 0;
             if (useThreshold)
             {
-                List<List<int>> Groups = ScanGroups(Selected, (double)thresholdNumber.Value);
+                List<List<int>> Groups = ScanGroups(pmx, Selected, (double)thresholdNumber.Value);
+
+
+                //List<List<int>> Groups = new List<int>[] { a[0], a[1] }.ToList();
+
+                //MessageBox.Show(Groups[0].Count.ToString());
+
+                //List<int> g1 = new int[] { 0, 1, 2, 3, 4 }.ToList();
+                //List<int> g2 = new int[] { 5, 6, 7, 8, 9, 10 }.ToList();
+                //List<List<int>> Groups = new List<int>[] { g1, g2 }.ToList();
+                /*
                 foreach(List<int> group in Groups)
                 {
+                    //MessageBox.Show(group.Count.ToString());
                     Count += AverageVerts(pmx, group, avgNormals);
                     ++GroupsCount;
                 }
+                MessageBox.Show("Groups: " + Groups.Length.ToString());
+                for(int g = 0; g < Groups.Length; ++g)
+                {
+                    MessageBox.Show("Group " + g + ": " + Groups[g].Count);
+                }*/
             }
             else
             {
@@ -153,6 +182,11 @@ namespace wAverageVertexPosition
             UpdatePmx(Scene);
 
             MessageBox.Show("Collapsed " + VertsCount.ToString() + " vertices into " + GroupsCount.ToString() + " points", "Done!");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //ScanGroups(args.Host.Connector.Pmx.GetCurrentState().Vertex, Selected, (double)thresholdNumber.Value);
         }
     }
 }
