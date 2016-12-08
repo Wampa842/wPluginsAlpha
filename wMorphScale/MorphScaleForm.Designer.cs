@@ -1,6 +1,6 @@
 ﻿namespace wMorphScale
 {
-    partial class MainForm
+    partial class MorphScaleForm
     {
         /// <summary>
         /// Required designer variable.

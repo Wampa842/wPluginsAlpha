@@ -51,11 +51,11 @@
       <DependentUpon>inverseHelpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="MorphScaleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="MorphScaleForm.Designer.cs">
+      <DependentUpon>MorphScaleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,8 +63,8 @@
     <EmbeddedResource Include="inverseHelpForm.resx">
       <DependentUpon>inverseHelpForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="MorphScaleForm.resx">
+      <DependentUpon>MorphScaleForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

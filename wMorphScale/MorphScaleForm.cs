@@ -15,10 +15,10 @@ using PEPlugin.Form;
 
 namespace wMorphScale
 {
-    public partial class MainForm : Form
+    public partial class MorphScaleForm : Form
     {
         IPERunArgs args;
-        public MainForm(IPERunArgs p_args)
+        public MorphScaleForm(IPERunArgs p_args)
         {
             //Initialize, and pass run arguments
             args = p_args;

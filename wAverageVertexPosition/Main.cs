@@ -14,7 +14,7 @@ namespace wAverageVertexPosition
     {
         public void Run(IPERunArgs args)
         {
-            MainForm Main = new MainForm(args);
+            AverageVertexForm Main = new AverageVertexForm(args);
             Main.Show();
         }
 
@@ -26,7 +26,7 @@ namespace wAverageVertexPosition
         {
             public string RegisterMenuText { get { return "wAverageVertexPosition"; } }
             public bool RegisterMenu { get { return true; } }
-            public bool Bootup { get { return false; } }
+            public bool Bootup { get { return true; } }
         }
 
         public IPEPluginOption Option { get { return new Opt(); } }

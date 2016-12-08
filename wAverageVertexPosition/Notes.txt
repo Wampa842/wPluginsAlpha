@@ -1,12 +1,19 @@
-﻿Copy array of selected vertices into a list. Initialize a List<int> variable to store matched indices.
+﻿Everything is done using indices instead of vertices.
 
-Iterate through all items of the list.
-For each vertex i:
-	If it's not in the capture group:
-		Initialize a list that contains a capture group. Add i.
-		For each vertex j:
-			If the magnitude of the ij vector is less or equal to threshold, add j to the list.
-		Take the average of the positions in the capture group.
-		For each item in the capture group:
-			move it to the average position
-			add it to the matched list
+Without threshold:
+This should be a separate method. It'll be called by the "With threshold" method.
+Initialize V3 Sum and int Count variables. Iterate through all vertices, add their positions to Sum, and increase Count by 1.
+When done, divide Sum by Count.
+
+
+With threshold:
+This is going to be slow as balls.
+
+First I'll set up groups of vertices. Each vertex must be contained by only one group. For this reason, 
+as soon as a vertex is added to a group, it's also added to an array of matched vertices.
+Iterate through all vertices using i. Continue only if i is not in the matched array.
+Add i to the matched array. Initialize a group list and add i.
+For each vertex, iterate through them again in a nested loop using j.
+If j is within range of i AND not in the matched array, add j to the matched array and to the group list.
+When done with the inner loop, call the method that averages their position.
+Repeat until the outer loop reaches the end of the selected array.

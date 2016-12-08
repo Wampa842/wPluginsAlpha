@@ -12,7 +12,7 @@ namespace wMorphScale
     {
         public void Run(IPERunArgs args)
         {
-            MainForm Main = new MainForm(args);
+            MorphScaleForm Main = new MorphScaleForm(args);
             Main.Show();
         }
 
@@ -24,7 +24,7 @@ namespace wMorphScale
         {
             public string RegisterMenuText { get { return "wMorphScale"; } }
             public bool RegisterMenu { get { return true; } }
-            public bool Bootup { get { return true; } }
+            public bool Bootup { get { return false; } }
         }
 
         public IPEPluginOption Option { get { return new Opt(); } }

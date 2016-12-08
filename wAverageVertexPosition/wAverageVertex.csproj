@@ -7,8 +7,8 @@
     <ProjectGuid>{E84B0970-3044-4562-98FB-A9B985D4F291}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>wAverageVertex</RootNamespace>
-    <AssemblyName>wAverageVertex</AssemblyName>
+    <RootNamespace>wAverageVertexPosition</RootNamespace>
+    <AssemblyName>wAverageVertexPosition</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

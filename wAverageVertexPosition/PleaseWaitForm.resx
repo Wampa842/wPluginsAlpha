@@ -117,13 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Please note that scaling by a number, then scaling by its inverse,
-will not result in the exact same values. This is because floating
-point numbers, no matter the precision, can't store infinite fractions.
-
-For example, 1/3 will result in an infinitely repeating decimal number,
-which has to be truncated to fit inside a single precision floating point
-number.</value>
-  </data>
 </root>
