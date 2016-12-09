@@ -115,19 +115,15 @@ Fix:
 Issue:
 	<problem not related to wPlugins>
 Fix:
-	If it's not my problem, there's not much I can do to resolve it that isn't available on Google. That said, if you're
-	nice enough, I'll help you anyways.
+	If it's not my problem, there's not much I can do to resolve it that isn't available on Google. That said, if you're nice enough, I'll help you anyways.
 
 Issue:
 	I'd like a plugin that does <this>!
 Fix:
-	I'm always open to suggestions, but there's a chance your idea is not possible to implement.
-	Even then, this isn't a request offer - I may choose not to implement it.
+	I'm always open to suggestions, but there's a chance your idea is not possible to implement. Even then, this isn't a request offer - I may choose not to implement it.
 
 	FOR PROGRAMMERS:
-	The code is licensed under the MIT License, which is very permissive. Feel free to fork my code and mess around
-	with it. You can compile and release it yourself (under MIT's terms), or make a pull request to see your code
-	in the official wPlugins repo.
+	The code is licensed under the MIT License, which is very permissive. Feel free to fork my code and mess around with it. You can compile and release it yourself (under MIT's terms), or make a pull request to see your code in the official wPlugins repo.
 
 Issue:
 	You're such an idiot, everybody knows that <this> should be done <this way>!
