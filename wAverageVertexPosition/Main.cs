@@ -26,7 +26,7 @@ namespace wAverageVertexPosition
         {
             public string RegisterMenuText { get { return "wAverageVertexPosition"; } }
             public bool RegisterMenu { get { return true; } }
-            public bool Bootup { get { return true; } }
+            public bool Bootup { get { return false; } }
         }
 
         public IPEPluginOption Option { get { return new Opt(); } }
