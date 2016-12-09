@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoForm.Designer.cs">
+      <DependentUpon>InfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AverageVertexForm.cs">
       <SubType>Form</SubType>
@@ -66,6 +72,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AverageVertexForm.resx">
       <DependentUpon>AverageVertexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoForm.resx">
+      <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PleaseWaitForm.resx">
       <DependentUpon>PleaseWaitForm.cs</DependentUpon>

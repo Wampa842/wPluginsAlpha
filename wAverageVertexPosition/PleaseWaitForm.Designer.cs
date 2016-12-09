@@ -34,12 +34,11 @@
             // 
             // progressLabel
             // 
-            this.progressLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.progressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.progressLabel.Location = new System.Drawing.Point(0, 0);
+            this.progressLabel.Location = new System.Drawing.Point(0, 9);
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.progressLabel.Size = new System.Drawing.Size(124, 36);
+            this.progressLabel.Size = new System.Drawing.Size(134, 27);
             this.progressLabel.TabIndex = 0;
             this.progressLabel.Text = "0 / 42";
             this.progressLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -50,14 +49,15 @@
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.progressBar1.Location = new System.Drawing.Point(0, 39);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(124, 23);
+            this.progressBar1.Size = new System.Drawing.Size(134, 23);
             this.progressBar1.TabIndex = 1;
+            this.progressBar1.UseWaitCursor = true;
             // 
             // PleaseWaitForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(124, 62);
+            this.ClientSize = new System.Drawing.Size(134, 62);
             this.ControlBox = false;
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.progressLabel);

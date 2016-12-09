@@ -16,10 +16,9 @@ namespace wAverageVertexPosition
 {
     public partial class AverageVertexForm : Form
     {
-        IPERunArgs args;
-        IPXPmx Scene;
+        IPERunArgs args;    //Run args; the usual.
+        IPXPmx Scene;   
         int[] Selected;
-        //List<List<int>> Groups;
 
         public AverageVertexForm(IPERunArgs p_args)
         {
@@ -32,37 +31,27 @@ namespace wAverageVertexPosition
             if (Math.Abs((v1.Position - v2.Position).Length()) <= range) return true;
             else return false;
         }
-
-        private void CountRepeating(List<int> data)
+        
+        //The method that does the brunt of the operations and sets up groups that can be averaged.
+        private int AverageGroups(IPXPmx pmx, int[] selected, double range, bool position, bool normals, out int groupCount)
         {
-            bool ok = true;
-            List<int> a = new List<int>();
-            foreach(int d in data)
-            {
-                if (a.Contains(d))
-                {
-                    MessageBox.Show("Duplicate: " + d.ToString());
-                    ok = false;
-                }
-                a.Add(d);
-            }
-            MessageBox.Show(ok.ToString());
-        }
+            //The number of the operations grows quadratically with selected vertices. A form with a neat little progress bar makes sure the user doesn't get too bored.
+            PleaseWaitForm progress = new PleaseWaitForm();
+            progress.UpdateProgress(0, 0, selected.Length);
+            progress.Show();
 
-        private List<List<int>> ScanGroups(IPXPmx pmx, int[] selected, double range)
-        {
             IList<IPXVertex> verts = pmx.Vertex;
-            List<List<int>> ListOfGroups = new List<List<int>>();
-            List<int> Source = selected.ToList();
+            List<int> Source = selected.ToList();   //Completely unnecessary, but I'm afraid removing this would cause unexpected errors.
             List<int> Group = new List<int>();
             List<int> Matched = new List<int>();
 
-            ListOfGroups.Clear();
+            groupCount = 0;
             for(int i = 0; i < Source.Count; ++i)
             {
                 Group.Clear();
                 if (!Matched.Contains(Source[i]))
                 {
+                    //If the ith vertex hasn't been processed yet, add it to the current group and mark it as processed.ű
                     Group.Add(Source[i]);
                     Matched.Add(Source[i]);
                     for (int j = 0; j < Source.Count; ++j)
@@ -76,69 +65,51 @@ namespace wAverageVertexPosition
                             }
                         }
                     }
-                    //ListOfGroups.Add(Group);
-                    AverageVerts(pmx, Group, false);
-                    //MessageBox.Show(ListOfGroups.Last().Count.ToString());
-                    //MessageBox.Show("Items in group: " + Group.Count);
+                    //I originally wanted to pass a list of the groups back to the ProcessVerts method, but for some reason (probably a good reason), passing a List<List<int>> is problematic.
+                    AverageVerts(pmx, Group, position, normals);
+                    progress.UpdateProgress(Matched.Count, 0, selected.Length); //For the entertainment of the user
+                    groupCount++;
                 }
-                //else MessageBox.Show(Source[i] + " is already in the list");
             }
-
-            //MessageBox.Show(ListOfGroups[0].Count.ToString());
-            return ListOfGroups;
+            progress.Close();
+            if (groupCount >= Matched.Count) MessageBox.Show("No two vertices were within range of each other.\nIncrease the threshold and make sure you've selected the correct vertices.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return Matched.Count;
         }
 
-        private int AverageVerts(IPXPmx pmx, List<int> indices, bool normal)
+        //Set vertex positions to their average
+        private int AverageVerts(IPXPmx pmx, List<int> indices, bool position, bool normal)
         {
             V3 Sum = new V3();
+            V3 NSum = new V3();
             int i = 0;
             for (i = 0; i < indices.Count; ++i)
             {
+                if (normal) NSum += pmx.Vertex[indices[i]].Normal;
                 Sum += pmx.Vertex[indices[i]].Position;
-                //Count = i;
             }
-            //if(i <= 0) MessageBox.Show("heck");
-            V3 Avg = Sum / i;
-            //MessageBox.Show(Avg.X.ToString() + "\n" + Avg.Y.ToString() + "\n" + Avg.Z.ToString());
+            V3 Avg = Sum / i;   //Sum over count. Basic arithmetic average.
+            V3 NAvg = new V3();
+            if (normal) NAvg = NSum / i;
             foreach(int index in indices)
             {
-                pmx.Vertex[index].Position = Avg;
+                if (normal) pmx.Vertex[index].Normal = NAvg;
+                pmx.Vertex[index].Position = Avg;   //Set all relevant vertices to the same position and normals.
             }
             return i;
         }
 
-        private int ProcessVerts(IPXPmx pmx, bool useThreshold, bool avgNormals, out int p_GroupsCount)
+        //Choose which process to use
+        private int ProcessVerts(IPXPmx pmx, bool useThreshold, bool avgPos, bool avgNormals, out int p_GroupsCount)
         {
             int Count = 0;
             int GroupsCount = 0;
             if (useThreshold)
             {
-                List<List<int>> Groups = ScanGroups(pmx, Selected, (double)thresholdNumber.Value);
-
-
-                //List<List<int>> Groups = new List<int>[] { a[0], a[1] }.ToList();
-
-                //MessageBox.Show(Groups[0].Count.ToString());
-
-                //List<int> g1 = new int[] { 0, 1, 2, 3, 4 }.ToList();
-                //List<int> g2 = new int[] { 5, 6, 7, 8, 9, 10 }.ToList();
-                //List<List<int>> Groups = new List<int>[] { g1, g2 }.ToList();
-                /*
-                foreach(List<int> group in Groups)
-                {
-                    //MessageBox.Show(group.Count.ToString());
-                    Count += AverageVerts(pmx, group, avgNormals);
-                    ++GroupsCount;
-                }
-                MessageBox.Show("Groups: " + Groups.Length.ToString());
-                for(int g = 0; g < Groups.Length; ++g)
-                {
-                    MessageBox.Show("Group " + g + ": " + Groups[g].Count);
-                }*/
+                Count = AverageGroups(pmx, Selected, (double)thresholdNumber.Value, avgPos, avgNormals, out GroupsCount);
             }
             else
             {
-                Count = AverageVerts(pmx, Selected.ToList(), avgNormals);
+                Count = AverageVerts(pmx, Selected.ToList(), avgPos, avgNormals);
                 GroupsCount = 1;
             }
             p_GroupsCount = GroupsCount;
@@ -155,6 +126,7 @@ namespace wAverageVertexPosition
 
         private void scanButton_Click(object sender, EventArgs e)
         {
+            //If ScanModel reports that no vertices are selected, disable the apply button.
             applyButton.Enabled = ScanModel();
         }
 
@@ -171,22 +143,22 @@ namespace wAverageVertexPosition
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            if (!ScanModel())
+            if (!ScanModel())   //Scan the model again. If it reports that nothing's selected, cancel the operation.
             {
                 applyButton.Enabled = false;
                 return;
             }
-            Scene = args.Host.Connector.Pmx.GetCurrentState();
+            Application.DoEvents();
             int GroupsCount;
-            int VertsCount = ProcessVerts(Scene, thresholdCheck.Checked, normalCheck.Checked, out GroupsCount);
+            int VertsCount = ProcessVerts(Scene, thresholdCheck.Checked, positionCheck.Checked, normalCheck.Checked, out GroupsCount);
             UpdatePmx(Scene);
 
             MessageBox.Show("Collapsed " + VertsCount.ToString() + " vertices into " + GroupsCount.ToString() + " points", "Done!");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void infoLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //ScanGroups(args.Host.Connector.Pmx.GetCurrentState().Vertex, Selected, (double)thresholdNumber.Value);
+
         }
     }
 }
