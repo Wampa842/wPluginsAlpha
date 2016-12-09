@@ -38,6 +38,8 @@ Planned plugins:
 	> wPluginsSettings:
 		Settings utility for the plugins in the bundle.
 		Options to store settings in a file, and to auto-start plugins with PMX.
+	> wMirrorSelected:
+		Mirror only selected objects instead of the entire model. Optionally, duplicate them.
 	> wBackup:
 		Automatic backup utility with configurable interval, backup location, naming, and notifications.
 	> wApplyMorph:
