@@ -72,6 +72,8 @@ Planned plugins:
 ----	REQUIREMENTS    ----
 ----------------------------
 
+PMX Editor. The plugins will not work with the legacy PMD Editor.
+
 The plugins require .NET Framework 4.0 or later.
 
 	On Windows 8, 8.1 and 10: use Windows Update to download the newest version.
@@ -108,20 +110,28 @@ Fix:
 	Tell me what you did when the error appeared, and if it's a recurring error. I'll do everything I can to resolve the
 	problem.
 
-Issue:
-	Your plugin broke my model!
-Fix:
+Q::
+	I want to use wPlugins with the old PMD Editor. Can I?
+A:
+	The short answer is no. Update to PMX Editor.
+	The long answer is, maybe later. The plugin API uses different methods for PMX and PMD operations. I'd have to
+	rewrite much of the code to ensure functionality with PMD Editor. If you're up to it, you can fork my code to do
+	it yourself.
+
+Q:
+	Your plugin broke my model! How do I fix it?
+A:
 	This shouldn't happen, but if it does, there's not much I can do to fix the model.
 	Contact me (see above) and tell me what you did, what should've happened, and what actually went wrong.
 	
-Issue:
+Q:
 	<problem not related to wPlugins>
-Fix:
+A:
 	If it's not my problem, there's not much I can do to resolve it that isn't available on Google. That said, if you're nice enough, I'll help you anyways.
 
-Issue:
+Q:
 	I'd like a plugin that does <this>!
-Fix:
+A:
 	I'm always open to suggestions, but there's a chance your idea is not possible to implement. Even then, this isn't a request offer - I may choose not to implement it.
 
 	FOR PROGRAMMERS:
