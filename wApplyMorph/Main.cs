@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using PEPlugin;
 
@@ -12,6 +13,11 @@ namespace wApplyMorph
     {
         public void Run(IPERunArgs args)
         {
+            if (!args.Host.Connector.Form.PmxFormActivate)
+            {
+                MessageBox.Show("The legacy PMD Editor is not supported. Please use PMX Editor.\n\nThis plugin will now close.", "PMD Not Supported!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             ApplyMorphForm MainForm = new ApplyMorphForm(args);
             MainForm.Show();
         }

@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.typeBox = new System.Windows.Forms.GroupBox();
-            this.vertexRadio = new System.Windows.Forms.RadioButton();
             this.boneRadio = new System.Windows.Forms.RadioButton();
+            this.vertexRadio = new System.Windows.Forms.RadioButton();
             this.scanButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
             this.applyNegativeButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.affectedBonesLabel = new System.Windows.Forms.Label();
+            this.affectedVertsLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.appliedCountLabel = new System.Windows.Forms.Label();
             this.jaName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.enName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.morphList = new System.Windows.Forms.ListView();
-            this.appliedCountLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.affectedVertsLabel = new System.Windows.Forms.Label();
-            this.affectedBonesLabel = new System.Windows.Forms.Label();
+            this.selectedNameLabel = new System.Windows.Forms.Label();
             this.typeBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -60,17 +60,6 @@
             this.typeBox.TabStop = false;
             this.typeBox.Text = "Type:";
             // 
-            // vertexRadio
-            // 
-            this.vertexRadio.AutoSize = true;
-            this.vertexRadio.Location = new System.Drawing.Point(6, 19);
-            this.vertexRadio.Name = "vertexRadio";
-            this.vertexRadio.Size = new System.Drawing.Size(75, 17);
-            this.vertexRadio.TabIndex = 0;
-            this.vertexRadio.TabStop = true;
-            this.vertexRadio.Text = "Vertex/UV";
-            this.vertexRadio.UseVisualStyleBackColor = true;
-            // 
             // boneRadio
             // 
             this.boneRadio.AutoSize = true;
@@ -81,6 +70,19 @@
             this.boneRadio.TabStop = true;
             this.boneRadio.Text = "Bone";
             this.boneRadio.UseVisualStyleBackColor = true;
+            this.boneRadio.CheckedChanged += new System.EventHandler(this.typeRadio_CheckedChanged);
+            // 
+            // vertexRadio
+            // 
+            this.vertexRadio.AutoSize = true;
+            this.vertexRadio.Location = new System.Drawing.Point(6, 19);
+            this.vertexRadio.Name = "vertexRadio";
+            this.vertexRadio.Size = new System.Drawing.Size(75, 17);
+            this.vertexRadio.TabIndex = 0;
+            this.vertexRadio.TabStop = true;
+            this.vertexRadio.Text = "Vertex/UV";
+            this.vertexRadio.UseVisualStyleBackColor = true;
+            this.vertexRadio.CheckedChanged += new System.EventHandler(this.typeRadio_CheckedChanged);
             // 
             // scanButton
             // 
@@ -90,6 +92,7 @@
             this.scanButton.TabIndex = 1;
             this.scanButton.Text = "SCAN\r\n(Press this first)";
             this.scanButton.UseVisualStyleBackColor = true;
+            this.scanButton.Click += new System.EventHandler(this.scanButton_Click);
             // 
             // applyButton
             // 
@@ -117,26 +120,59 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.selectedNameLabel);
             this.groupBox1.Controls.Add(this.affectedBonesLabel);
             this.groupBox1.Controls.Add(this.affectedVertsLabel);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.appliedCountLabel);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(202, 86);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(130, 166);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Selected:";
             // 
-            // label1
+            // affectedBonesLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Affected:";
+            this.affectedBonesLabel.AutoSize = true;
+            this.affectedBonesLabel.Location = new System.Drawing.Point(32, 64);
+            this.affectedBonesLabel.Name = "affectedBonesLabel";
+            this.affectedBonesLabel.Size = new System.Drawing.Size(24, 13);
+            this.affectedBonesLabel.TabIndex = 4;
+            this.affectedBonesLabel.Text = "TBI";
+            // 
+            // affectedVertsLabel
+            // 
+            this.affectedVertsLabel.AutoSize = true;
+            this.affectedVertsLabel.Location = new System.Drawing.Point(32, 41);
+            this.affectedVertsLabel.Name = "affectedVertsLabel";
+            this.affectedVertsLabel.Size = new System.Drawing.Size(24, 13);
+            this.affectedVertsLabel.TabIndex = 3;
+            this.affectedVertsLabel.Text = "TBI";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Location = new System.Drawing.Point(6, 111);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(118, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Applied:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // appliedCountLabel
+            // 
+            this.appliedCountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.appliedCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.appliedCountLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.appliedCountLabel.Location = new System.Drawing.Point(6, 126);
+            this.appliedCountLabel.Name = "appliedCountLabel";
+            this.appliedCountLabel.Size = new System.Drawing.Size(118, 37);
+            this.appliedCountLabel.TabIndex = 1;
+            this.appliedCountLabel.Text = "0";
+            this.appliedCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // jaName
             // 
@@ -167,48 +203,15 @@
             this.morphList.TabIndex = 12;
             this.morphList.UseCompatibleStateImageBehavior = false;
             this.morphList.View = System.Windows.Forms.View.Details;
+            this.morphList.SelectedIndexChanged += new System.EventHandler(this.morphList_SelectedIndexChanged);
             // 
-            // appliedCountLabel
+            // selectedNameLabel
             // 
-            this.appliedCountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.appliedCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.appliedCountLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.appliedCountLabel.Location = new System.Drawing.Point(6, 126);
-            this.appliedCountLabel.Name = "appliedCountLabel";
-            this.appliedCountLabel.Size = new System.Drawing.Size(118, 37);
-            this.appliedCountLabel.TabIndex = 1;
-            this.appliedCountLabel.Text = "0";
-            this.appliedCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(6, 111);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Applied:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // affectedVertsLabel
-            // 
-            this.affectedVertsLabel.AutoSize = true;
-            this.affectedVertsLabel.Location = new System.Drawing.Point(32, 41);
-            this.affectedVertsLabel.Name = "affectedVertsLabel";
-            this.affectedVertsLabel.Size = new System.Drawing.Size(24, 13);
-            this.affectedVertsLabel.TabIndex = 3;
-            this.affectedVertsLabel.Text = "TBI";
-            // 
-            // affectedBonesLabel
-            // 
-            this.affectedBonesLabel.AutoSize = true;
-            this.affectedBonesLabel.Location = new System.Drawing.Point(32, 64);
-            this.affectedBonesLabel.Name = "affectedBonesLabel";
-            this.affectedBonesLabel.Size = new System.Drawing.Size(24, 13);
-            this.affectedBonesLabel.TabIndex = 4;
-            this.affectedBonesLabel.Text = "TBI";
+            this.selectedNameLabel.Location = new System.Drawing.Point(7, 16);
+            this.selectedNameLabel.Name = "selectedNameLabel";
+            this.selectedNameLabel.Size = new System.Drawing.Size(123, 15);
+            this.selectedNameLabel.TabIndex = 5;
+            this.selectedNameLabel.Text = "None selected";
             // 
             // ApplyMorphForm
             // 
@@ -221,7 +224,7 @@
             this.Controls.Add(this.applyButton);
             this.Controls.Add(this.scanButton);
             this.Controls.Add(this.typeBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ApplyMorphForm";
@@ -244,7 +247,6 @@
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.Button applyNegativeButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColumnHeader jaName;
         private System.Windows.Forms.ColumnHeader enName;
         private System.Windows.Forms.ListView morphList;
@@ -252,5 +254,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label affectedVertsLabel;
         private System.Windows.Forms.Label affectedBonesLabel;
+        private System.Windows.Forms.Label selectedNameLabel;
     }
 }
