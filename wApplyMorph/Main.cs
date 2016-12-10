@@ -12,7 +12,8 @@ namespace wApplyMorph
     {
         public void Run(IPERunArgs args)
         {
-
+            ApplyMorphForm MainForm = new ApplyMorphForm(args);
+            MainForm.Show();
         }
 
         public string Name { get { return "wApplyMorph"; } }
