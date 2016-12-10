@@ -10,7 +10,9 @@ using System.Windows.Forms;
 
 using PEPlugin;
 using PEPlugin.Pmx;
+using PEPlugin.Pmd;
 using PEPlugin.Form;
+using PEPlugin.SDX;
 
 namespace wApplyMorph
 {
@@ -39,13 +41,25 @@ namespace wApplyMorph
         {
             int AffectedVerts = 0;
 
-            foreach(IPXVertexMorphOffset offset in morph.Offsets)
+            //IPEExpression PMorph = (IPEExpression)morph;
+
+            //Dictionary<long, long> VertIndices = new Dictionary<long, long>();
+            List<int[]> VertIndices = new List<int[]>();
+
+            for(int i = 0; i < scene.Vertex.Count; ++i)
             {
-                
+                for(int j = 0; j < morph.Offsets.Count; ++j)
+                {
+                    if (((IPXVertexMorphOffset)morph.Offsets[j]).Vertex.Equals(scene.Vertex[i]))
+                    {
+                        //VertIndices.Add(new int[] { i, j });
+                        scene.Vertex[i].Position += ((IPXVertexMorphOffset)morph.Offsets[j]).Offset;
+                        ++AffectedVerts;
+                    }
+                }
             }
-
-
-            MessageBox.Show("Applied the " + ((negative) ? ("negative of the" ): ("")) + " vertex morph " + morph.Name + " (" + morph.NameE + ")\nAffected vertices: " + AffectedVerts);
+            MessageBox.Show("Applied the " + ((negative) ? ("negative of the") : ("")) + " vertex morph " + morph.Name + " (" + morph.NameE + ")\nAffected vertices: " + AffectedVerts);
+            if (AffectedVerts > 0) UpdatePmx(scene);
             return AffectedVerts;
         }
 
@@ -92,8 +106,8 @@ namespace wApplyMorph
             {
                 appliedCountLabel.ForeColor = Color.Red;
             }
-
-            ApplyVertexMorph(args.Host.Connector.Pmx.GetCurrentState().Morph[Indices[morphList.SelectedIndices[0]]], false);
+            IPXPmx PMX = args.Host.Connector.Pmx.GetCurrentState();
+            ApplyVertexMorph(PMX.Morph[Indices[morphList.SelectedIndices[0]]], PMX, false);
         }
 
         private void applyNegativeButton_Click(object sender, EventArgs e)
@@ -108,7 +122,8 @@ namespace wApplyMorph
             {
                 appliedCountLabel.ForeColor = Color.Red;
             }
-            ApplyVertexMorph(args.Host.Connector.Pmx.GetCurrentState().Morph[Indices[morphList.SelectedIndices[0]]], true);
+            IPXPmx PMX = args.Host.Connector.Pmx.GetCurrentState();
+            ApplyVertexMorph(PMX.Morph[Indices[morphList.SelectedIndices[0]]], PMX, true);
         }
 
         private void ApplyMorphForm_Load(object sender, EventArgs e)
