@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <wPluginsSettings autostart="True">
+    <Verbose>False</Verbose>
+  </wPluginsSettings>
+  <wApplyMorph autostart="False" store="False">
+    <Verbose>False</Verbose>
+  </wApplyMorph>
+  <wMorphScale autostart="False" store="False">
+    <Verbose>False</Verbose>
+  </wMorphScale>
+  <wAverageVertexPosition autostart="False" store="False">
+    <Verbose>False</Verbose>
+  </wAverageVertexPosition>
+</settings>
