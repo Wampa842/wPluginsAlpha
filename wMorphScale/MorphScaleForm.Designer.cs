@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.LinkLabel inverseHelpLink;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MorphScaleForm));
             this.morphTypeGroup = new System.Windows.Forms.GroupBox();
+            this.vertexChannelChoice = new System.Windows.Forms.ComboBox();
             this.addNewCheck = new System.Windows.Forms.CheckBox();
             this.boneRotTypeCheck = new System.Windows.Forms.RadioButton();
             this.boneTypeCheck = new System.Windows.Forms.RadioButton();
@@ -53,7 +55,6 @@
             this.jaName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.enName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.index = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.vertexChannelChoice = new System.Windows.Forms.ComboBox();
             inverseHelpLink = new System.Windows.Forms.LinkLabel();
             this.morphTypeGroup.SuspendLayout();
             this.transformsBox.SuspendLayout();
@@ -89,6 +90,22 @@
             this.morphTypeGroup.TabIndex = 0;
             this.morphTypeGroup.TabStop = false;
             this.morphTypeGroup.Text = "Morph type:";
+            // 
+            // vertexChannelChoice
+            // 
+            this.vertexChannelChoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.vertexChannelChoice.FormattingEnabled = true;
+            this.vertexChannelChoice.Items.AddRange(new object[] {
+            "Vertex",
+            "UV",
+            "UV1",
+            "UV2",
+            "UV3",
+            "UV4"});
+            this.vertexChannelChoice.Location = new System.Drawing.Point(87, 18);
+            this.vertexChannelChoice.Name = "vertexChannelChoice";
+            this.vertexChannelChoice.Size = new System.Drawing.Size(59, 21);
+            this.vertexChannelChoice.TabIndex = 5;
             // 
             // addNewCheck
             // 
@@ -415,23 +432,7 @@
             this.index.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.index.Width = 30;
             // 
-            // vertexChannelChoice
-            // 
-            this.vertexChannelChoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.vertexChannelChoice.FormattingEnabled = true;
-            this.vertexChannelChoice.Items.AddRange(new object[] {
-            "Vertex",
-            "UV",
-            "UV1",
-            "UV2",
-            "UV3",
-            "UV4"});
-            this.vertexChannelChoice.Location = new System.Drawing.Point(87, 18);
-            this.vertexChannelChoice.Name = "vertexChannelChoice";
-            this.vertexChannelChoice.Size = new System.Drawing.Size(59, 21);
-            this.vertexChannelChoice.TabIndex = 5;
-            // 
-            // MainForm
+            // MorphScaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -441,8 +442,11 @@
             this.Controls.Add(this.applyButton);
             this.Controls.Add(this.transformsBox);
             this.Controls.Add(this.morphTypeGroup);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 400);
-            this.Name = "MainForm";
+            this.Name = "MorphScaleForm";
             this.Text = "wMorphScale";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.morphTypeGroup.ResumeLayout(false);

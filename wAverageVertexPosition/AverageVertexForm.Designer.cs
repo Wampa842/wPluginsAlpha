@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AverageVertexForm));
             this.scanButton = new System.Windows.Forms.Button();
             this.selectedVertsLabel = new System.Windows.Forms.Label();
             this.applyButton = new System.Windows.Forms.Button();
@@ -152,6 +153,9 @@
             this.Controls.Add(this.selectedVertsLabel);
             this.Controls.Add(this.scanButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AverageVertexForm";
             this.Text = "wAverageVertexPosition";
             ((System.ComponentModel.ISupportInitialize)(this.thresholdNumber)).EndInit();

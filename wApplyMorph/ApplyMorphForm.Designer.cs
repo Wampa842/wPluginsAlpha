@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ApplyMorphForm));
             this.typeBox = new System.Windows.Forms.GroupBox();
             this.boneRadio = new System.Windows.Forms.RadioButton();
             this.vertexRadio = new System.Windows.Forms.RadioButton();
@@ -43,6 +44,7 @@
             this.enName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.morphList = new System.Windows.Forms.ListView();
             this.selectedNameLabel = new System.Windows.Forms.Label();
+            this.category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.typeBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -65,10 +67,10 @@
             this.boneRadio.AutoSize = true;
             this.boneRadio.Location = new System.Drawing.Point(6, 42);
             this.boneRadio.Name = "boneRadio";
-            this.boneRadio.Size = new System.Drawing.Size(50, 17);
+            this.boneRadio.Size = new System.Drawing.Size(151, 17);
             this.boneRadio.TabIndex = 1;
             this.boneRadio.TabStop = true;
-            this.boneRadio.Text = "Bone";
+            this.boneRadio.Text = "Bone (To Be Implemented)";
             this.boneRadio.UseVisualStyleBackColor = true;
             this.boneRadio.CheckedChanged += new System.EventHandler(this.typeRadio_CheckedChanged);
             // 
@@ -177,12 +179,12 @@
             // jaName
             // 
             this.jaName.Text = "Japanese";
-            this.jaName.Width = 89;
+            this.jaName.Width = 70;
             // 
             // enName
             // 
             this.enName.Text = "English";
-            this.enName.Width = 88;
+            this.enName.Width = 80;
             // 
             // morphList
             // 
@@ -191,6 +193,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.morphList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.morphList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.category,
             this.jaName,
             this.enName});
             this.morphList.FullRowSelect = true;
@@ -213,6 +216,11 @@
             this.selectedNameLabel.TabIndex = 5;
             this.selectedNameLabel.Text = "None selected";
             // 
+            // category
+            // 
+            this.category.Text = "Type";
+            this.category.Width = 20;
+            // 
             // ApplyMorphForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,8 +233,10 @@
             this.Controls.Add(this.scanButton);
             this.Controls.Add(this.typeBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(360, 360);
             this.Name = "ApplyMorphForm";
             this.Text = "wApplyMorph";
             this.Load += new System.EventHandler(this.ApplyMorphForm_Load);
@@ -255,5 +265,6 @@
         private System.Windows.Forms.Label affectedVertsLabel;
         private System.Windows.Forms.Label affectedBonesLabel;
         private System.Windows.Forms.Label selectedNameLabel;
+        private System.Windows.Forms.ColumnHeader category;
     }
 }

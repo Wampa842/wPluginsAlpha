@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeasuringTapeForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.toList = new System.Windows.Forms.ListBox();
             this.fromList = new System.Windows.Forms.ListBox();
+            this.toList = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -54,15 +55,6 @@
             this.splitContainer1.SplitterDistance = 143;
             this.splitContainer1.TabIndex = 0;
             // 
-            // toList
-            // 
-            this.toList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toList.FormattingEnabled = true;
-            this.toList.Location = new System.Drawing.Point(0, 0);
-            this.toList.Name = "toList";
-            this.toList.Size = new System.Drawing.Size(146, 182);
-            this.toList.TabIndex = 0;
-            // 
             // fromList
             // 
             this.fromList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -71,6 +63,15 @@
             this.fromList.Name = "fromList";
             this.fromList.Size = new System.Drawing.Size(143, 182);
             this.fromList.TabIndex = 1;
+            // 
+            // toList
+            // 
+            this.toList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toList.FormattingEnabled = true;
+            this.toList.Location = new System.Drawing.Point(0, 0);
+            this.toList.Name = "toList";
+            this.toList.Size = new System.Drawing.Size(146, 182);
+            this.toList.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -88,6 +89,9 @@
             this.ClientSize = new System.Drawing.Size(317, 281);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MeasuringTapeForm";
             this.Text = "MeasuringTapeForm";
             this.Load += new System.EventHandler(this.MeasuringTapeForm_Load);

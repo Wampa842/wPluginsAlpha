@@ -53,13 +53,14 @@ namespace wApplyMorph
                     if (((IPXVertexMorphOffset)morph.Offsets[j]).Vertex.Equals(scene.Vertex[i]))
                     {
                         //VertIndices.Add(new int[] { i, j });
-                        scene.Vertex[i].Position += ((IPXVertexMorphOffset)morph.Offsets[j]).Offset;
+                        if(negative) scene.Vertex[i].Position -= ((IPXVertexMorphOffset)morph.Offsets[j]).Offset;
+                        else scene.Vertex[i].Position += ((IPXVertexMorphOffset)morph.Offsets[j]).Offset;
                         ++AffectedVerts;
                     }
                 }
             }
             MessageBox.Show("Applied the " + ((negative) ? ("negative of the") : ("")) + " vertex morph " + morph.Name + " (" + morph.NameE + ")\nAffected vertices: " + AffectedVerts);
-            if (AffectedVerts > 0) UpdatePmx(scene);
+            //if (AffectedVerts > 0) UpdatePmx(scene);
             return AffectedVerts;
         }
 
@@ -108,6 +109,7 @@ namespace wApplyMorph
             }
             IPXPmx PMX = args.Host.Connector.Pmx.GetCurrentState();
             ApplyVertexMorph(PMX.Morph[Indices[morphList.SelectedIndices[0]]], PMX, false);
+            UpdatePmx(PMX);
         }
 
         private void applyNegativeButton_Click(object sender, EventArgs e)
@@ -124,6 +126,7 @@ namespace wApplyMorph
             }
             IPXPmx PMX = args.Host.Connector.Pmx.GetCurrentState();
             ApplyVertexMorph(PMX.Morph[Indices[morphList.SelectedIndices[0]]], PMX, true);
+            UpdatePmx(PMX);
         }
 
         private void ApplyMorphForm_Load(object sender, EventArgs e)
