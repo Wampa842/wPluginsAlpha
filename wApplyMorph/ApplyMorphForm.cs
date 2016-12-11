@@ -29,7 +29,7 @@ namespace wApplyMorph
             args = p_args;
             InitializeComponent();
         }
-
+        
         private void UpdatePmx(IPXPmx scene)
         {
             args.Host.Connector.Pmx.Update(scene);
@@ -39,12 +39,11 @@ namespace wApplyMorph
 
         private int ApplyVertexMorph(IPXMorph morph, IPXPmx scene, bool negative)
         {
+            int TotalVertexCount = scene.Vertex.Count;
             int AffectedVerts = 0;
-
-            //IPEExpression PMorph = (IPEExpression)morph;
-
-            //Dictionary<long, long> VertIndices = new Dictionary<long, long>();
-            List<int[]> VertIndices = new List<int[]>();
+            PleaseWaitForm progress = new PleaseWaitForm();
+            progress.UpdateProgress(0, 0, TotalVertexCount);
+            progress.Show();
 
             for(int i = 0; i < scene.Vertex.Count; ++i)
             {
@@ -52,13 +51,14 @@ namespace wApplyMorph
                 {
                     if (((IPXVertexMorphOffset)morph.Offsets[j]).Vertex.Equals(scene.Vertex[i]))
                     {
-                        //VertIndices.Add(new int[] { i, j });
-                        if(negative) scene.Vertex[i].Position -= ((IPXVertexMorphOffset)morph.Offsets[j]).Offset;
-                        else scene.Vertex[i].Position += ((IPXVertexMorphOffset)morph.Offsets[j]).Offset;
+                        if(negative) scene.Vertex[i].Position -= (((IPXVertexMorphOffset)morph.Offsets[j]).Offset * (float)scaleNumber.Value);
+                        else scene.Vertex[i].Position += (((IPXVertexMorphOffset)morph.Offsets[j]).Offset * (float)scaleNumber.Value);
                         ++AffectedVerts;
                     }
                 }
+                progress.UpdateProgress(i, 0, TotalVertexCount);
             }
+            progress.Close();
             MessageBox.Show("Applied the " + ((negative) ? ("negative of the") : ("")) + " vertex morph " + morph.Name + " (" + morph.NameE + ")\nAffected vertices: " + AffectedVerts);
             //if (AffectedVerts > 0) UpdatePmx(scene);
             return AffectedVerts;
@@ -70,7 +70,7 @@ namespace wApplyMorph
             applyNegativeButton.Enabled = enable;
         }
 
-        private List<int> PopulateList(MorphKind type)
+        private void PopulateList(MorphKind type)
         {
             GlobalScene = args.Host.Connector.Pmx.GetCurrentState();
             morphList.Items.Clear();
@@ -78,7 +78,7 @@ namespace wApplyMorph
             List<IPXMorph> Morphs = (List<IPXMorph>)GlobalScene.Morph;
             if(Morphs.Count <= 0)
             {
-                return new List<int>();
+                return;
             }
             List<int> OutList = new List<int>();
             for(int i = 0; i < Morphs.Count; ++i)
@@ -119,24 +119,10 @@ namespace wApplyMorph
                     morphList.Items.Add(new ListViewItem(new string[] { Category, Morphs[i].Name, Morphs[i].NameE}));
                 }
             }
-
-            //MessageBox.Show(morphList.SelectedIndices[0].ToString());
-            return OutList;
         }
-
-        private int AppliedCount = 0;
+        
         private void applyButton_Click(object sender, EventArgs e)
         {
-            AppliedCount++;
-            appliedCountLabel.Text = Math.Abs(AppliedCount).ToString();
-            if(AppliedCount == 0)
-            {
-                appliedCountLabel.ForeColor = Control.DefaultForeColor;
-            }
-            else
-            {
-                appliedCountLabel.ForeColor = Color.Red;
-            }
             IPXPmx PMX = args.Host.Connector.Pmx.GetCurrentState();
             ApplyVertexMorph(PMX.Morph[Indices[morphList.SelectedIndices[0]]], PMX, false);
             UpdatePmx(PMX);
@@ -144,16 +130,6 @@ namespace wApplyMorph
 
         private void applyNegativeButton_Click(object sender, EventArgs e)
         {
-            AppliedCount--;
-            appliedCountLabel.Text = Math.Abs(AppliedCount).ToString();
-            if (AppliedCount == 0)
-            {
-                appliedCountLabel.ForeColor = Control.DefaultForeColor;
-            }
-            else
-            {
-                appliedCountLabel.ForeColor = Color.Red;
-            }
             IPXPmx PMX = args.Host.Connector.Pmx.GetCurrentState();
             ApplyVertexMorph(PMX.Morph[Indices[morphList.SelectedIndices[0]]], PMX, true);
             UpdatePmx(PMX);
@@ -169,7 +145,7 @@ namespace wApplyMorph
         private void scanButton_Click(object sender, EventArgs e)
         {
             PopulateList(SelectedType);
-            EnableControls(true);
+            EnableControls(morphList.SelectedIndices.Count > 0);
         }
 
         private void typeRadio_CheckedChanged(object sender, EventArgs e)
@@ -186,10 +162,13 @@ namespace wApplyMorph
             PopulateList(SelectedType);
         }
 
-        private void morphList_SelectedIndexChanged(object sender, EventArgs e)
+        private void morphList_SelectedIndexChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            selectedNameLabel.Text = (morphList.SelectedItems.Count <= 0) ? ("<none selected>") : (GlobalScene.Morph[Indices[morphList.SelectedIndices[0]]].Name);
+            selectedNameLabel.Text = (morphList.SelectedItems.Count <= 0) ? ("<none selected>") : (GlobalScene.Morph[Indices[morphList.SelectedIndices[0]]].Name + "\n" + GlobalScene.Morph[Indices[morphList.SelectedIndices[0]]].NameE);
+            affectedVertsLabel.Text = (morphList.SelectedItems.Count <= 0) ? ("<none selected>") : (GlobalScene.Morph[Indices[morphList.SelectedIndices[0]]].Offsets.Count + " vertices");
             EnableControls(morphList.SelectedItems.Count > 0);
         }
+
+        //private void morphList_SelectedIndexChanged(object sender, ListViewItemSelectionChangedEventArgs e)
     }
 }

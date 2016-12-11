@@ -1,4 +1,4 @@
-﻿namespace wAverageVertexPosition
+﻿namespace wApplyMorph
 {
     partial class PleaseWaitForm
     {
@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.progressLabel = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar1.Location = new System.Drawing.Point(0, 59);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(134, 23);
+            this.progressBar1.TabIndex = 3;
+            this.progressBar1.UseWaitCursor = true;
             // 
             // progressLabel
             // 
@@ -42,19 +51,10 @@
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.progressLabel.Size = new System.Drawing.Size(134, 27);
-            this.progressLabel.TabIndex = 0;
+            this.progressLabel.TabIndex = 4;
             this.progressLabel.Text = "0 / 42";
             this.progressLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.progressLabel.UseWaitCursor = true;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(0, 59);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(134, 23);
-            this.progressBar1.TabIndex = 1;
-            this.progressBar1.UseWaitCursor = true;
             // 
             // PleaseWaitForm
             // 
@@ -62,25 +62,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(134, 82);
             this.ControlBox = false;
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.progressLabel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(140, 100);
+            this.Controls.Add(this.progressBar1);
             this.Name = "PleaseWaitForm";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Please wait...";
-            this.TopMost = true;
-            this.UseWaitCursor = true;
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label progressLabel;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label progressLabel;
     }
 }

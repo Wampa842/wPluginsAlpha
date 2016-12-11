@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace wAverageVertexPosition
+namespace wApplyMorph
 {
     public partial class PleaseWaitForm : Form
     {

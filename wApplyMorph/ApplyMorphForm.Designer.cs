@@ -36,17 +36,18 @@
             this.applyButton = new System.Windows.Forms.Button();
             this.applyNegativeButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.selectedNameLabel = new System.Windows.Forms.Label();
             this.affectedBonesLabel = new System.Windows.Forms.Label();
             this.affectedVertsLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.appliedCountLabel = new System.Windows.Forms.Label();
             this.jaName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.enName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.morphList = new System.Windows.Forms.ListView();
-            this.selectedNameLabel = new System.Windows.Forms.Label();
             this.category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.scaleNumber = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.typeBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // typeBox
@@ -122,11 +123,11 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.scaleNumber);
             this.groupBox1.Controls.Add(this.selectedNameLabel);
             this.groupBox1.Controls.Add(this.affectedBonesLabel);
             this.groupBox1.Controls.Add(this.affectedVertsLabel);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.appliedCountLabel);
             this.groupBox1.Location = new System.Drawing.Point(202, 86);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(130, 166);
@@ -134,47 +135,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected:";
             // 
+            // selectedNameLabel
+            // 
+            this.selectedNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.selectedNameLabel.Location = new System.Drawing.Point(6, 16);
+            this.selectedNameLabel.Name = "selectedNameLabel";
+            this.selectedNameLabel.Size = new System.Drawing.Size(123, 51);
+            this.selectedNameLabel.TabIndex = 5;
+            this.selectedNameLabel.Text = "None selected";
+            // 
             // affectedBonesLabel
             // 
             this.affectedBonesLabel.AutoSize = true;
-            this.affectedBonesLabel.Location = new System.Drawing.Point(32, 64);
+            this.affectedBonesLabel.Location = new System.Drawing.Point(7, 90);
             this.affectedBonesLabel.Name = "affectedBonesLabel";
-            this.affectedBonesLabel.Size = new System.Drawing.Size(24, 13);
+            this.affectedBonesLabel.Size = new System.Drawing.Size(102, 13);
             this.affectedBonesLabel.TabIndex = 4;
-            this.affectedBonesLabel.Text = "TBI";
+            this.affectedBonesLabel.Text = "affectedBonesLabel";
             // 
             // affectedVertsLabel
             // 
             this.affectedVertsLabel.AutoSize = true;
-            this.affectedVertsLabel.Location = new System.Drawing.Point(32, 41);
+            this.affectedVertsLabel.Location = new System.Drawing.Point(7, 67);
             this.affectedVertsLabel.Name = "affectedVertsLabel";
-            this.affectedVertsLabel.Size = new System.Drawing.Size(24, 13);
+            this.affectedVertsLabel.Size = new System.Drawing.Size(96, 13);
             this.affectedVertsLabel.TabIndex = 3;
-            this.affectedVertsLabel.Text = "TBI";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(6, 111);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Applied:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // appliedCountLabel
-            // 
-            this.appliedCountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.appliedCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.appliedCountLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.appliedCountLabel.Location = new System.Drawing.Point(6, 126);
-            this.appliedCountLabel.Name = "appliedCountLabel";
-            this.appliedCountLabel.Size = new System.Drawing.Size(118, 37);
-            this.appliedCountLabel.TabIndex = 1;
-            this.appliedCountLabel.Text = "0";
-            this.appliedCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.affectedVertsLabel.Text = "affectedVertsLabel";
             // 
             // jaName
             // 
@@ -200,26 +186,49 @@
             this.morphList.GridLines = true;
             this.morphList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.morphList.Location = new System.Drawing.Point(12, 86);
-            this.morphList.MultiSelect = false;
             this.morphList.Name = "morphList";
             this.morphList.Size = new System.Drawing.Size(184, 224);
             this.morphList.TabIndex = 12;
             this.morphList.UseCompatibleStateImageBehavior = false;
             this.morphList.View = System.Windows.Forms.View.Details;
-            this.morphList.SelectedIndexChanged += new System.EventHandler(this.morphList_SelectedIndexChanged);
-            // 
-            // selectedNameLabel
-            // 
-            this.selectedNameLabel.Location = new System.Drawing.Point(7, 16);
-            this.selectedNameLabel.Name = "selectedNameLabel";
-            this.selectedNameLabel.Size = new System.Drawing.Size(123, 15);
-            this.selectedNameLabel.TabIndex = 5;
-            this.selectedNameLabel.Text = "None selected";
+            this.morphList.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.morphList_SelectedIndexChanged);
             // 
             // category
             // 
             this.category.Text = "Type";
             this.category.Width = 20;
+            // 
+            // scaleNumber
+            // 
+            this.scaleNumber.DecimalPlaces = 2;
+            this.scaleNumber.Increment = new decimal(new int[] {
+            25,
+            0,
+            0,
+            131072});
+            this.scaleNumber.Location = new System.Drawing.Point(6, 140);
+            this.scaleNumber.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.scaleNumber.Name = "scaleNumber";
+            this.scaleNumber.Size = new System.Drawing.Size(118, 20);
+            this.scaleNumber.TabIndex = 6;
+            this.scaleNumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 124);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Scale:";
             // 
             // ApplyMorphForm
             // 
@@ -244,6 +253,7 @@
             this.typeBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scaleNumber)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -260,11 +270,11 @@
         private System.Windows.Forms.ColumnHeader jaName;
         private System.Windows.Forms.ColumnHeader enName;
         private System.Windows.Forms.ListView morphList;
-        private System.Windows.Forms.Label appliedCountLabel;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label affectedVertsLabel;
         private System.Windows.Forms.Label affectedBonesLabel;
         private System.Windows.Forms.Label selectedNameLabel;
         private System.Windows.Forms.ColumnHeader category;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown scaleNumber;
     }
 }
