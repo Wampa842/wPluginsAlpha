@@ -34,6 +34,10 @@ namespace wMorphScaleB
             {
                 return false;
             }
+            catch (System.IO.FileNotFoundException)
+            {
+                return false;
+            }
             return AutoStart;
         }
 

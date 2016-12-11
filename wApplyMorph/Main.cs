@@ -43,6 +43,10 @@ namespace wApplyMorph
             {
                 return false;
             }
+            catch (System.IO.FileNotFoundException)
+            {
+                return false;
+            }
             return AutoStart;
         }
 

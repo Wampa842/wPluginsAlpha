@@ -39,6 +39,10 @@ namespace wAverageVertexPosition
             {
                 return false;
             }
+            catch (System.IO.FileNotFoundException)
+            {
+                return false;
+            }
             return AutoStart;
         }
 
