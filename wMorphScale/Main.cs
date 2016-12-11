@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 
 using PEPlugin;
@@ -12,15 +13,16 @@ namespace wMorphScale
     public class Main : IPEPlugin
     {
         string PluginName = "wMorphScale";
+
         public void Run(IPERunArgs args)
         {
             MorphScaleForm Main = new MorphScaleForm(args);
             Main.Show();
         }
 
-        public string Name { get { return "wMorphScale"; } }
+        public string Name { get { return PluginName; } }
 
-        public string Description { get { return "Scale vertex and bone morphs"; } }
+        public string Description { get { return "Apply a morph (or its inverse) to the model within PMX Editor"; } }
 
 
         public bool GetAutoStartSetting()
@@ -33,13 +35,10 @@ namespace wMorphScale
             {
                 AutoStart = bool.Parse(Doc.DocumentElement[PluginName].Attributes["autostart"].InnerText);
             }
-            catch (FormatException)
+            //Sorry about this.
+            catch (Exception ex)
             {
-                return false;
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                return false;
+                AutoStart = false;
             }
             return AutoStart;
         }
@@ -58,7 +57,7 @@ namespace wMorphScale
         }
 
         public IPEPluginOption Option { get { return new Opt(PluginName, true, GetAutoStartSetting()); } }
-
+        //public IPEPluginOption Option { get { return new Opt(); } }
 
         public string Version
         {

@@ -20,7 +20,7 @@ namespace wAverageVertexPosition
             Main.Show();
         }
 
-        public string Name { get { return "wAverageVertexPosition"; } }
+        public string Name { get { return PluginName; } }
 
         public string Description { get { return "Unifies vertices without welding them"; } }
 
@@ -35,13 +35,10 @@ namespace wAverageVertexPosition
             {
                 AutoStart = bool.Parse(Doc.DocumentElement[PluginName].Attributes["autostart"].InnerText);
             }
-            catch (FormatException)
+            //Sorry about this.
+            catch (Exception ex)
             {
-                return false;
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                return false;
+                AutoStart = false;
             }
             return AutoStart;
         }

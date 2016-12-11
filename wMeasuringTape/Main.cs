@@ -14,10 +14,10 @@ namespace wMeasuringTape
         string PluginName = "wMeasuringTape";
         public void Run(IPERunArgs args)
         {
-
+            
         }
 
-        public string Name { get { return "wMeasuringTape"; } }
+        public string Name { get { return PluginName; } }
 
         public string Description { get { return "Measure the distance between two points"; } }
 
@@ -32,13 +32,10 @@ namespace wMeasuringTape
             {
                 AutoStart = bool.Parse(Doc.DocumentElement[PluginName].Attributes["autostart"].InnerText);
             }
-            catch (FormatException)
+            //Sorry about this.
+            catch (Exception ex)
             {
-                return false;
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                return false;
+                AutoStart = false;
             }
             return AutoStart;
         }

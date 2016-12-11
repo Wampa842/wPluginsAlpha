@@ -15,16 +15,11 @@ namespace wApplyMorph
         string PluginName = "wApplyMorph";
         public void Run(IPERunArgs args)
         {
-            if (!args.Host.Connector.Form.PmxFormActivate)
-            {
-                MessageBox.Show("The legacy PMD Editor is not supported. Please use PMX Editor.\n\nThis plugin will now close.", "PMD Not Supported!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             ApplyMorphForm MainForm = new ApplyMorphForm(args);
             MainForm.Show();
         }
 
-        public string Name { get { return "wApplyMorph"; } }
+        public string Name { get { return PluginName; } }
 
         public string Description { get { return "Apply a morph (or its inverse) to the model within PMX Editor"; } }
 
@@ -39,13 +34,10 @@ namespace wApplyMorph
             {
                 AutoStart = bool.Parse(Doc.DocumentElement[PluginName].Attributes["autostart"].InnerText);
             }
-            catch (FormatException)
+            //Sorry about this.
+            catch (Exception ex)
             {
-                return false;
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                return false;
+                AutoStart = false;
             }
             return AutoStart;
         }

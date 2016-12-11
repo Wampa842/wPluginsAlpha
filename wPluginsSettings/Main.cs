@@ -7,19 +7,20 @@ using System.Xml;
 
 using PEPlugin;
 
-namespace wMorphScaleB
+namespace wPluginsSettings
 {
     public class Main : IPEPlugin
     {
-        string PluginName = "wPluginSettings";
+        string PluginName = "wPluginsSettings";
+
         public void Run(IPERunArgs args)
         {
 
         }
 
-        public string Name { get { return "wMorphScale"; } }
+        public string Name { get { return PluginName; } }
 
-        public string Description { get { return "Scale vertex and bone morphs"; } }
+        public string Description { get { return ""; } }
 
         public bool GetAutoStartSetting()
         {
@@ -31,13 +32,10 @@ namespace wMorphScaleB
             {
                 AutoStart = bool.Parse(Doc.DocumentElement[PluginName].Attributes["autostart"].InnerText);
             }
-            catch (FormatException)
+            //Sorry about this.
+            catch (Exception ex)
             {
-                return false;
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                return false;
+                AutoStart = false;
             }
             return AutoStart;
         }
