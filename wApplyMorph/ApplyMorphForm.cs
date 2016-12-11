@@ -85,8 +85,38 @@ namespace wApplyMorph
             {
                 if(Morphs[i].Kind == type)
                 {
+                    string Category;
+                    switch (Morphs[i].Panel)
+                    {
+                        case 1:
+                            {
+                                Category = "B";
+                                break;
+                            }
+                        case 2:
+                            {
+                                Category = "E";
+                                break;
+                            }
+                        case 3:
+                            {
+                                Category = "M";
+                                break;
+                            }
+                        case 4:
+                            {
+                                Category = "O";
+                                break;
+                            }
+                        default:
+                            {
+                                Category = "X";
+                                break;
+                            }
+                    }
+
                     Indices.Add(i);
-                    morphList.Items.Add(new ListViewItem(new string[] { Morphs[i].Name, Morphs[i].NameE}));
+                    morphList.Items.Add(new ListViewItem(new string[] { Category, Morphs[i].Name, Morphs[i].NameE}));
                 }
             }
 
