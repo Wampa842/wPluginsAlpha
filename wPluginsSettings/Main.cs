@@ -14,6 +14,7 @@ namespace wMorphScaleB
         string PluginName = "wPluginSettings";
         public void Run(IPERunArgs args)
         {
+
         }
 
         public string Name { get { return "wMorphScale"; } }
