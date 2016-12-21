@@ -12,4 +12,7 @@
   <wAverageVertexPosition autostart="False" store="False">
     <Verbose>False</Verbose>
   </wAverageVertexPosition>
+  <wMergeMaterials autostart="True" store="False">
+    <Verbose>False</Verbose>
+  </wMergeMaterials>
 </settings>

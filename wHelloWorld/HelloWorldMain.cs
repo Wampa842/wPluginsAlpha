@@ -38,11 +38,11 @@ namespace wHelloWorld
             //For the sake of the tutorial, this plugin will display a message box with yes and no buttons, "Hello World" as title, and the model's name. If yes is clicked, it'll shift all vertices +100 units on the Y axis.
             IPXPmx Scene = args.Host.Connector.Pmx.GetCurrentState();
             string ModelName = Scene.ModelInfo.ModelName + " (" + Scene.ModelInfo.ModelNameE + ")";
-            
-            if(MessageBox.Show(ModelName, "Hello World!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+
+            if (MessageBox.Show(ModelName, "Hello World!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 //PMX classes do not store their indices. It's almost always better to use for instead of foreach because the iterator is easily accessible.
-                for(int i = 0; i < Scene.Vertex.Count; ++i)
+                for (int i = 0; i < Scene.Vertex.Count; ++i)
                 {
                     Scene.Vertex[i].Position += new PEPlugin.SDX.V3(0f, 100f, 0f);  //V3 is a 3D vector implemented by SlimDX. It supports all arithmetic operations with scalars and vectors.
                 }
@@ -66,7 +66,7 @@ namespace wHelloWorld
             public bool RegisterMenu { get; } = true;   //Whether or not the plugin should be listed at all
             public string RegisterMenuText { get; } = "wHelloWorld";    //The name that is listed in PMX
             public bool Bootup { get; } = false;    //If true, the plugin will be launched as soon as PMX Editor is running
-            
+
             //You can also implement a constructor that gets these properties from arguments. They can be passed from other variables, or even methods.
             //I use it to read startup data from an XML file.
             public Opt(bool p_register, string p_name, bool p_autorun)
