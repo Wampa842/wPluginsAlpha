@@ -15,7 +15,8 @@ namespace wPluginsSettings
 
         public void Run(IPERunArgs args)
         {
-
+            PluginSettingsForm MainForm = new PluginSettingsForm(args);
+            MainForm.Show();
         }
 
         public string Name { get { return PluginName; } }

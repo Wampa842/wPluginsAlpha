@@ -69,7 +69,7 @@
     <PostBuildEvent>copy /y "$(TargetPath)" "H:\MMD\PMX Editor\PmxEditor_0232d\_plugin\User\wPlugins\"
 copy /y "$(SolutionDir)README.txt" "H:\MMD\PMX Editor\PmxEditor_0232d\_plugin\User\wPlugins\"
 copy /y "$(SolutionDir)LICENSE.TXT" "H:\MMD\PMX Editor\PmxEditor_0232d\_plugin\User\wPlugins\"
-copy /y "$(SolutionDir)settings.xml" "H:\MMD\PMX Editor\PmxEditor_0232d\_plugin\User\wPlugins\"</PostBuildEvent>
+copy /y "$(ProjectDir)settings.xml" "H:\MMD\PMX Editor\PmxEditor_0232d\_plugin\User\wPlugins\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

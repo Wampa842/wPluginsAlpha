@@ -28,75 +28,122 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.mainContainer = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pluginList = new System.Windows.Forms.ListBox();
+            this.commonSettingsGroup = new System.Windows.Forms.GroupBox();
+            this.storeSettingsCheck = new System.Windows.Forms.CheckBox();
+            this.autoStartCheck = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
+            this.mainContainer.Panel1.SuspendLayout();
+            this.mainContainer.Panel2.SuspendLayout();
+            this.mainContainer.SuspendLayout();
+            this.commonSettingsGroup.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // mainContainer
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.mainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainContainer.Location = new System.Drawing.Point(0, 0);
+            this.mainContainer.Name = "mainContainer";
+            // 
+            // mainContainer.Panel1
+            // 
+            this.mainContainer.Panel1.Controls.Add(this.label1);
+            this.mainContainer.Panel1.Controls.Add(this.pluginList);
+            // 
+            // mainContainer.Panel2
+            // 
+            this.mainContainer.Panel2.Controls.Add(this.commonSettingsGroup);
+            this.mainContainer.Size = new System.Drawing.Size(404, 322);
+            this.mainContainer.SplitterDistance = 139;
+            this.mainContainer.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(3, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 18);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Select a plugin";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pluginList
+            // 
+            this.pluginList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(366, 250);
-            this.panel1.TabIndex = 0;
+            this.pluginList.DisplayMember = "Key";
+            this.pluginList.FormattingEnabled = true;
+            this.pluginList.IntegralHeight = false;
+            this.pluginList.Location = new System.Drawing.Point(3, 30);
+            this.pluginList.Name = "pluginList";
+            this.pluginList.Size = new System.Drawing.Size(133, 289);
+            this.pluginList.TabIndex = 0;
+            this.pluginList.ValueMember = "Value";
+            this.pluginList.SelectedIndexChanged += new System.EventHandler(this.pluginList_SelectedIndexChanged);
             // 
-            // tabControl1
+            // commonSettingsGroup
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(366, 250);
-            this.tabControl1.TabIndex = 0;
+            this.commonSettingsGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.commonSettingsGroup.Controls.Add(this.storeSettingsCheck);
+            this.commonSettingsGroup.Controls.Add(this.autoStartCheck);
+            this.commonSettingsGroup.Location = new System.Drawing.Point(3, 12);
+            this.commonSettingsGroup.Name = "commonSettingsGroup";
+            this.commonSettingsGroup.Size = new System.Drawing.Size(246, 46);
+            this.commonSettingsGroup.TabIndex = 0;
+            this.commonSettingsGroup.TabStop = false;
+            this.commonSettingsGroup.Text = "Settings";
             // 
-            // tabPage1
+            // storeSettingsCheck
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(358, 224);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.storeSettingsCheck.AutoSize = true;
+            this.storeSettingsCheck.Location = new System.Drawing.Point(108, 19);
+            this.storeSettingsCheck.Name = "storeSettingsCheck";
+            this.storeSettingsCheck.Size = new System.Drawing.Size(116, 17);
+            this.storeSettingsCheck.TabIndex = 1;
+            this.storeSettingsCheck.Text = "Store settings (TBI)";
+            this.storeSettingsCheck.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // autoStartCheck
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(94, 50);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.autoStartCheck.AutoSize = true;
+            this.autoStartCheck.Location = new System.Drawing.Point(6, 19);
+            this.autoStartCheck.Name = "autoStartCheck";
+            this.autoStartCheck.Size = new System.Drawing.Size(96, 17);
+            this.autoStartCheck.TabIndex = 0;
+            this.autoStartCheck.Text = "Start with PMX";
+            this.autoStartCheck.UseVisualStyleBackColor = true;
             // 
             // PluginSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 305);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(404, 322);
+            this.Controls.Add(this.mainContainer);
             this.Name = "PluginSettingsForm";
             this.Text = "wPluginsSettings";
-            this.panel1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.PluginSettingsForm_Load);
+            this.mainContainer.Panel1.ResumeLayout(false);
+            this.mainContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).EndInit();
+            this.mainContainer.ResumeLayout(false);
+            this.commonSettingsGroup.ResumeLayout(false);
+            this.commonSettingsGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.SplitContainer mainContainer;
+        private System.Windows.Forms.ListBox pluginList;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox commonSettingsGroup;
+        private System.Windows.Forms.CheckBox autoStartCheck;
+        private System.Windows.Forms.CheckBox storeSettingsCheck;
     }
 }
