@@ -68,6 +68,7 @@ namespace wApplyMorph
         {
             applyButton.Enabled = enable;
             applyNegativeButton.Enabled = enable;
+            reverseMorphNameJText.Enabled = enable;
         }
 
         private void PopulateList(MorphKind type)
@@ -140,6 +141,7 @@ namespace wApplyMorph
             EnableControls(false);
             SelectedType = MorphKind.Vertex;
             //PopulateList(SelectedType);
+            reverseMorphDrop.SelectedIndex = 0;
         }
 
         private void scanButton_Click(object sender, EventArgs e)
@@ -167,6 +169,8 @@ namespace wApplyMorph
             selectedNameLabel.Text = (morphList.SelectedItems.Count <= 0) ? ("<none selected>") : (GlobalScene.Morph[Indices[morphList.SelectedIndices[0]]].Name + "\n" + GlobalScene.Morph[Indices[morphList.SelectedIndices[0]]].NameE);
             affectedVertsLabel.Text = (morphList.SelectedItems.Count <= 0) ? ("<none selected>") : (GlobalScene.Morph[Indices[morphList.SelectedIndices[0]]].Offsets.Count + " vertices");
             EnableControls(morphList.SelectedItems.Count > 0);
+            reverseMorphNameJText.Text = args.Host.Connector.Pmx.GetCurrentState().Morph[Indices[morphList.SelectedIndices[0]]].Name;
+            reverseMorphNameEText.Text = args.Host.Connector.Pmx.GetCurrentState().Morph[Indices[morphList.SelectedIndices[0]]].NameE;
         }
 
         //private void morphList_SelectedIndexChanged(object sender, ListViewItemSelectionChangedEventArgs e)
