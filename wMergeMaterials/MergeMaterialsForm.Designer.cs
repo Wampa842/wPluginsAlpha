@@ -30,9 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.modeGroup = new System.Windows.Forms.GroupBox();
-            this.anyModeRadio = new System.Windows.Forms.RadioButton();
-            this.matchModeRadio = new System.Windows.Forms.RadioButton();
             this.selectCheck = new System.Windows.Forms.CheckBox();
+            this.matchModeRadio = new System.Windows.Forms.RadioButton();
+            this.anyModeRadio = new System.Windows.Forms.RadioButton();
             this.modeGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,16 +62,16 @@
             this.modeGroup.TabStop = false;
             this.modeGroup.Text = "Mode:";
             // 
-            // anyModeRadio
+            // selectCheck
             // 
-            this.anyModeRadio.AutoSize = true;
-            this.anyModeRadio.Location = new System.Drawing.Point(6, 19);
-            this.anyModeRadio.Name = "anyModeRadio";
-            this.anyModeRadio.Size = new System.Drawing.Size(43, 17);
-            this.anyModeRadio.TabIndex = 1;
-            this.anyModeRadio.TabStop = true;
-            this.anyModeRadio.Text = "Any";
-            this.anyModeRadio.UseVisualStyleBackColor = true;
+            this.selectCheck.AutoSize = true;
+            this.selectCheck.Location = new System.Drawing.Point(6, 65);
+            this.selectCheck.Name = "selectCheck";
+            this.selectCheck.Size = new System.Drawing.Size(56, 17);
+            this.selectCheck.TabIndex = 3;
+            this.selectCheck.Text = "Select";
+            this.selectCheck.UseVisualStyleBackColor = true;
+            this.selectCheck.CheckedChanged += new System.EventHandler(this.selectCheck_CheckedChanged);
             // 
             // matchModeRadio
             // 
@@ -84,16 +84,16 @@
             this.matchModeRadio.Text = "Match";
             this.matchModeRadio.UseVisualStyleBackColor = true;
             // 
-            // selectCheck
+            // anyModeRadio
             // 
-            this.selectCheck.AutoSize = true;
-            this.selectCheck.Location = new System.Drawing.Point(6, 65);
-            this.selectCheck.Name = "selectCheck";
-            this.selectCheck.Size = new System.Drawing.Size(56, 17);
-            this.selectCheck.TabIndex = 3;
-            this.selectCheck.Text = "Select";
-            this.selectCheck.UseVisualStyleBackColor = true;
-            this.selectCheck.CheckedChanged += new System.EventHandler(this.selectCheck_CheckedChanged);
+            this.anyModeRadio.AutoSize = true;
+            this.anyModeRadio.Location = new System.Drawing.Point(6, 19);
+            this.anyModeRadio.Name = "anyModeRadio";
+            this.anyModeRadio.Size = new System.Drawing.Size(43, 17);
+            this.anyModeRadio.TabIndex = 1;
+            this.anyModeRadio.TabStop = true;
+            this.anyModeRadio.Text = "Any";
+            this.anyModeRadio.UseVisualStyleBackColor = true;
             // 
             // MergeMaterialsForm
             // 
@@ -103,6 +103,7 @@
             this.Controls.Add(this.modeGroup);
             this.Name = "MergeMaterialsForm";
             this.Text = "wMergeMaterials";
+            this.Move += new System.EventHandler(this.MergeMaterialsForm_Move);
             this.modeGroup.ResumeLayout(false);
             this.modeGroup.PerformLayout();
             this.ResumeLayout(false);
