@@ -33,17 +33,17 @@ Currently functional plugins:
 	> wAverageVertexPosition:
 		Move selected vertices to the same location without welding them.
 		Options to set the position, normal, or both; and to only merge vertices within a set range.
-	
-Planned plugins:
+	> wApplyMorph:
+		Apply a vertex morph, or its negative, to the model in the editor.
 	> wPluginsSettings:
 		Settings utility for the plugins in the bundle.
 		Options to store settings in a file, and to auto-start plugins with PMX.
+	
+Planned plugins:
 	> wMirrorSelected:
 		Mirror only selected objects instead of the entire model. Optionally, duplicate them.
 	> wBackup:
 		Automatic backup utility with configurable interval, backup location, naming, and notifications.
-	> wApplyMorph:
-		Apply a vertex morph, or its negative, to the model in the editor.
 	> wMeasuringTape:
 		Measure the distance between two selected objects.
 		Measure the angle between an axis and two selected objects, or a bone's look-at bone.
