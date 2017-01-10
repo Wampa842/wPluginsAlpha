@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsageReportForm));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.versionText = new System.Windows.Forms.MaskedTextBox();
-            this.englishTranslationCheck = new System.Windows.Forms.CheckBox();
-            this.legacyCheck = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pmxExperience = new System.Windows.Forms.ComboBox();
             this.generalExperience = new System.Windows.Forms.ComboBox();
+            this.pmxExperience = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.legacyCheck = new System.Windows.Forms.CheckBox();
+            this.englishTranslationCheck = new System.Windows.Forms.CheckBox();
+            this.versionText = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.submitButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -72,63 +72,22 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // label2
+            // generalExperience
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "PMX version (w.x.y.z format):";
-            // 
-            // versionText
-            // 
-            this.versionText.Culture = new System.Globalization.CultureInfo("");
-            this.versionText.Location = new System.Drawing.Point(155, 13);
-            this.versionText.Mask = "0.0.0.0";
-            this.versionText.Name = "versionText";
-            this.versionText.PromptChar = '#';
-            this.versionText.Size = new System.Drawing.Size(118, 20);
-            this.versionText.TabIndex = 1;
-            this.versionText.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // englishTranslationCheck
-            // 
-            this.englishTranslationCheck.AutoSize = true;
-            this.englishTranslationCheck.Location = new System.Drawing.Point(279, 16);
-            this.englishTranslationCheck.Name = "englishTranslationCheck";
-            this.englishTranslationCheck.Size = new System.Drawing.Size(111, 17);
-            this.englishTranslationCheck.TabIndex = 2;
-            this.englishTranslationCheck.Text = "English translation";
-            this.englishTranslationCheck.UseVisualStyleBackColor = true;
-            // 
-            // legacyCheck
-            // 
-            this.legacyCheck.AutoSize = true;
-            this.legacyCheck.Location = new System.Drawing.Point(279, 39);
-            this.legacyCheck.Name = "legacyCheck";
-            this.legacyCheck.Size = new System.Drawing.Size(88, 17);
-            this.legacyCheck.TabIndex = 3;
-            this.legacyCheck.Text = "Legacy PMD";
-            this.legacyCheck.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 65);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(181, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Your experience in using PMX/PMD:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(181, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Your modeling experience in general:";
+            this.generalExperience.DisplayMember = "Value";
+            this.generalExperience.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.generalExperience.FormattingEnabled = true;
+            this.generalExperience.Items.AddRange(new object[] {
+            "Beginner",
+            "Amateur",
+            "Skilled",
+            "Expert",
+            "Professional"});
+            this.generalExperience.Location = new System.Drawing.Point(206, 89);
+            this.generalExperience.Name = "generalExperience";
+            this.generalExperience.Size = new System.Drawing.Size(215, 21);
+            this.generalExperience.TabIndex = 7;
+            this.generalExperience.ValueMember = "Value";
             // 
             // pmxExperience
             // 
@@ -147,22 +106,63 @@
             this.pmxExperience.TabIndex = 6;
             this.pmxExperience.ValueMember = "Value";
             // 
-            // generalExperience
+            // label4
             // 
-            this.generalExperience.DisplayMember = "Value";
-            this.generalExperience.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.generalExperience.FormattingEnabled = true;
-            this.generalExperience.Items.AddRange(new object[] {
-            "Beginner",
-            "Amateur",
-            "Skilled",
-            "Expert",
-            "Professional"});
-            this.generalExperience.Location = new System.Drawing.Point(206, 89);
-            this.generalExperience.Name = "generalExperience";
-            this.generalExperience.Size = new System.Drawing.Size(215, 21);
-            this.generalExperience.TabIndex = 7;
-            this.generalExperience.ValueMember = "Value";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(181, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Your modeling experience in general:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(181, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Your experience in using PMX/PMD:";
+            // 
+            // legacyCheck
+            // 
+            this.legacyCheck.AutoSize = true;
+            this.legacyCheck.Location = new System.Drawing.Point(279, 39);
+            this.legacyCheck.Name = "legacyCheck";
+            this.legacyCheck.Size = new System.Drawing.Size(88, 17);
+            this.legacyCheck.TabIndex = 3;
+            this.legacyCheck.Text = "Legacy PMD";
+            this.legacyCheck.UseVisualStyleBackColor = true;
+            // 
+            // englishTranslationCheck
+            // 
+            this.englishTranslationCheck.AutoSize = true;
+            this.englishTranslationCheck.Location = new System.Drawing.Point(279, 16);
+            this.englishTranslationCheck.Name = "englishTranslationCheck";
+            this.englishTranslationCheck.Size = new System.Drawing.Size(111, 17);
+            this.englishTranslationCheck.TabIndex = 2;
+            this.englishTranslationCheck.Text = "English translation";
+            this.englishTranslationCheck.UseVisualStyleBackColor = true;
+            // 
+            // versionText
+            // 
+            this.versionText.Culture = new System.Globalization.CultureInfo("");
+            this.versionText.Location = new System.Drawing.Point(155, 13);
+            this.versionText.Mask = "0.0.0.0";
+            this.versionText.Name = "versionText";
+            this.versionText.PromptChar = '#';
+            this.versionText.Size = new System.Drawing.Size(118, 20);
+            this.versionText.TabIndex = 1;
+            this.versionText.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(143, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "PMX version (w.x.y.z format):";
             // 
             // submitButton
             // 
@@ -200,8 +200,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UsageReportForm";
-            this.Text = "UsageReportForm";
+            this.Text = "Statistics report";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
