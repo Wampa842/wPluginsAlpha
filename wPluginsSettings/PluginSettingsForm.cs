@@ -16,8 +16,6 @@ namespace wPluginsSettings
 {
     public partial class PluginSettingsForm : Form
     {
-
-
         bool Unsaved = false;
         IPERunArgs args;
         string SettingsFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "settings.xml");
@@ -82,6 +80,13 @@ namespace wPluginsSettings
         {
             pluginList.DisplayMember = "Key";
             ReadPlugins();
+            if(!((KeyValuePair<string, PluginSettings>)pluginList.Items[pluginList.FindString("wPluginsSettings")]).Value.StoreSettings)
+            {
+                UsageReportForm report = new UsageReportForm();
+                report.Show();
+                ((KeyValuePair<string, PluginSettings>)pluginList.Items[pluginList.FindString("wPluginsSettings")]).Value.StoreSettings = true;
+                WriteSettingsToFile(SettingsFile);
+            }
         }
 
         private void pluginList_SelectedIndexChanged(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace wPluginsSettings
 
         public string Description { get { return ""; } }
 
-        public bool GetAutoStartSetting()
+        public bool GetStartupSettings()
         {
             bool AutoStart;
             XmlDocument Doc = new XmlDocument();
@@ -32,9 +32,10 @@ namespace wPluginsSettings
             try
             {
                 AutoStart = bool.Parse(Doc.DocumentElement[PluginName].Attributes["autostart"].InnerText);
+
             }
             //Sorry about this.
-            catch (Exception ex)
+            catch (Exception)
             {
                 AutoStart = false;
             }
@@ -54,7 +55,7 @@ namespace wPluginsSettings
             public bool Bootup { get; set; }
         }
 
-        public IPEPluginOption Option { get { return new Opt(PluginName, true, GetAutoStartSetting()); } }
+        public IPEPluginOption Option { get { return new Opt(PluginName, true, GetStartupSettings()); } }
 
 
         public string Version
