@@ -129,5 +129,11 @@ namespace wPluginsSettings
         {
             ReadPlugins();
         }
+
+        private void sendStatisticsReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsageReportForm report = new UsageReportForm();
+            report.Show();
+        }
     }
 }

@@ -35,11 +35,14 @@
             this.mainContainer = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.pluginList = new System.Windows.Forms.ListBox();
-            this.settingsGroupBox = new System.Windows.Forms.GroupBox();
-            this.autoStartCheck = new System.Windows.Forms.CheckBox();
-            this.storeSettingsCheck = new System.Windows.Forms.CheckBox();
-            this.saveSettingsButton = new System.Windows.Forms.Button();
             this.revertSettingsButton = new System.Windows.Forms.Button();
+            this.saveSettingsButton = new System.Windows.Forms.Button();
+            this.settingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.storeSettingsCheck = new System.Windows.Forms.CheckBox();
+            this.autoStartCheck = new System.Windows.Forms.CheckBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.sendStatisticsReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
             this.mainContainer.Panel1.SuspendLayout();
@@ -62,7 +65,10 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportSettingsToolStripMenuItem,
-            this.importSettingsToolStripMenuItem});
+            this.importSettingsToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.sendStatisticsReportToolStripMenuItem,
+            this.reportABugToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -70,13 +76,13 @@
             // exportSettingsToolStripMenuItem
             // 
             this.exportSettingsToolStripMenuItem.Name = "exportSettingsToolStripMenuItem";
-            this.exportSettingsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.exportSettingsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.exportSettingsToolStripMenuItem.Text = "Export settings";
             // 
             // importSettingsToolStripMenuItem
             // 
             this.importSettingsToolStripMenuItem.Name = "importSettingsToolStripMenuItem";
-            this.importSettingsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.importSettingsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.importSettingsToolStripMenuItem.Text = "Import settings";
             // 
             // mainContainer
@@ -122,6 +128,30 @@
             this.pluginList.TabIndex = 0;
             this.pluginList.SelectedIndexChanged += new System.EventHandler(this.pluginList_SelectedIndexChanged);
             // 
+            // revertSettingsButton
+            // 
+            this.revertSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.revertSettingsButton.Location = new System.Drawing.Point(190, 298);
+            this.revertSettingsButton.Name = "revertSettingsButton";
+            this.revertSettingsButton.Size = new System.Drawing.Size(121, 29);
+            this.revertSettingsButton.TabIndex = 3;
+            this.revertSettingsButton.Text = "Revert";
+            this.revertSettingsButton.UseVisualStyleBackColor = true;
+            this.revertSettingsButton.Click += new System.EventHandler(this.revertSettingsButton_Click);
+            // 
+            // saveSettingsButton
+            // 
+            this.saveSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveSettingsButton.Location = new System.Drawing.Point(9, 298);
+            this.saveSettingsButton.Name = "saveSettingsButton";
+            this.saveSettingsButton.Size = new System.Drawing.Size(175, 29);
+            this.saveSettingsButton.TabIndex = 2;
+            this.saveSettingsButton.Text = "SAVE";
+            this.saveSettingsButton.UseVisualStyleBackColor = true;
+            this.saveSettingsButton.Click += new System.EventHandler(this.saveSettingsButton_Click);
+            // 
             // settingsGroupBox
             // 
             this.settingsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -136,17 +166,6 @@
             this.settingsGroupBox.TabStop = false;
             this.settingsGroupBox.Text = "groupBox1";
             // 
-            // autoStartCheck
-            // 
-            this.autoStartCheck.AutoSize = true;
-            this.autoStartCheck.Location = new System.Drawing.Point(6, 27);
-            this.autoStartCheck.Name = "autoStartCheck";
-            this.autoStartCheck.Size = new System.Drawing.Size(96, 17);
-            this.autoStartCheck.TabIndex = 0;
-            this.autoStartCheck.Text = "Start with PMX";
-            this.autoStartCheck.UseVisualStyleBackColor = true;
-            this.autoStartCheck.CheckedChanged += new System.EventHandler(this.autoStartCheck_CheckedChanged);
-            // 
             // storeSettingsCheck
             // 
             this.storeSettingsCheck.AutoSize = true;
@@ -158,29 +177,34 @@
             this.storeSettingsCheck.UseVisualStyleBackColor = true;
             this.storeSettingsCheck.CheckedChanged += new System.EventHandler(this.storeSettingsCheck_CheckedChanged);
             // 
-            // saveSettingsButton
+            // autoStartCheck
             // 
-            this.saveSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveSettingsButton.Location = new System.Drawing.Point(9, 298);
-            this.saveSettingsButton.Name = "saveSettingsButton";
-            this.saveSettingsButton.Size = new System.Drawing.Size(175, 29);
-            this.saveSettingsButton.TabIndex = 2;
-            this.saveSettingsButton.Text = "SAVE";
-            this.saveSettingsButton.UseVisualStyleBackColor = true;
-            this.saveSettingsButton.Click += new System.EventHandler(this.saveSettingsButton_Click);
+            this.autoStartCheck.AutoSize = true;
+            this.autoStartCheck.Location = new System.Drawing.Point(6, 27);
+            this.autoStartCheck.Name = "autoStartCheck";
+            this.autoStartCheck.Size = new System.Drawing.Size(96, 17);
+            this.autoStartCheck.TabIndex = 0;
+            this.autoStartCheck.Text = "Start with PMX";
+            this.autoStartCheck.UseVisualStyleBackColor = true;
+            this.autoStartCheck.CheckedChanged += new System.EventHandler(this.autoStartCheck_CheckedChanged);
             // 
-            // revertSettingsButton
+            // toolStripSeparator1
             // 
-            this.revertSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.revertSettingsButton.Location = new System.Drawing.Point(190, 298);
-            this.revertSettingsButton.Name = "revertSettingsButton";
-            this.revertSettingsButton.Size = new System.Drawing.Size(121, 29);
-            this.revertSettingsButton.TabIndex = 3;
-            this.revertSettingsButton.Text = "Revert";
-            this.revertSettingsButton.UseVisualStyleBackColor = true;
-            this.revertSettingsButton.Click += new System.EventHandler(this.revertSettingsButton_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
+            // 
+            // sendStatisticsReportToolStripMenuItem
+            // 
+            this.sendStatisticsReportToolStripMenuItem.Name = "sendStatisticsReportToolStripMenuItem";
+            this.sendStatisticsReportToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.sendStatisticsReportToolStripMenuItem.Text = "Send statistics report";
+            this.sendStatisticsReportToolStripMenuItem.Click += new System.EventHandler(this.sendStatisticsReportToolStripMenuItem_Click);
+            // 
+            // reportABugToolStripMenuItem
+            // 
+            this.reportABugToolStripMenuItem.Name = "reportABugToolStripMenuItem";
+            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.reportABugToolStripMenuItem.Text = "Report a bug";
             // 
             // PluginSettingsForm
             // 
@@ -221,5 +245,8 @@
         private System.Windows.Forms.CheckBox storeSettingsCheck;
         private System.Windows.Forms.Button saveSettingsButton;
         private System.Windows.Forms.Button revertSettingsButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem sendStatisticsReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
     }
 }
