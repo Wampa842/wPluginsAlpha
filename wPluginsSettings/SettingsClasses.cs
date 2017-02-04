@@ -11,27 +11,37 @@ namespace wPluginsSettings
     //Base class
     public class PluginSettings
     {
+        //---Public members
+        public struct OptionEntry
+        {
+            public string Type;    //stored in the type attribute
+            public string Value;   //stored between tags
+        }
+        public int ID;
+        public Dictionary<string, OptionEntry> Options;
+
+        //---Constructors
         private void ReadSettingsFromXml(string path, string name)
         {
             try
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(path); //IOException can be thrown
-                XmlElement node = xml.DocumentElement[name];    //NullReferenceException can be thrown if settings for <name> do not exist in the file
+                XmlNode node = xml.DocumentElement[name];    //NullReferenceException can be thrown if settings for <name> do not exist in the file
+                //"node" is the XML element containing the settings nodes for "name"
+                Options = new Dictionary<string, OptionEntry>();
 
-                if (!bool.TryParse(node.Attributes["autostart"].InnerText, out AutoStart)) AutoStart = false;
-                if (!bool.TryParse(node.Attributes["store"].InnerText, out StoreSettings)) StoreSettings = false;
-            }
-            catch (NullReferenceException)
-            {
-                AutoStart = false;
-                StoreSettings = false;
+                foreach(XmlNode s in node)
+                {
+                    OptionEntry optionEntry = new OptionEntry();
+                    optionEntry.Type = s.Attributes["type"].InnerText;
+                    optionEntry.Value = s.InnerText;
+                    Options.Add(s.Name,optionEntry);
+                }
             }
             catch (Exception ex) when (ex is UnauthorizedAccessException || ex is IOException)
             {
                 MessageBox.Show("Error: can't read from the file at: \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                AutoStart = false;
-                StoreSettings = false;
             }
         }
         public PluginSettings(string path, string name, int number)
@@ -41,12 +51,7 @@ namespace wPluginsSettings
         }
         public PluginSettings(int number)
         {
-            AutoStart = false;
-            StoreSettings = false;
             ID = number;
         }
-        public int ID;
-        public bool AutoStart;
-        public bool StoreSettings;
     }
 }

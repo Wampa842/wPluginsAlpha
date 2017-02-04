@@ -60,8 +60,8 @@ namespace wPluginsSettings
                     foreach (KeyValuePair<string, PluginSettings> s in pluginList.Items)
                     {
                         xml.WriteStartElement(s.Key);
-                        xml.WriteAttributeString("autostart", s.Value.AutoStart.ToString().ToLowerInvariant());
-                        xml.WriteAttributeString("store", s.Value.StoreSettings.ToString().ToLowerInvariant());
+                        //xml.WriteAttributeString("autostart", s.Value.AutoStart.ToString().ToLowerInvariant());
+                        //xml.WriteAttributeString("store", s.Value.StoreSettings.ToString().ToLowerInvariant());
                         xml.WriteElementString("Verbose", "false");
                         xml.WriteEndElement();
                     }
@@ -80,11 +80,11 @@ namespace wPluginsSettings
         {
             pluginList.DisplayMember = "Key";
             ReadPlugins();
-            if(!((KeyValuePair<string, PluginSettings>)pluginList.Items[pluginList.FindString("wPluginsSettings")]).Value.StoreSettings)
+            //if(!((KeyValuePair<string, PluginSettings>)pluginList.Items[pluginList.FindString("wPluginsSettings")]).Value.StoreSettings)
             {
                 UsageReportForm report = new UsageReportForm();
                 report.Show();
-                ((KeyValuePair<string, PluginSettings>)pluginList.Items[pluginList.FindString("wPluginsSettings")]).Value.StoreSettings = true;
+                //((KeyValuePair<string, PluginSettings>)pluginList.Items[pluginList.FindString("wPluginsSettings")]).Value.StoreSettings = true;
                 WriteSettingsToFile(SettingsFile);
             }
         }
@@ -94,8 +94,8 @@ namespace wPluginsSettings
             string SelectedName = ((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Key;
             PluginSettings SelectedSettings = ((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Value;
             settingsGroupBox.Text = "Settings for " + SelectedName;
-            autoStartCheck.Checked = SelectedSettings.AutoStart;
-            storeSettingsCheck.Checked = SelectedSettings.StoreSettings;
+            //autoStartCheck.Checked = SelectedSettings.AutoStart;
+            //storeSettingsCheck.Checked = SelectedSettings.StoreSettings;
         }
 
         private void PluginSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -111,13 +111,13 @@ namespace wPluginsSettings
         private void autoStartCheck_CheckedChanged(object sender, EventArgs e)
         {
             Unsaved = true;
-            ((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Value.AutoStart = autoStartCheck.Checked;
+            //((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Value.AutoStart = autoStartCheck.Checked;
         }
 
         private void storeSettingsCheck_CheckedChanged(object sender, EventArgs e)
         {
             Unsaved = true;
-            ((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Value.StoreSettings = storeSettingsCheck.Checked;
+            //((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Value.StoreSettings = storeSettingsCheck.Checked;
         }
 
         private void saveSettingsButton_Click(object sender, EventArgs e)
@@ -134,6 +134,13 @@ namespace wPluginsSettings
         {
             UsageReportForm report = new UsageReportForm();
             report.Show();
+        }
+
+        private void optionList_DoubleClick(object sender, EventArgs e)
+        {
+            EditOptionForm editOption = new EditOptionForm();
+            editOption.ShowDialog();
+            MessageBox.Show(((ListViewItem)sender).Text);
         }
     }
 }

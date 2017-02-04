@@ -33,17 +33,21 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.sendStatisticsReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainContainer = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.pluginList = new System.Windows.Forms.ListBox();
             this.revertSettingsButton = new System.Windows.Forms.Button();
             this.saveSettingsButton = new System.Windows.Forms.Button();
             this.settingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.optionList = new System.Windows.Forms.ListView();
+            this.optionNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.optionValueColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label2 = new System.Windows.Forms.Label();
             this.storeSettingsCheck = new System.Windows.Forms.CheckBox();
             this.autoStartCheck = new System.Windows.Forms.CheckBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.sendStatisticsReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
             this.mainContainer.Panel1.SuspendLayout();
@@ -85,6 +89,24 @@
             this.importSettingsToolStripMenuItem.Name = "importSettingsToolStripMenuItem";
             this.importSettingsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.importSettingsToolStripMenuItem.Text = "Import settings";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
+            // 
+            // sendStatisticsReportToolStripMenuItem
+            // 
+            this.sendStatisticsReportToolStripMenuItem.Name = "sendStatisticsReportToolStripMenuItem";
+            this.sendStatisticsReportToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.sendStatisticsReportToolStripMenuItem.Text = "Send statistics report";
+            this.sendStatisticsReportToolStripMenuItem.Click += new System.EventHandler(this.sendStatisticsReportToolStripMenuItem_Click);
+            // 
+            // reportABugToolStripMenuItem
+            // 
+            this.reportABugToolStripMenuItem.Name = "reportABugToolStripMenuItem";
+            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.reportABugToolStripMenuItem.Text = "Report a bug";
             // 
             // mainContainer
             // 
@@ -158,6 +180,8 @@
             this.settingsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsGroupBox.Controls.Add(this.optionList);
+            this.settingsGroupBox.Controls.Add(this.label2);
             this.settingsGroupBox.Controls.Add(this.storeSettingsCheck);
             this.settingsGroupBox.Controls.Add(this.autoStartCheck);
             this.settingsGroupBox.Location = new System.Drawing.Point(3, 3);
@@ -166,6 +190,41 @@
             this.settingsGroupBox.TabIndex = 0;
             this.settingsGroupBox.TabStop = false;
             this.settingsGroupBox.Text = "groupBox1";
+            // 
+            // optionList
+            // 
+            this.optionList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.optionNameColumn,
+            this.optionValueColumn});
+            this.optionList.Location = new System.Drawing.Point(6, 100);
+            this.optionList.Name = "optionList";
+            this.optionList.Size = new System.Drawing.Size(305, 183);
+            this.optionList.TabIndex = 4;
+            this.optionList.UseCompatibleStateImageBehavior = false;
+            this.optionList.View = System.Windows.Forms.View.Details;
+            this.optionList.DoubleClick += new System.EventHandler(this.optionList_DoubleClick);
+            // 
+            // optionNameColumn
+            // 
+            this.optionNameColumn.Text = "Name";
+            this.optionNameColumn.Width = 190;
+            // 
+            // optionValueColumn
+            // 
+            this.optionValueColumn.Text = "Value";
+            this.optionValueColumn.Width = 102;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 84);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(146, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Settings (double click to edit):";
             // 
             // storeSettingsCheck
             // 
@@ -188,24 +247,6 @@
             this.autoStartCheck.Text = "Start with PMX";
             this.autoStartCheck.UseVisualStyleBackColor = true;
             this.autoStartCheck.CheckedChanged += new System.EventHandler(this.autoStartCheck_CheckedChanged);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
-            // 
-            // sendStatisticsReportToolStripMenuItem
-            // 
-            this.sendStatisticsReportToolStripMenuItem.Name = "sendStatisticsReportToolStripMenuItem";
-            this.sendStatisticsReportToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.sendStatisticsReportToolStripMenuItem.Text = "Send statistics report";
-            this.sendStatisticsReportToolStripMenuItem.Click += new System.EventHandler(this.sendStatisticsReportToolStripMenuItem_Click);
-            // 
-            // reportABugToolStripMenuItem
-            // 
-            this.reportABugToolStripMenuItem.Name = "reportABugToolStripMenuItem";
-            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.reportABugToolStripMenuItem.Text = "Report a bug";
             // 
             // PluginSettingsForm
             // 
@@ -250,5 +291,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem sendStatisticsReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListView optionList;
+        private System.Windows.Forms.ColumnHeader optionNameColumn;
+        private System.Windows.Forms.ColumnHeader optionValueColumn;
     }
 }
