@@ -16,6 +16,11 @@ namespace wPluginsSettings
 {
     public partial class PluginSettingsForm : Form
     {
+        //pluginList is where all settings are stored in key-value pairs. Key is the internal name of the plugin, which is also used as the element name in the XML file.
+        //PluginSettings is a class that contains the plugin's ID and the list of settings in KVPs, where the key is the option name used in the XML file, 
+        //and the value is a class that contains the type and value. All actual types are strings that are parsed where needed - FormatExceptions should be handled even if they're unlikely.
+        //Dictionary<string, PluginSettings> Settings = new Dictionary<string, PluginSettings>();
+
         bool Unsaved = false;
         IPERunArgs args;
         string SettingsFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "settings.xml");
@@ -41,6 +46,7 @@ namespace wPluginsSettings
                     PluginSettings SettingsForThis = new PluginSettings(SettingsFile, Name, i);
                     //Plugins.Add(Name, SettingsForThis);
                     pluginList.Items.Add(new KeyValuePair<string, PluginSettings>(Name, SettingsForThis));
+                    //Settings.Add(Name, SettingsForThis);
                 }
             }
             pluginList.SetSelected(0, true);
@@ -57,12 +63,18 @@ namespace wPluginsSettings
                     xml.WriteStartDocument();
                     xml.WriteStartElement("settings");
 
-                    foreach (KeyValuePair<string, PluginSettings> s in pluginList.Items)
+                    foreach (KeyValuePair<string, PluginSettings> s in pluginList.Items)    //Plugin
                     {
                         xml.WriteStartElement(s.Key);
-                        //xml.WriteAttributeString("autostart", s.Value.AutoStart.ToString().ToLowerInvariant());
-                        //xml.WriteAttributeString("store", s.Value.StoreSettings.ToString().ToLowerInvariant());
-                        xml.WriteElementString("Verbose", "false");
+
+                        foreach(KeyValuePair<string, OptionEntry> o in s.Value.Options) //Option
+                        {
+                            xml.WriteStartElement(o.Key);
+                            xml.WriteAttributeString("type", o.Value.Type.ToLowerInvariant());
+                            xml.WriteString(o.Value.Value.ToLowerInvariant());
+                            xml.WriteEndElement();
+                        }
+
                         xml.WriteEndElement();
                     }
                     xml.WriteEndElement();
@@ -70,9 +82,26 @@ namespace wPluginsSettings
                     Unsaved = false;
                 }
             }
-            catch(Exception ex) when (ex is UnauthorizedAccessException || ex is IOException)
+            catch (Exception ex) when (ex is UnauthorizedAccessException || ex is IOException)
             {
                 MessageBox.Show("Could not write to the settings file.\nMake sure you have permission to write there, and that the file is not read-only.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UpdateOptionList(ref ListView list, string name)
+        {
+            list.Items.Clear();
+            //PluginSettings pluginSettings = Settings[pluginList.Text];
+            PluginSettings pluginSettings = ((KeyValuePair<string, PluginSettings>)(pluginList.Items[pluginList.FindString(name)])).Value;
+            foreach (KeyValuePair<string, OptionEntry> option in pluginSettings.Options)
+            {
+                ListViewItem listItem = new ListViewItem();
+                listItem.Text = option.Key;
+                ListViewItem.ListViewSubItem listItemValue = new ListViewItem.ListViewSubItem(listItem, option.Value.Value);
+                ListViewItem.ListViewSubItem listItemType = new ListViewItem.ListViewSubItem(listItem, option.Value.Type);
+                listItem.SubItems.Add(listItemValue);
+                listItem.SubItems.Add(listItemType);
+                list.Items.Add(listItem);
             }
         }
 
@@ -81,21 +110,23 @@ namespace wPluginsSettings
             pluginList.DisplayMember = "Key";
             ReadPlugins();
             //if(!((KeyValuePair<string, PluginSettings>)pluginList.Items[pluginList.FindString("wPluginsSettings")]).Value.StoreSettings)
+            if(((KeyValuePair<string, PluginSettings>)(pluginList.Items[pluginList.FindString("wPluginsSettings")])).Value.Options["SurveyComplete"].Value.ToLowerInvariant() == "false")
             {
                 UsageReportForm report = new UsageReportForm();
                 report.Show();
-                //((KeyValuePair<string, PluginSettings>)pluginList.Items[pluginList.FindString("wPluginsSettings")]).Value.StoreSettings = true;
+                ((KeyValuePair<string, PluginSettings>)(pluginList.Items[pluginList.FindString("wPluginsSettings")])).Value.Options["SurveyComplete"].Value = "true";
                 WriteSettingsToFile(SettingsFile);
             }
         }
 
         private void pluginList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string SelectedName = ((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Key;
+            string selectedName = ((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Key;
             PluginSettings SelectedSettings = ((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Value;
-            settingsGroupBox.Text = "Settings for " + SelectedName;
-            //autoStartCheck.Checked = SelectedSettings.AutoStart;
-            //storeSettingsCheck.Checked = SelectedSettings.StoreSettings;
+            settingsGroupBox.Text = "Settings for " + selectedName + " (double click to edit)";
+
+            //Load settings and populate the list
+            UpdateOptionList(ref optionList, selectedName);
         }
 
         private void PluginSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -127,6 +158,8 @@ namespace wPluginsSettings
 
         private void revertSettingsButton_Click(object sender, EventArgs e)
         {
+            pluginList.Items.Clear();
+            optionList.Items.Clear();
             ReadPlugins();
         }
 
@@ -139,8 +172,14 @@ namespace wPluginsSettings
         private void optionList_DoubleClick(object sender, EventArgs e)
         {
             EditOptionForm editOption = new EditOptionForm();
-            editOption.ShowDialog();
-            MessageBox.Show(((ListViewItem)sender).Text);
+            //editOption.ShowDialog();
+            ListViewItem selectedItem = ((ListView)sender).SelectedItems[0];
+            if (editOption.EditString(selectedItem.Text, selectedItem.SubItems[1].Text, selectedItem.SubItems[2].Text) == DialogResult.OK)
+            {
+                ((KeyValuePair<string, PluginSettings>)(pluginList.SelectedItem)).Value.Options[selectedItem.Text].Value = editOption.ReturnString;
+                UpdateOptionList(ref optionList, ((KeyValuePair<string, PluginSettings>)(pluginList.SelectedItem)).Key);
+            }
+            editOption.Dispose();
         }
     }
 }

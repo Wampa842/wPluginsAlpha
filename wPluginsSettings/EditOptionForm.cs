@@ -11,21 +11,23 @@ namespace wPluginsSettings
 {
     public partial class EditOptionForm : Form
     {
-        public enum OptionType { Text, TextNotEmpty, Decimal, Integer, Boolean};
         public string ReturnString { get; private set; }
-        OptionType optionType;
+        //OptionType _optionType;
+        string _optionType;
         string optionName;
 
         public EditOptionForm()
         {
             InitializeComponent();
         }
-        public DialogResult EditString(string name, string value, OptionType type)
+        public DialogResult EditString(string name, string value, string type)
         {
+            _optionType = type;
             string optionTypeString;
-            switch (type)
+            switch (_optionType)
             {
-                case OptionType.Text:
+                //case OptionType.Text:
+                case "text":
                     {
                         optionTypeString = "text";
                         optionText.Enabled = true;
@@ -33,7 +35,16 @@ namespace wPluginsSettings
                         optionText.Text = value;
                     }
                     break;
-                case OptionType.Decimal:
+                case "text-required":
+                    {
+                        optionTypeString = "required text";
+                        optionText.Enabled = true;
+                        optionCheck.Enabled = false;
+                        optionText.Text = value;
+                    }
+                    break;
+                //case OptionType.Decimal:
+                case "decimal":
                     {
                         optionTypeString = "decimal";
                         optionText.Enabled = true;
@@ -41,7 +52,8 @@ namespace wPluginsSettings
                         optionText.Text = value;
                     }
                     break;
-                case OptionType.Integer:
+                //case OptionType.Integer:
+                case "integer":
                     {
                         optionTypeString = "integer";
                         optionText.Enabled = true;
@@ -49,7 +61,8 @@ namespace wPluginsSettings
                         optionText.Text = value;
                     }
                     break;
-                case OptionType.Boolean:
+                //case OptionType.Boolean:
+                case "boolean":
                     {
                         optionTypeString = "true or false";
                         optionCheck.Enabled = true;
@@ -66,6 +79,7 @@ namespace wPluginsSettings
                     break;
                 default:
                     {
+                        MessageBox.Show(_optionType);
                         optionTypeString = "you shouldn't be here...";
                     }
                     break;
@@ -78,14 +92,16 @@ namespace wPluginsSettings
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            switch (optionType)
+            switch (_optionType)
             {
-                case OptionType.Text:
+                //case OptionType.Text:
+                case "text":
                     {
                         ReturnString = optionText.Text;
                     }
                     break;
-                case OptionType.TextNotEmpty:
+                //case OptionType.TextNotEmpty:
+                case "text-required":
                     {
                         if (string.IsNullOrWhiteSpace(optionText.Text))
                         {
@@ -95,7 +111,8 @@ namespace wPluginsSettings
                         ReturnString = optionText.Text;
                     }
                     break;
-                case OptionType.Decimal:
+                //case OptionType.Decimal:
+                case "decimal":
                     {
                         char decimalPoint = Convert.ToChar(System.Globalization.CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
                         string regexString = System.Text.RegularExpressions.Regex.Escape(@"\d+(" + decimalPoint + @"\d*)?");
@@ -115,7 +132,8 @@ namespace wPluginsSettings
                         }
                     }
                     break;
-                case OptionType.Integer:
+                //case OptionType.Integer:
+                case "integer":
                     {
                         if (!System.Text.RegularExpressions.Regex.IsMatch(optionText.Text, System.Text.RegularExpressions.Regex.Escape("\\d")))
                         {
@@ -133,7 +151,8 @@ namespace wPluginsSettings
                         }
                     }
                     break;
-                case OptionType.Boolean:
+                //case OptionType.Boolean:
+                case "boolean":
                     {
                         ReturnString = optionCheck.Checked.ToString();
                     }
@@ -141,6 +160,9 @@ namespace wPluginsSettings
                 default:
                     break;
             }
+
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

@@ -17,11 +17,11 @@ namespace wMergeMaterials
     public partial class MaterialListForm : Form
     {
         List<IPXMaterial> Materials;
-        Form ParentForm;
+        Form parentForm;
         public MaterialListForm(List<IPXMaterial> p_materials, Form p_parent)
         {
             Materials = p_materials;
-            ParentForm = p_parent;
+            parentForm = p_parent;
             InitializeComponent();
         }
 

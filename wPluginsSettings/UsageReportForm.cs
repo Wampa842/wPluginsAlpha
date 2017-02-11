@@ -62,12 +62,12 @@ namespace wPluginsSettings
 
             //Compose POST request
 
-            HttpWebRequest Post = (HttpWebRequest)WebRequest.Create("http://users.atw.hu/wampa842/wpluginscounter/wpluginscounter.php");
-            Post.Method = "POST";
-            Post.ContentType = "application/x-www-form-urlencoded";
-            Post.ContentLength = PostData.Length;
+            HttpWebRequest post = (HttpWebRequest)WebRequest.Create("http://users.atw.hu/wampa842/wpluginscounter/wpluginscounter.php");
+            post.Method = "POST";
+            post.ContentType = "application/x-www-form-urlencoded";
+            post.ContentLength = PostData.Length;
 
-            using (System.IO.Stream PostStream = Post.GetRequestStream())
+            using (System.IO.Stream PostStream = post.GetRequestStream())
             {
                 PostStream.Write(PostData, 0, PostData.Length);
             }

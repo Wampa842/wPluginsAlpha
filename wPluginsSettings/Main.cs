@@ -26,12 +26,12 @@ namespace wPluginsSettings
         public bool GetStartupSettings()
         {
             bool AutoStart;
-            XmlDocument Doc = new XmlDocument();
+            XmlDocument doc = new XmlDocument();
             string AssemblyPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            Doc.Load(System.IO.Path.Combine(AssemblyPath, "settings.xml"));
+            doc.Load(System.IO.Path.Combine(AssemblyPath, "settings.xml"));
             try
             {
-                AutoStart = bool.Parse(Doc.DocumentElement[PluginName].Attributes["autostart"].InnerText);
+                AutoStart = bool.Parse(doc.DocumentElement[PluginName]["AutoStart"].InnerText);
 
             }
             //Sorry about this.

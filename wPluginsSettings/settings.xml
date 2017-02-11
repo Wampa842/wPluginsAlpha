@@ -1,18 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <settings>
-  <wPluginsSettings autostart="True" store="False">
-    <Verbose>False</Verbose>
+  <wPluginsSettings>
+    <AutoStart type="boolean">true</AutoStart>
+    <SurveyComplete type="boolean">false</SurveyComplete>
   </wPluginsSettings>
-  <wApplyMorph autostart="False" store="False">
-    <Verbose>False</Verbose>
+  <wApplyMorph>
+    <AutoStart type="boolean">false</AutoStart>
   </wApplyMorph>
-  <wMorphScale autostart="False" store="False">
-    <Verbose>False</Verbose>
+  <wMorphScale>
+    <AutoStart type="boolean">false</AutoStart>
   </wMorphScale>
-  <wAverageVertexPosition autostart="False" store="False">
-    <Verbose>False</Verbose>
+  <wAverageVertexPosition>
+    <AutoStart type="boolean">false</AutoStart>
   </wAverageVertexPosition>
-  <wMergeMaterials autostart="False" store="False">
-    <Verbose>False</Verbose>
+  <wMergeMaterials>
+    <AutoStart type="boolean">false</AutoStart>
   </wMergeMaterials>
+  <wBackup>
+    <AutoStart type="boolean">false</AutoStart>
+    <StoreSettings type="boolean">true</StoreSettings>
+    <AutoBackup type="boolean">false</AutoBackup>
+    <AutoBackupPeriod type="integer">120</AutoBackupPeriod>
+    <NotificationAuto type="boolean">true</NotificationAuto>
+    <NotificationManual type="boolean">false</NotificationManual>
+    <BackupPathAbsolute type="boolean">false</BackupPathAbsolute>
+    <BackupPath type="text">backup</BackupPath>
+    <BackupNaming type="integer">0</BackupNaming>
+  </wBackup>
 </settings>

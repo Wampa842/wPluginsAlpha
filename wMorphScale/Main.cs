@@ -36,7 +36,7 @@ namespace wMorphScale
                 AutoStart = bool.Parse(Doc.DocumentElement[PluginName].Attributes["autostart"].InnerText);
             }
             //Sorry about this.
-            catch (Exception ex)
+            catch (Exception)
             {
                 AutoStart = false;
             }
