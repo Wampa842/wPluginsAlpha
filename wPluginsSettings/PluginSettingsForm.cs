@@ -21,7 +21,7 @@ namespace wPluginsSettings
         //and the value is a class that contains the type and value. All actual types are strings that are parsed where needed - FormatExceptions should be handled even if they're unlikely.
         //Dictionary<string, PluginSettings> Settings = new Dictionary<string, PluginSettings>();
 
-        bool Unsaved = false;
+        private bool _unsaved = false;
         IPERunArgs args;
         string SettingsFile = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "settings.xml");
         public PluginSettingsForm(IPERunArgs pArgs)
@@ -34,7 +34,7 @@ namespace wPluginsSettings
         //Dictionary<string, PluginSettings> Plugins = new Dictionary<string, PluginSettings>();
         private void ReadPlugins()
         {
-            Unsaved = false;
+            _unsaved = false;
             //Plugins.Clear();
             pluginList.Items.Clear();
             IPESystemConnector sys = args.Host.Connector.System;
@@ -79,8 +79,8 @@ namespace wPluginsSettings
                     }
                     xml.WriteEndElement();
                     xml.WriteEndDocument();
-                    Unsaved = false;
                 }
+                _unsaved = false;
             }
             catch (Exception ex) when (ex is UnauthorizedAccessException || ex is IOException)
             {
@@ -131,24 +131,12 @@ namespace wPluginsSettings
 
         private void PluginSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Unsaved)
+            if (_unsaved)
             {
                 DialogResult ExitConfirmation = MessageBox.Show("There are unsaved changes. Would you like to save before you exit?", "Confirmation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                 if (ExitConfirmation == DialogResult.Yes) WriteSettingsToFile(SettingsFile);
                 else if (ExitConfirmation == DialogResult.Cancel) e.Cancel = true;
             }
-        }
-
-        private void autoStartCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            Unsaved = true;
-            //((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Value.AutoStart = autoStartCheck.Checked;
-        }
-
-        private void storeSettingsCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            Unsaved = true;
-            //((KeyValuePair<string, PluginSettings>)pluginList.SelectedItem).Value.StoreSettings = storeSettingsCheck.Checked;
         }
 
         private void saveSettingsButton_Click(object sender, EventArgs e)
@@ -158,9 +146,12 @@ namespace wPluginsSettings
 
         private void revertSettingsButton_Click(object sender, EventArgs e)
         {
-            pluginList.Items.Clear();
-            optionList.Items.Clear();
-            ReadPlugins();
+            if(MessageBox.Show("Are you sure you want to revert?\nAny unsaved changes will be lost.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                pluginList.Items.Clear();
+                optionList.Items.Clear();
+                ReadPlugins();
+            }
         }
 
         private void sendStatisticsReportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,6 +169,7 @@ namespace wPluginsSettings
             {
                 ((KeyValuePair<string, PluginSettings>)(pluginList.SelectedItem)).Value.Options[selectedItem.Text].Value = editOption.ReturnString;
                 UpdateOptionList(ref optionList, ((KeyValuePair<string, PluginSettings>)(pluginList.SelectedItem)).Key);
+                _unsaved = true;
             }
             editOption.Dispose();
         }
