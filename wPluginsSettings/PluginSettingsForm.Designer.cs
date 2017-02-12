@@ -39,7 +39,7 @@
             this.importSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.sendStatisticsReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bugReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainContainer = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.pluginList = new System.Windows.Forms.ListBox();
@@ -75,7 +75,7 @@
             this.importSettingsToolStripMenuItem,
             this.toolStripSeparator1,
             this.sendStatisticsReportToolStripMenuItem,
-            this.reportABugToolStripMenuItem});
+            this.bugReportMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -104,11 +104,12 @@
             this.sendStatisticsReportToolStripMenuItem.Text = "Send statistics report";
             this.sendStatisticsReportToolStripMenuItem.Click += new System.EventHandler(this.sendStatisticsReportToolStripMenuItem_Click);
             // 
-            // reportABugToolStripMenuItem
+            // bugReportMenuItem
             // 
-            this.reportABugToolStripMenuItem.Name = "reportABugToolStripMenuItem";
-            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.reportABugToolStripMenuItem.Text = "Report a bug";
+            this.bugReportMenuItem.Name = "bugReportMenuItem";
+            this.bugReportMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.bugReportMenuItem.Text = "Report a bug";
+            this.bugReportMenuItem.Click += new System.EventHandler(this.bugReportMenuItem_Click);
             // 
             // mainContainer
             // 
@@ -261,7 +262,7 @@
         private System.Windows.Forms.Button revertSettingsButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem sendStatisticsReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bugReportMenuItem;
         private System.Windows.Forms.ListView optionList;
         private System.Windows.Forms.ColumnHeader optionNameColumn;
         private System.Windows.Forms.ColumnHeader optionValueColumn;

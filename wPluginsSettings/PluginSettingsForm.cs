@@ -173,5 +173,10 @@ namespace wPluginsSettings
             }
             editOption.Dispose();
         }
+
+        private void bugReportMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
