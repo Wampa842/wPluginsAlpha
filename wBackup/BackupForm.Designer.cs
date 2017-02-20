@@ -41,51 +41,51 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locationGroupBox = new System.Windows.Forms.GroupBox();
-            this.namingGroupBox = new System.Windows.Forms.GroupBox();
-            this.autoBackupGroupBox = new System.Windows.Forms.GroupBox();
-            this.limitGroupBox = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.browseButton = new System.Windows.Forms.Button();
             this.resetLocationCheck = new System.Windows.Forms.CheckBox();
-            this.backupName0 = new System.Windows.Forms.RadioButton();
-            this.backupName1 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.browseButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.namingGroupBox = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.autoBackupCheck = new System.Windows.Forms.CheckBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.backupName1 = new System.Windows.Forms.RadioButton();
+            this.backupName0 = new System.Windows.Forms.RadioButton();
+            this.autoBackupGroupBox = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.autoBackupCheck = new System.Windows.Forms.CheckBox();
+            this.limitGroupBox = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ageLimitDayNumber = new System.Windows.Forms.NumericUpDown();
+            this.ageLimitCheck = new System.Windows.Forms.CheckBox();
+            this.sizeLimitNumber = new System.Windows.Forms.NumericUpDown();
+            this.sizeLimitCheck = new System.Windows.Forms.CheckBox();
+            this.countLimitNumber = new System.Windows.Forms.NumericUpDown();
+            this.countLimitCheck = new System.Windows.Forms.CheckBox();
+            this.sideListShowButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.manualBackupButton = new System.Windows.Forms.Button();
             this.restoreLastButton = new System.Windows.Forms.Button();
-            this.countLimitCheck = new System.Windows.Forms.CheckBox();
-            this.countLimitNumber = new System.Windows.Forms.NumericUpDown();
-            this.sizeLimitNumber = new System.Windows.Forms.NumericUpDown();
-            this.sizeLimitCheck = new System.Windows.Forms.CheckBox();
-            this.ageLimitDayNumber = new System.Windows.Forms.NumericUpDown();
-            this.ageLimitCheck = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.statusBar.SuspendLayout();
             this.mainMenu.SuspendLayout();
             this.locationGroupBox.SuspendLayout();
             this.namingGroupBox.SuspendLayout();
             this.autoBackupGroupBox.SuspendLayout();
-            this.limitGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.countLimitNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeLimitNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ageLimitDayNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.limitGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ageLimitDayNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeLimitNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.countLimitNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // statusBar
@@ -178,25 +178,25 @@
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.helpToolStripMenuItem1.Text = "Help";
-            // 
-            // reportABugToolStripMenuItem
-            // 
-            this.reportABugToolStripMenuItem.Name = "reportABugToolStripMenuItem";
-            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reportABugToolStripMenuItem.Text = "Report a bug";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(139, 6);
+            // 
+            // reportABugToolStripMenuItem
+            // 
+            this.reportABugToolStripMenuItem.Name = "reportABugToolStripMenuItem";
+            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.reportABugToolStripMenuItem.Text = "Report a bug";
             // 
             // locationGroupBox
             // 
@@ -211,6 +211,35 @@
             this.locationGroupBox.TabIndex = 2;
             this.locationGroupBox.TabStop = false;
             this.locationGroupBox.Text = "Backup location";
+            // 
+            // resetLocationCheck
+            // 
+            this.resetLocationCheck.AutoSize = true;
+            this.resetLocationCheck.Location = new System.Drawing.Point(6, 45);
+            this.resetLocationCheck.Name = "resetLocationCheck";
+            this.resetLocationCheck.Size = new System.Drawing.Size(278, 17);
+            this.resetLocationCheck.TabIndex = 2;
+            this.resetLocationCheck.Text = "Reset location to default when a new model is loaded";
+            this.resetLocationCheck.UseVisualStyleBackColor = true;
+            // 
+            // browseButton
+            // 
+            this.browseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.browseButton.Location = new System.Drawing.Point(229, 17);
+            this.browseButton.Name = "browseButton";
+            this.browseButton.Size = new System.Drawing.Size(75, 23);
+            this.browseButton.TabIndex = 1;
+            this.browseButton.Text = "Browse...";
+            this.browseButton.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(217, 20);
+            this.textBox1.TabIndex = 0;
             // 
             // namingGroupBox
             // 
@@ -227,6 +256,50 @@
             this.namingGroupBox.TabStop = false;
             this.namingGroupBox.Text = "Naming";
             // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(6, 65);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(177, 17);
+            this.radioButton4.TabIndex = 3;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Single copy (append _BACKUP)";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(133, 42);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(70, 17);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Time only";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // backupName1
+            // 
+            this.backupName1.AutoSize = true;
+            this.backupName1.Location = new System.Drawing.Point(6, 42);
+            this.backupName1.Name = "backupName1";
+            this.backupName1.Size = new System.Drawing.Size(91, 17);
+            this.backupName1.TabIndex = 1;
+            this.backupName1.TabStop = true;
+            this.backupName1.Text = "Date and time";
+            this.backupName1.UseVisualStyleBackColor = true;
+            // 
+            // backupName0
+            // 
+            this.backupName0.AutoSize = true;
+            this.backupName0.Location = new System.Drawing.Point(6, 19);
+            this.backupName0.Name = "backupName0";
+            this.backupName0.Size = new System.Drawing.Size(62, 17);
+            this.backupName0.TabIndex = 0;
+            this.backupName0.TabStop = true;
+            this.backupName0.Text = "Number";
+            this.backupName0.UseVisualStyleBackColor = true;
+            // 
             // autoBackupGroupBox
             // 
             this.autoBackupGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -241,112 +314,14 @@
             this.autoBackupGroupBox.TabStop = false;
             this.autoBackupGroupBox.Text = "Automatic backup";
             // 
-            // limitGroupBox
+            // label1
             // 
-            this.limitGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.limitGroupBox.Controls.Add(this.label5);
-            this.limitGroupBox.Controls.Add(this.numericUpDown3);
-            this.limitGroupBox.Controls.Add(this.label4);
-            this.limitGroupBox.Controls.Add(this.numericUpDown2);
-            this.limitGroupBox.Controls.Add(this.label3);
-            this.limitGroupBox.Controls.Add(this.label2);
-            this.limitGroupBox.Controls.Add(this.ageLimitDayNumber);
-            this.limitGroupBox.Controls.Add(this.ageLimitCheck);
-            this.limitGroupBox.Controls.Add(this.sizeLimitNumber);
-            this.limitGroupBox.Controls.Add(this.sizeLimitCheck);
-            this.limitGroupBox.Controls.Add(this.countLimitNumber);
-            this.limitGroupBox.Controls.Add(this.countLimitCheck);
-            this.limitGroupBox.Location = new System.Drawing.Point(12, 252);
-            this.limitGroupBox.Name = "limitGroupBox";
-            this.limitGroupBox.Size = new System.Drawing.Size(310, 95);
-            this.limitGroupBox.TabIndex = 5;
-            this.limitGroupBox.TabStop = false;
-            this.limitGroupBox.Text = "Limits";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(6, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(217, 20);
-            this.textBox1.TabIndex = 0;
-            // 
-            // browseButton
-            // 
-            this.browseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browseButton.Location = new System.Drawing.Point(229, 17);
-            this.browseButton.Name = "browseButton";
-            this.browseButton.Size = new System.Drawing.Size(75, 23);
-            this.browseButton.TabIndex = 1;
-            this.browseButton.Text = "Browse...";
-            this.browseButton.UseVisualStyleBackColor = true;
-            // 
-            // resetLocationCheck
-            // 
-            this.resetLocationCheck.AutoSize = true;
-            this.resetLocationCheck.Location = new System.Drawing.Point(6, 45);
-            this.resetLocationCheck.Name = "resetLocationCheck";
-            this.resetLocationCheck.Size = new System.Drawing.Size(278, 17);
-            this.resetLocationCheck.TabIndex = 2;
-            this.resetLocationCheck.Text = "Reset location to default when a new model is loaded";
-            this.resetLocationCheck.UseVisualStyleBackColor = true;
-            // 
-            // backupName0
-            // 
-            this.backupName0.AutoSize = true;
-            this.backupName0.Location = new System.Drawing.Point(6, 19);
-            this.backupName0.Name = "backupName0";
-            this.backupName0.Size = new System.Drawing.Size(62, 17);
-            this.backupName0.TabIndex = 0;
-            this.backupName0.TabStop = true;
-            this.backupName0.Text = "Number";
-            this.backupName0.UseVisualStyleBackColor = true;
-            // 
-            // backupName1
-            // 
-            this.backupName1.AutoSize = true;
-            this.backupName1.Location = new System.Drawing.Point(6, 42);
-            this.backupName1.Name = "backupName1";
-            this.backupName1.Size = new System.Drawing.Size(91, 17);
-            this.backupName1.TabIndex = 1;
-            this.backupName1.TabStop = true;
-            this.backupName1.Text = "Date and time";
-            this.backupName1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(133, 42);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(70, 17);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Time only";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 65);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(177, 17);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Single copy (append _BACKUP)";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // autoBackupCheck
-            // 
-            this.autoBackupCheck.AutoSize = true;
-            this.autoBackupCheck.Location = new System.Drawing.Point(6, 19);
-            this.autoBackupCheck.Name = "autoBackupCheck";
-            this.autoBackupCheck.Size = new System.Drawing.Size(170, 17);
-            this.autoBackupCheck.TabIndex = 0;
-            this.autoBackupCheck.Text = "Make automatic backup every";
-            this.autoBackupCheck.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(248, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "minutes";
             // 
             // numericUpDown1
             // 
@@ -377,96 +352,139 @@
             0,
             0});
             // 
-            // label1
+            // autoBackupCheck
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(248, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "minutes";
+            this.autoBackupCheck.AutoSize = true;
+            this.autoBackupCheck.Location = new System.Drawing.Point(6, 19);
+            this.autoBackupCheck.Name = "autoBackupCheck";
+            this.autoBackupCheck.Size = new System.Drawing.Size(170, 17);
+            this.autoBackupCheck.TabIndex = 0;
+            this.autoBackupCheck.Text = "Make automatic backup every";
+            this.autoBackupCheck.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // limitGroupBox
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(216, 389);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Lists ->";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(216, 360);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Open floater";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // manualBackupButton
-            // 
-            this.manualBackupButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.limitGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.manualBackupButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.manualBackupButton.Location = new System.Drawing.Point(12, 361);
-            this.manualBackupButton.Name = "manualBackupButton";
-            this.manualBackupButton.Size = new System.Drawing.Size(121, 51);
-            this.manualBackupButton.TabIndex = 8;
-            this.manualBackupButton.Text = "Backup now";
-            this.manualBackupButton.UseVisualStyleBackColor = true;
+            this.limitGroupBox.Controls.Add(this.label5);
+            this.limitGroupBox.Controls.Add(this.numericUpDown3);
+            this.limitGroupBox.Controls.Add(this.label4);
+            this.limitGroupBox.Controls.Add(this.numericUpDown2);
+            this.limitGroupBox.Controls.Add(this.label3);
+            this.limitGroupBox.Controls.Add(this.label2);
+            this.limitGroupBox.Controls.Add(this.ageLimitDayNumber);
+            this.limitGroupBox.Controls.Add(this.ageLimitCheck);
+            this.limitGroupBox.Controls.Add(this.sizeLimitNumber);
+            this.limitGroupBox.Controls.Add(this.sizeLimitCheck);
+            this.limitGroupBox.Controls.Add(this.countLimitNumber);
+            this.limitGroupBox.Controls.Add(this.countLimitCheck);
+            this.limitGroupBox.Location = new System.Drawing.Point(12, 252);
+            this.limitGroupBox.Name = "limitGroupBox";
+            this.limitGroupBox.Size = new System.Drawing.Size(310, 95);
+            this.limitGroupBox.TabIndex = 5;
+            this.limitGroupBox.TabStop = false;
+            this.limitGroupBox.Text = "Limits";
             // 
-            // restoreLastButton
+            // label5
             // 
-            this.restoreLastButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.restoreLastButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.restoreLastButton.Location = new System.Drawing.Point(139, 361);
-            this.restoreLastButton.Name = "restoreLastButton";
-            this.restoreLastButton.Size = new System.Drawing.Size(71, 51);
-            this.restoreLastButton.TabIndex = 9;
-            this.restoreLastButton.Text = "Restore last";
-            this.restoreLastButton.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(266, 66);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(15, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "m";
             // 
-            // countLimitCheck
+            // numericUpDown3
             // 
-            this.countLimitCheck.AutoSize = true;
-            this.countLimitCheck.Location = new System.Drawing.Point(6, 19);
-            this.countLimitCheck.Name = "countLimitCheck";
-            this.countLimitCheck.Size = new System.Drawing.Size(54, 17);
-            this.countLimitCheck.TabIndex = 0;
-            this.countLimitCheck.Text = "Count";
-            this.countLimitCheck.UseVisualStyleBackColor = true;
-            // 
-            // countLimitNumber
-            // 
-            this.countLimitNumber.DecimalPlaces = 1;
-            this.countLimitNumber.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.countLimitNumber.Location = new System.Drawing.Point(92, 18);
-            this.countLimitNumber.Maximum = new decimal(new int[] {
-            60,
+            this.numericUpDown3.Location = new System.Drawing.Point(225, 64);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            59,
             0,
             0,
             0});
-            this.countLimitNumber.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.countLimitNumber.Name = "countLimitNumber";
-            this.countLimitNumber.Size = new System.Drawing.Size(60, 20);
-            this.countLimitNumber.TabIndex = 2;
-            this.countLimitNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.countLimitNumber.Value = new decimal(new int[] {
-            1,
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown3.TabIndex = 11;
+            this.numericUpDown3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            59,
             0,
             0,
             0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(206, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(13, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "h";
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(165, 64);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(38, 20);
+            this.numericUpDown2.TabIndex = 9;
+            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(146, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(13, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "d";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(158, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "MB";
+            // 
+            // ageLimitDayNumber
+            // 
+            this.ageLimitDayNumber.Location = new System.Drawing.Point(92, 64);
+            this.ageLimitDayNumber.Maximum = new decimal(new int[] {
+            365,
+            0,
+            0,
+            0});
+            this.ageLimitDayNumber.Name = "ageLimitDayNumber";
+            this.ageLimitDayNumber.Size = new System.Drawing.Size(48, 20);
+            this.ageLimitDayNumber.TabIndex = 6;
+            this.ageLimitDayNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ageLimitDayNumber.Value = new decimal(new int[] {
+            365,
+            0,
+            0,
+            0});
+            // 
+            // ageLimitCheck
+            // 
+            this.ageLimitCheck.AutoSize = true;
+            this.ageLimitCheck.Location = new System.Drawing.Point(6, 65);
+            this.ageLimitCheck.Name = "ageLimitCheck";
+            this.ageLimitCheck.Size = new System.Drawing.Size(45, 17);
+            this.ageLimitCheck.TabIndex = 5;
+            this.ageLimitCheck.Text = "Age";
+            this.ageLimitCheck.UseVisualStyleBackColor = true;
             // 
             // sizeLimitNumber
             // 
@@ -506,105 +524,88 @@
             this.sizeLimitCheck.Text = "Overall size";
             this.sizeLimitCheck.UseVisualStyleBackColor = true;
             // 
-            // ageLimitDayNumber
+            // countLimitNumber
             // 
-            this.ageLimitDayNumber.Location = new System.Drawing.Point(92, 64);
-            this.ageLimitDayNumber.Maximum = new decimal(new int[] {
-            365,
+            this.countLimitNumber.DecimalPlaces = 1;
+            this.countLimitNumber.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.countLimitNumber.Location = new System.Drawing.Point(92, 18);
+            this.countLimitNumber.Maximum = new decimal(new int[] {
+            60,
             0,
             0,
             0});
-            this.ageLimitDayNumber.Name = "ageLimitDayNumber";
-            this.ageLimitDayNumber.Size = new System.Drawing.Size(48, 20);
-            this.ageLimitDayNumber.TabIndex = 6;
-            this.ageLimitDayNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ageLimitDayNumber.Value = new decimal(new int[] {
-            365,
+            this.countLimitNumber.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
-            0});
-            // 
-            // ageLimitCheck
-            // 
-            this.ageLimitCheck.AutoSize = true;
-            this.ageLimitCheck.Location = new System.Drawing.Point(6, 65);
-            this.ageLimitCheck.Name = "ageLimitCheck";
-            this.ageLimitCheck.Size = new System.Drawing.Size(45, 17);
-            this.ageLimitCheck.TabIndex = 5;
-            this.ageLimitCheck.Text = "Age";
-            this.ageLimitCheck.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(158, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "MB";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(146, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(13, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "d";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(206, 66);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(13, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "h";
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(165, 64);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown2.TabIndex = 9;
-            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown2.Value = new decimal(new int[] {
-            23,
+            65536});
+            this.countLimitNumber.Name = "countLimitNumber";
+            this.countLimitNumber.Size = new System.Drawing.Size(60, 20);
+            this.countLimitNumber.TabIndex = 2;
+            this.countLimitNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.countLimitNumber.Value = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             // 
-            // label5
+            // countLimitCheck
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(266, 66);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(15, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "m";
+            this.countLimitCheck.AutoSize = true;
+            this.countLimitCheck.Location = new System.Drawing.Point(6, 19);
+            this.countLimitCheck.Name = "countLimitCheck";
+            this.countLimitCheck.Size = new System.Drawing.Size(54, 17);
+            this.countLimitCheck.TabIndex = 0;
+            this.countLimitCheck.Text = "Count";
+            this.countLimitCheck.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown3
+            // sideListShowButton
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(225, 64);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown3.TabIndex = 11;
-            this.numericUpDown3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown3.Value = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
+            this.sideListShowButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sideListShowButton.Location = new System.Drawing.Point(216, 389);
+            this.sideListShowButton.Name = "sideListShowButton";
+            this.sideListShowButton.Size = new System.Drawing.Size(107, 23);
+            this.sideListShowButton.TabIndex = 6;
+            this.sideListShowButton.Text = "Lists ->";
+            this.sideListShowButton.UseVisualStyleBackColor = true;
+            this.sideListShowButton.Click += new System.EventHandler(this.sideListShowButton_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(216, 360);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(107, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Open floater";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // manualBackupButton
+            // 
+            this.manualBackupButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.manualBackupButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.manualBackupButton.Location = new System.Drawing.Point(12, 361);
+            this.manualBackupButton.Name = "manualBackupButton";
+            this.manualBackupButton.Size = new System.Drawing.Size(121, 51);
+            this.manualBackupButton.TabIndex = 8;
+            this.manualBackupButton.Text = "Backup now";
+            this.manualBackupButton.UseVisualStyleBackColor = true;
+            // 
+            // restoreLastButton
+            // 
+            this.restoreLastButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.restoreLastButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.restoreLastButton.Location = new System.Drawing.Point(139, 361);
+            this.restoreLastButton.Name = "restoreLastButton";
+            this.restoreLastButton.Size = new System.Drawing.Size(71, 51);
+            this.restoreLastButton.TabIndex = 9;
+            this.restoreLastButton.Text = "Restore last";
+            this.restoreLastButton.UseVisualStyleBackColor = true;
             // 
             // BackupForm
             // 
@@ -614,7 +615,7 @@
             this.Controls.Add(this.restoreLastButton);
             this.Controls.Add(this.manualBackupButton);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sideListShowButton);
             this.Controls.Add(this.limitGroupBox);
             this.Controls.Add(this.autoBackupGroupBox);
             this.Controls.Add(this.namingGroupBox);
@@ -628,6 +629,7 @@
             this.Name = "BackupForm";
             this.Text = "wBackup";
             this.Load += new System.EventHandler(this.BackupForm_Load);
+            this.Move += new System.EventHandler(this.BackupForm_Move);
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.mainMenu.ResumeLayout(false);
@@ -638,14 +640,14 @@
             this.namingGroupBox.PerformLayout();
             this.autoBackupGroupBox.ResumeLayout(false);
             this.autoBackupGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.limitGroupBox.ResumeLayout(false);
             this.limitGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.countLimitNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeLimitNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ageLimitDayNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ageLimitDayNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sizeLimitNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.countLimitNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -682,7 +684,7 @@
         private System.Windows.Forms.CheckBox autoBackupCheck;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button sideListShowButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button manualBackupButton;
         private System.Windows.Forms.Button restoreLastButton;

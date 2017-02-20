@@ -39,6 +39,8 @@
             this.truncateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.additionalFilesList = new System.Windows.Forms.ListBox();
+            this.addFileButton = new System.Windows.Forms.Button();
+            this.removeFileButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -125,6 +127,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.removeFileButton);
+            this.groupBox2.Controls.Add(this.addFileButton);
             this.groupBox2.Controls.Add(this.additionalFilesList);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
@@ -136,13 +140,35 @@
             // 
             // additionalFilesList
             // 
-            this.additionalFilesList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.additionalFilesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.additionalFilesList.FormattingEnabled = true;
             this.additionalFilesList.IntegralHeight = false;
             this.additionalFilesList.Location = new System.Drawing.Point(3, 16);
             this.additionalFilesList.Name = "additionalFilesList";
-            this.additionalFilesList.Size = new System.Drawing.Size(228, 161);
+            this.additionalFilesList.Size = new System.Drawing.Size(228, 129);
             this.additionalFilesList.TabIndex = 1;
+            // 
+            // addFileButton
+            // 
+            this.addFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addFileButton.Location = new System.Drawing.Point(12, 151);
+            this.addFileButton.Name = "addFileButton";
+            this.addFileButton.Size = new System.Drawing.Size(102, 23);
+            this.addFileButton.TabIndex = 2;
+            this.addFileButton.Text = "Add files";
+            this.addFileButton.UseVisualStyleBackColor = true;
+            // 
+            // removeFileButton
+            // 
+            this.removeFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeFileButton.Location = new System.Drawing.Point(120, 151);
+            this.removeFileButton.Name = "removeFileButton";
+            this.removeFileButton.Size = new System.Drawing.Size(102, 23);
+            this.removeFileButton.TabIndex = 3;
+            this.removeFileButton.Text = "Remove selected";
+            this.removeFileButton.UseVisualStyleBackColor = true;
             // 
             // SideListsForm
             // 
@@ -179,5 +205,7 @@
         private System.Windows.Forms.ToolStripMenuItem truncateMenuItem;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox additionalFilesList;
+        private System.Windows.Forms.Button removeFileButton;
+        private System.Windows.Forms.Button addFileButton;
     }
 }

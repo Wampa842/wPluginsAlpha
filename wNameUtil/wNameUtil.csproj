@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C4E3EFF0-C8F0-4E6E-9298-A1D72A6D8874}</ProjectGuid>
+    <ProjectGuid>{C9694E94-36B8-48A5-A63D-C4E1A1F7A848}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>wBackup</RootNamespace>
-    <AssemblyName>wBackup</AssemblyName>
+    <RootNamespace>wNameUtil</RootNamespace>
+    <AssemblyName>wNameUtil</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PEPlugin, Version=0.0.8.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="PEPlugin">
       <HintPath>H:\MMD\PMX Editor\PmxEditor\Lib\PEPlugin\PEPlugin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -45,28 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackupClass.cs" />
-    <Compile Include="BackupForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BackupForm.Designer.cs">
-      <DependentUpon>BackupForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SideListsForm.cs">
+    <Compile Include="NameUtilForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SideListsForm.Designer.cs">
-      <DependentUpon>SideListsForm.cs</DependentUpon>
+    <Compile Include="NameUtilForm.Designer.cs">
+      <DependentUpon>NameUtilForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BackupForm.resx">
-      <DependentUpon>BackupForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SideListsForm.resx">
-      <DependentUpon>SideListsForm.cs</DependentUpon>
+    <EmbeddedResource Include="NameUtilForm.resx">
+      <DependentUpon>NameUtilForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

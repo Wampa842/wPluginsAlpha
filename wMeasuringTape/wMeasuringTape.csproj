@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PEPlugin">
-      <HintPath>H:\MMD\PMX Editor\PmxEditor_0232d\Lib\PEPlugin\PEPlugin.dll</HintPath>
+    <Reference Include="PEPlugin, Version=0.0.8.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>H:\MMD\PMX Editor\PmxEditor\Lib\PEPlugin\PEPlugin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,7 +62,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /y "$(TargetPath)" "H:\MMD\PMX Editor\PmxEditor_0232d\_plugin\User\wPlugins\"</PostBuildEvent>
+    <PostBuildEvent>copy /y "$(TargetPath)" "H:\MMD\PMX Editor\PmxEditor\_plugin\User\wPlugins\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
