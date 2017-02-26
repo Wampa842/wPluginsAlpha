@@ -61,7 +61,7 @@ namespace wObjIO
                 settingsForm = new ObjImportSettingsForm();
                 if (settingsForm.ShowDialog() == DialogResult.OK)
                 {
-                    ObjFile import = new ObjFile(objPath, builder);
+                    ObjFileImport import = new ObjFileImport(objPath, builder);
                     import.RegisterInPmx(pmx, builder, settingsForm.Settings);
                     pmx.ModelInfo.ModelName = pmx.ModelInfo.ModelNameE = import.ObjName;
                 }
@@ -74,7 +74,7 @@ namespace wObjIO
         }
     }
 
-    public class ObjFile
+    public class ObjFileImport
     {
         public string ObjName;
         public List<IPXVertex> VertexList;
@@ -227,7 +227,7 @@ namespace wObjIO
             return materials;
         }
 
-        public ObjFile(string path, IPXPmxBuilder bld)
+        public ObjFileImport(string path, IPXPmxBuilder bld)
         {
             ObjName = Path.GetFileNameWithoutExtension(path);
             _posList = new List<V3>();
