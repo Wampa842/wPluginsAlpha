@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjExport.cs" />
     <Compile Include="ObjImportSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
