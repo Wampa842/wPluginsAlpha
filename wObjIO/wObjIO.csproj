@@ -47,6 +47,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ObjExport.cs" />
+    <Compile Include="ObjExportProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjExportProgress.Designer.cs">
+      <DependentUpon>ObjExportProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjExportSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjExportSettingsForm.Designer.cs">
+      <DependentUpon>ObjExportSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ObjImportSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +69,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ObjExportProgress.resx">
+      <DependentUpon>ObjExportProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjExportSettingsForm.resx">
+      <DependentUpon>ObjExportSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ObjImportSettingsForm.resx">
       <DependentUpon>ObjImportSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
