@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <settings>
   <wPluginsSettings>
-    <AutoStart type="boolean">true</AutoStart>
-    <SurveyComplete type="boolean">false</SurveyComplete>
+    <AutoStart type="boolean">false</AutoStart>
+    <SurveyComplete type="boolean">true</SurveyComplete>
   </wPluginsSettings>
   <wApplyMorph>
     <AutoStart type="boolean">false</AutoStart>
@@ -27,4 +27,19 @@
     <BackupPath type="text">backup</BackupPath>
     <BackupNaming type="integer">0</BackupNaming>
   </wBackup>
+  <wObjIO>
+    <MetricUnits type="boolean">false</MetricUnits>
+    <FlipFaces type="boolean">false</FlipFaces>
+    <SwapYZ type="boolean">false</SwapYZ>
+    <UniformScale type="boolean">false</UniformScale>
+    <XScale type="decimal">1.0</XScale>
+    <YScale type="decimal">1.0</YScale>
+    <ZScale type="decimal">1.0</ZScale>
+    <MirrorX type="boolean">false</MirrorX>
+    <MirrorY type="boolean">false</MirrorY>
+    <MirrorZ type="boolean">false</MirrorZ>
+    <MirrorU type="boolean">false</MirrorU>
+    <MirrorV type="boolean">false</MirrorV>
+    <WithBone type="boolean">true</WithBone>
+  </wObjIO>
 </settings>

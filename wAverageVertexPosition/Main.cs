@@ -8,6 +8,7 @@ using System.Xml;
 using PEPlugin;
 using PEPlugin.Pmx;
 using PEPlugin.Form;
+using ImportPlugin;
 
 namespace wAverageVertexPosition
 {

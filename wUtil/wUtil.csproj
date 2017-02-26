@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E5307E04-A78A-473C-9B72-4BA1CB5E47BB}</ProjectGuid>
+    <ProjectGuid>{4FC1FBA0-C5BA-4889-AFC7-65FB60055D72}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>wObjIO</RootNamespace>
-    <AssemblyName>wObjIO</AssemblyName>
+    <RootNamespace>wUtil</RootNamespace>
+    <AssemblyName>wUtil</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,7 +33,6 @@
     <Reference Include="PEPlugin">
       <HintPath>H:\MMD\PMX Editor\PmxEditor\Lib\PEPlugin\PEPlugin.dll</HintPath>
     </Reference>
-    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -46,24 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ObjImportSettingsForm.cs">
+    <Compile Include="ExceptionReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ObjImportSettingsForm.Designer.cs">
-      <DependentUpon>ObjImportSettingsForm.cs</DependentUpon>
+    <Compile Include="ExceptionReportForm.Designer.cs">
+      <DependentUpon>ExceptionReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjIO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ObjImportSettingsForm.resx">
-      <DependentUpon>ObjImportSettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="ExceptionReportForm.resx">
+      <DependentUpon>ExceptionReportForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy /y "$(TargetPath)" "H:\MMD\PMX Editor\PmxEditor\_plugin\User\wPlugins\"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

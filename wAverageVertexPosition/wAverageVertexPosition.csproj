@@ -59,6 +59,7 @@
     <Compile Include="AverageVertexForm.Designer.cs">
       <DependentUpon>AverageVertexForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjIO.cs" />
     <Compile Include="PleaseWaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
