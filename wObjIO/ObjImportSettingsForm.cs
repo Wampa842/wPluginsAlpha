@@ -147,7 +147,10 @@ namespace wObjIO
 
         private void ObjImportSettingsForm_Load(object sender, EventArgs e)
         {
+            bitmapActionSelect.SelectedIndex = 0;
+            materialNameSelect.SelectedIndex = 0;
             LoadSettingsFromXml();
+            
         }
     }
 }

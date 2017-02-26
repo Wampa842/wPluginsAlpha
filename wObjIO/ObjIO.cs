@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.IO;
 using System.Windows.Forms;
 
@@ -35,12 +32,18 @@ namespace wObjIO
             get
             {
                 string systemPluginsPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "_plugin\\System");
+                string stockPluginPath = Path.Combine(systemPluginsPath, "ImportObj.dll");
+                string wObjIOPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 //MessageBox.Show(systemPluginsPath);
+                if (File.Exists(stockPluginPath))
+                {
+                    //MessageBox.Show("A system plugin is preventing wObjIO from functioning.\nUnfortunately, PMX can't run two import/export plugins for the same extension concurrently, so you have to delete one of the following files:\n\nStock plugin:\n" + stockPluginPath + "\nwObjIO:\n" + wObjIOPath + "\n\nIf it helps you decide, the stock ObjImport.dll doesn't work on most systems and handles mesh transformation poorly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
                 return ".obj";
             }
         }
-        public string Caption { get { return "Wavefront OBJ (wObjImport)"; } }
+        public string Caption { get { return "Wavefront OBJ (wPlugins importer)"; } }
         //public string Ext { get { return ".obj"; } }
 
         private IPXPmxBuilder builder;
@@ -60,7 +63,7 @@ namespace wObjIO
                 {
                     ObjFile import = new ObjFile(objPath, builder);
                     import.RegisterInPmx(pmx, builder, settingsForm.Settings);
-                    pmx.ModelInfo.ModelName = "ASDASD";
+                    pmx.ModelInfo.ModelName = pmx.ModelInfo.ModelNameE = import.ObjName;
                 }
             }
             catch(Exception ex)

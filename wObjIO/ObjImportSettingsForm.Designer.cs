@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.unitBaseGroup = new System.Windows.Forms.GroupBox();
             this.unitBaseMetric = new System.Windows.Forms.RadioButton();
             this.unitBaseInch = new System.Windows.Forms.RadioButton();
@@ -56,6 +57,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.bitmapActionSelect = new System.Windows.Forms.ComboBox();
+            this.importHelp = new System.Windows.Forms.HelpProvider();
+            this.importToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.unitBaseGroup.SuspendLayout();
             this.scaleGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zScale)).BeginInit();
@@ -84,6 +87,7 @@
             this.unitBaseMetric.Size = new System.Drawing.Size(107, 17);
             this.unitBaseMetric.TabIndex = 1;
             this.unitBaseMetric.Text = "Centimeter-based";
+            this.importToolTip.SetToolTip(this.unitBaseMetric, "Scale the model for centimeter-based units");
             this.unitBaseMetric.UseVisualStyleBackColor = true;
             // 
             // unitBaseInch
@@ -96,6 +100,7 @@
             this.unitBaseInch.TabIndex = 0;
             this.unitBaseInch.TabStop = true;
             this.unitBaseInch.Text = "Inch-based";
+            this.importToolTip.SetToolTip(this.unitBaseInch, "Scale the model for inch-based units");
             this.unitBaseInch.UseVisualStyleBackColor = true;
             // 
             // scaleGroup
@@ -128,6 +133,7 @@
             this.vFlip.Size = new System.Drawing.Size(62, 17);
             this.vFlip.TabIndex = 9;
             this.vFlip.Text = "Mirror V";
+            this.importToolTip.SetToolTip(this.vFlip, "Mirror texture coordinates on the V (vertical) axis");
             this.vFlip.UseVisualStyleBackColor = true;
             // 
             // uFlip
@@ -138,6 +144,7 @@
             this.uFlip.Size = new System.Drawing.Size(63, 17);
             this.uFlip.TabIndex = 8;
             this.uFlip.Text = "Mirror U";
+            this.importToolTip.SetToolTip(this.uFlip, "Mirror texture coordinates on the U (horizontal) axis");
             this.uFlip.UseVisualStyleBackColor = true;
             // 
             // uniformScale
@@ -148,6 +155,7 @@
             this.uniformScale.Size = new System.Drawing.Size(90, 17);
             this.uniformScale.TabIndex = 9;
             this.uniformScale.Text = "Uniform scale";
+            this.importToolTip.SetToolTip(this.uniformScale, "Scale by the same factor on all three axes");
             this.uniformScale.UseVisualStyleBackColor = true;
             this.uniformScale.CheckedChanged += new System.EventHandler(this.uniformScale_CheckedChanged);
             // 
@@ -159,6 +167,7 @@
             this.zFlip.Size = new System.Drawing.Size(62, 17);
             this.zFlip.TabIndex = 7;
             this.zFlip.Text = "Mirror Z";
+            this.importToolTip.SetToolTip(this.zFlip, "Mirror the model on the Z axis");
             this.zFlip.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -182,6 +191,7 @@
             this.zScale.Name = "zScale";
             this.zScale.Size = new System.Drawing.Size(51, 20);
             this.zScale.TabIndex = 6;
+            this.importToolTip.SetToolTip(this.zScale, "Scale factor on the Z axis");
             this.zScale.Value = new decimal(new int[] {
             1,
             0,
@@ -197,6 +207,7 @@
             this.yFlip.Size = new System.Drawing.Size(62, 17);
             this.yFlip.TabIndex = 5;
             this.yFlip.Text = "Mirror Y";
+            this.importToolTip.SetToolTip(this.yFlip, "Mirror the model on the Y axis");
             this.yFlip.UseVisualStyleBackColor = true;
             // 
             // label2
@@ -220,6 +231,7 @@
             this.yScale.Name = "yScale";
             this.yScale.Size = new System.Drawing.Size(51, 20);
             this.yScale.TabIndex = 3;
+            this.importToolTip.SetToolTip(this.yScale, "Scale factor on the Y axis");
             this.yScale.Value = new decimal(new int[] {
             1,
             0,
@@ -235,6 +247,7 @@
             this.xFlip.Size = new System.Drawing.Size(62, 17);
             this.xFlip.TabIndex = 2;
             this.xFlip.Text = "Mirror X";
+            this.importToolTip.SetToolTip(this.xFlip, "Mirror the model on the X axis");
             this.xFlip.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -258,6 +271,7 @@
             this.xScale.Name = "xScale";
             this.xScale.Size = new System.Drawing.Size(51, 20);
             this.xScale.TabIndex = 0;
+            this.importToolTip.SetToolTip(this.xScale, "Scale factor on the X axis");
             this.xScale.Value = new decimal(new int[] {
             1,
             0,
@@ -309,6 +323,7 @@
             this.withBone.Size = new System.Drawing.Size(107, 17);
             this.withBone.TabIndex = 2;
             this.withBone.Text = "Create new bone";
+            this.importToolTip.SetToolTip(this.withBone, "Create a bone at the model\'s center of mass and weigh all vertices to it");
             this.withBone.UseVisualStyleBackColor = true;
             // 
             // yzSwap
@@ -320,6 +335,8 @@
             this.yzSwap.Size = new System.Drawing.Size(100, 17);
             this.yzSwap.TabIndex = 1;
             this.yzSwap.Text = "Swap Y/Z axes";
+            this.importToolTip.SetToolTip(this.yzSwap, "Swap between Y-up (right handed, MMD) and Z-up (left handed, Maya/3ds Max/Blender" +
+        ") coordinate systems");
             this.yzSwap.UseVisualStyleBackColor = true;
             // 
             // flipFacesCheck
@@ -330,6 +347,7 @@
             this.flipFacesCheck.Size = new System.Drawing.Size(71, 17);
             this.flipFacesCheck.TabIndex = 0;
             this.flipFacesCheck.Text = "Flip faces";
+            this.importToolTip.SetToolTip(this.flipFacesCheck, "Reverse the facing direction of triangles");
             this.flipFacesCheck.UseVisualStyleBackColor = true;
             // 
             // storeSettings
@@ -348,10 +366,16 @@
             this.materialNameSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.materialNameSelect.Enabled = false;
             this.materialNameSelect.FormattingEnabled = true;
+            this.materialNameSelect.Items.AddRange(new object[] {
+            "From material library",
+            "Bitmap file name",
+            "OBJ name + number",
+            "Custom name + number"});
             this.materialNameSelect.Location = new System.Drawing.Point(140, 19);
             this.materialNameSelect.Name = "materialNameSelect";
             this.materialNameSelect.Size = new System.Drawing.Size(147, 21);
             this.materialNameSelect.TabIndex = 0;
+            this.importToolTip.SetToolTip(this.materialNameSelect, "The source of material names");
             // 
             // materialSettings
             // 
@@ -403,6 +427,7 @@
             this.bitmapActionSelect.Name = "bitmapActionSelect";
             this.bitmapActionSelect.Size = new System.Drawing.Size(147, 21);
             this.bitmapActionSelect.TabIndex = 1;
+            this.importToolTip.SetToolTip(this.bitmapActionSelect, "Action to perform when a diffuse bitmap is encountered");
             // 
             // ObjImportSettingsForm
             // 
@@ -419,6 +444,9 @@
             this.Controls.Add(this.scaleGroup);
             this.Controls.Add(this.unitBaseGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.HelpButton = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ObjImportSettingsForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -470,5 +498,7 @@
         private System.Windows.Forms.ComboBox bitmapActionSelect;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.HelpProvider importHelp;
+        private System.Windows.Forms.ToolTip importToolTip;
     }
 }
