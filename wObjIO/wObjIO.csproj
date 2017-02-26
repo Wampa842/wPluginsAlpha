@@ -52,7 +52,7 @@
     <Compile Include="ObjImportSettingsForm.Designer.cs">
       <DependentUpon>ObjImportSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjIO.cs" />
+    <Compile Include="ObjImport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
