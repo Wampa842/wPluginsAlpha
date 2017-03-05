@@ -79,6 +79,7 @@ namespace wObjIO
         public string ObjName;
         public List<IPXVertex> VertexList;
         public Dictionary<string, IPXMaterial> MaterialList;
+        public Dictionary<string, IPXMaterial> AvailableMaterials;
         private List<V3> _posList;
         private List<V2> _uvList;
         private List<V3> _normalList;
@@ -238,8 +239,10 @@ namespace wObjIO
 
             using (StreamReader obj = new StreamReader(path))
             {
+                MaterialList = new Dictionary<string, IPXMaterial>();
                 string[] allLines = obj.ReadToEnd().Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 IPXMaterial material = null;
+                IPXMaterial baseMaterial = null;
                 foreach(string lineStr in allLines)
                 {
                     string[] line = lineStr.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -327,19 +330,35 @@ namespace wObjIO
                                     }
                                 }
                                 break;
+                            case "g":
+                                if (line.Length >= 2)
+                                {
+                                    material = bld.Material();
+                                    material.Name = line[1].Trim();
+                                    material.NameE = line[1].Trim();
+                                    MaterialList.Add(material.Name, material);
+                                }
+                                break;
                             case "usemtl":
-                                if (line.Length >= 2 && MaterialList != null)
+                                if (line.Length >= 2 && AvailableMaterials != null)
                                 {
                                     string name = line[1].Trim();
-                                    if (MaterialList.ContainsKey(name))
+                                    if (AvailableMaterials.ContainsKey(name))
                                     {
-                                        material = MaterialList[name];
+                                        //I'm sure there's a more efficient way to do this. Maybe with ICloneable.Clone().
+                                        baseMaterial = AvailableMaterials[name];
+                                        material.Diffuse = baseMaterial.Diffuse;
+                                        material.Ambient = baseMaterial.Ambient;
+                                        material.Specular = baseMaterial.Specular;
+                                        material.Tex = baseMaterial.Tex;
+                                        material.Power = baseMaterial.Power;
                                     }
                                 }
                                 break;
                             case "mtllib":
                                 string mtlPath = Path.Combine(Path.GetDirectoryName(path), line[1].Trim());
-                                MaterialList = ReadMaterialLibrary(mtlPath, bld);
+                                AvailableMaterials = new Dictionary<string, IPXMaterial>();
+                                AvailableMaterials = ReadMaterialLibrary(mtlPath, bld);
                                 break;
                             default:
                                 break;

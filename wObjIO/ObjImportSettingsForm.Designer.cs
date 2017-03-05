@@ -82,6 +82,7 @@
             // unitBaseMetric
             // 
             this.unitBaseMetric.AutoSize = true;
+            this.unitBaseMetric.Enabled = false;
             this.unitBaseMetric.Location = new System.Drawing.Point(6, 42);
             this.unitBaseMetric.Name = "unitBaseMetric";
             this.unitBaseMetric.Size = new System.Drawing.Size(107, 17);
@@ -120,7 +121,7 @@
             this.scaleGroup.Controls.Add(this.xScale);
             this.scaleGroup.Location = new System.Drawing.Point(146, 12);
             this.scaleGroup.Name = "scaleGroup";
-            this.scaleGroup.Size = new System.Drawing.Size(159, 166);
+            this.scaleGroup.Size = new System.Drawing.Size(159, 172);
             this.scaleGroup.TabIndex = 2;
             this.scaleGroup.TabStop = false;
             this.scaleGroup.Text = "Scale";
@@ -282,7 +283,7 @@
             // importButton
             // 
             this.importButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.importButton.Location = new System.Drawing.Point(112, 282);
+            this.importButton.Location = new System.Drawing.Point(112, 268);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(114, 23);
             this.importButton.TabIndex = 5;
@@ -294,7 +295,7 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(232, 282);
+            this.cancelButton.Location = new System.Drawing.Point(232, 268);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(73, 23);
             this.cancelButton.TabIndex = 6;
@@ -354,7 +355,7 @@
             // 
             this.storeSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.storeSettings.AutoSize = true;
-            this.storeSettings.Location = new System.Drawing.Point(12, 288);
+            this.storeSettings.Location = new System.Drawing.Point(12, 274);
             this.storeSettings.Name = "storeSettings";
             this.storeSettings.Size = new System.Drawing.Size(90, 17);
             this.storeSettings.TabIndex = 4;
@@ -388,7 +389,7 @@
             this.materialSettings.Controls.Add(this.materialNameSelect);
             this.materialSettings.Location = new System.Drawing.Point(12, 190);
             this.materialSettings.Name = "materialSettings";
-            this.materialSettings.Size = new System.Drawing.Size(293, 86);
+            this.materialSettings.Size = new System.Drawing.Size(293, 72);
             this.materialSettings.TabIndex = 3;
             this.materialSettings.TabStop = false;
             this.materialSettings.Text = "Materials";
@@ -435,7 +436,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(317, 317);
+            this.ClientSize = new System.Drawing.Size(317, 303);
             this.Controls.Add(this.materialSettings);
             this.Controls.Add(this.storeSettings);
             this.Controls.Add(this.otherSettingsGroup);
