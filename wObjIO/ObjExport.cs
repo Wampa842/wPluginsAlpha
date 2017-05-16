@@ -19,7 +19,7 @@ namespace wObjIO
         public float ScaleY { get; set; }
         public float ScaleZ { get; set; }
         public bool SwapAxes { get; set; }
-        //public bool ReverseFaces { get; set; }
+        public bool ReverseFaces { get; set; }
         public bool MirrorU { get; set; }
         public bool MirrorV { get; set; }
     }

@@ -82,7 +82,6 @@
             // unitBaseMetric
             // 
             this.unitBaseMetric.AutoSize = true;
-            this.unitBaseMetric.Enabled = false;
             this.unitBaseMetric.Location = new System.Drawing.Point(6, 42);
             this.unitBaseMetric.Name = "unitBaseMetric";
             this.unitBaseMetric.Size = new System.Drawing.Size(107, 17);

@@ -31,14 +31,12 @@ namespace wObjIO
         {
             get
             {
-                string systemPluginsPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "_plugin\\System");
-                string stockPluginPath = Path.Combine(systemPluginsPath, "ImportObj.dll");
-                string wObjIOPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                //MessageBox.Show(systemPluginsPath);
-                if (File.Exists(stockPluginPath))
+                /*
+                if (File.Exists(Path.Combine(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "_plugin\\System"), "ImportObj.dll")))  //check whether the stock plugin exists
                 {
-                    //MessageBox.Show("A system plugin is preventing wObjIO from functioning.\nUnfortunately, PMX can't run two import/export plugins for the same extension concurrently, so you have to delete one of the following files:\n\nStock plugin:\n" + stockPluginPath + "\nwObjIO:\n" + wObjIOPath + "\n\nIf it helps you decide, the stock ObjImport.dll doesn't work on most systems and handles mesh transformation poorly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("A system plugin is preventing wObjIO from functioning.\nUnfortunately, PMX can't run two import/export plugins for the same extension concurrently, so you have to delete one of the following files:\n\nStock plugin:\n" + stockPluginPath + "\nwObjIO:\n" + wObjIOPath + "\n\nIf it helps you decide, the stock ObjImport.dll doesn't work on most systems and handles mesh transformation poorly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                */
 
                 return ".obj";
             }
@@ -54,13 +52,16 @@ namespace wObjIO
         {
             try
             {
+                //Create builder and new PMX scene
                 builder = PEStaticBuilder.Pmx;
                 pmx = builder.Pmx();
                 pmx.Clear();
 
+                //Open the settings form
                 settingsForm = new ObjImportSettingsForm();
                 if (settingsForm.ShowDialog() == DialogResult.OK)
                 {
+                    //Create the import object and add it to the scene
                     ObjFileImport import = new ObjFileImport(objPath, builder);
                     import.RegisterInPmx(pmx, builder, settingsForm.Settings);
                     pmx.ModelInfo.ModelName = pmx.ModelInfo.ModelNameE = import.ObjName;
@@ -76,17 +77,18 @@ namespace wObjIO
 
     public class ObjFileImport
     {
-        public string ObjName;
-        public List<IPXVertex> VertexList;
-        public Dictionary<string, IPXMaterial> MaterialList;
-        public Dictionary<string, IPXMaterial> AvailableMaterials;
-        private List<V3> _posList;
-        private List<V2> _uvList;
-        private List<V3> _normalList;
+        public string ObjName;  //Name of the obj file
+        public List<IPXVertex> VertexList;  //List of compiled vertices
+        public Dictionary<string, IPXMaterial> MaterialList;    //List of compiled materials
+        public Dictionary<string, IPXMaterial> AvailableMaterials;  //List of unique materials
+        private List<V3> _posList;  //Temporary list of position vectors
+        private List<V2> _uvList;   //Temporary list of UV coordinates
+        private List<V3> _normalList;   //Temporary list of normal vectors
         private Dictionary<string, int> _vertexList;
 
         private void getVertexElements(string faceVertex, out int v, out int vt, out int vn)
         {
+            //This method returns the indices of an f entry's v, vt and vn entries
             v = -1;
             vt = -1;
             vn = -1;
@@ -111,6 +113,8 @@ namespace wObjIO
 
         private int getVertexNumber(int v, int vt, int vn, IPXPmxBuilder bld)
         {
+            //This method creates a dictionary where the key is generated from the vertex data, and the value is a pointer to the vertex itself. This ensures that no vertex will be added twice, and that faces will be properly linked.
+            //Returns the index of the appropriate vertex, either new or existing.
             string vertexKey = v.ToString() + '/' + vt.ToString() + '/' + vn.ToString();    //Construct a unique identifier that'll be used as key in vertexList.
             if (_vertexList.ContainsKey(vertexKey))  //If the vertex exists, return its index
             {
@@ -131,6 +135,7 @@ namespace wObjIO
 
         public Dictionary<string, IPXMaterial> ReadMaterialLibrary(string path, IPXPmxBuilder bld)
         {
+            //Read and parse the mtl file
             Dictionary<string, IPXMaterial> materials = new Dictionary<string, IPXMaterial>();
             IPXMaterial mat = null;
             using (StreamReader mtl = new StreamReader(path))
@@ -139,12 +144,10 @@ namespace wObjIO
                 float r, g, b;
                 foreach(string lineStr in allLines)
                 {
-
-                    //MessageBox.Show(lineStr);
                     string[] line = lineStr.Trim().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     if (line.Length > 0)
                     {
-                        string type = line[0].Trim();
+                        string type = line[0].Trim();   //The first token is the entry type
                         switch (type)
                         {
                             case "Kd":
@@ -208,6 +211,7 @@ namespace wObjIO
                             case "newmtl":
                                 if (line.Length >= 2)
                                 {
+                                    //Build a new material if it doesn't exist yet
                                     string name = line[1].Trim();
                                     if (!materials.ContainsKey(name))
                                     {
@@ -230,6 +234,7 @@ namespace wObjIO
 
         public ObjFileImport(string path, IPXPmxBuilder bld)
         {
+            //Read and parse the obj file
             ObjName = Path.GetFileNameWithoutExtension(path);
             _posList = new List<V3>();
             _uvList = new List<V2>();
@@ -363,35 +368,6 @@ namespace wObjIO
                             default:
                                 break;
                         }
-                        /*
-                        if(line[0] == "v")              //Vertex position
-                        {
-
-                        }
-                        else if(line[0] == "vt")        //Vertex UV
-                        {
-
-                        }
-                        else if(line[0] == "vn")        //Vertex normal
-                        {
-
-                        }
-                        else if(line[0] == "f")         //Face
-                        {
-
-                        }
-                        else if(line[0] == "usemtl")    //Material
-                        {
-
-                        }
-                        else if(line[0] == "mtllib")    //Material library
-                        {
-
-                        }
-                        else
-                        {
-
-                        }*/
                     }
                 }
             }

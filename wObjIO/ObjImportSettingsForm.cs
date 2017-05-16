@@ -132,9 +132,9 @@ namespace wObjIO
             bool oneSelected = (xFlip.Checked && !yFlip.Checked && !zFlip.Checked) || (!xFlip.Checked && yFlip.Checked && !zFlip.Checked) || (!xFlip.Checked && !yFlip.Checked && zFlip.Checked);
             bool threeSelected = (xFlip.Checked && yFlip.Checked && !zFlip.Checked) || (!xFlip.Checked && yFlip.Checked && zFlip.Checked) || (xFlip.Checked && !yFlip.Checked && zFlip.Checked);
             Settings.ReverseFaces = (oneSelected || threeSelected) ^ flipFacesCheck.Checked;
-            Settings.ScaleX = (float)xScale.Value * (xFlip.Checked ? -1.0f : 1.0f) * (unitBaseMetric.Checked ? 1.0f : 0.254f);
-            Settings.ScaleY = (float)yScale.Value * (yFlip.Checked ? -1.0f : 1.0f) * (unitBaseMetric.Checked ? 1.0f : 0.254f);
-            Settings.ScaleZ = (float)zScale.Value * (zFlip.Checked ? -1.0f : 1.0f) * (unitBaseMetric.Checked ? 1.0f : 0.254f);
+            Settings.ScaleX = (float)xScale.Value * (xFlip.Checked ? -1.0f : 1.0f) * (unitBaseMetric.Checked ? 2.54f : 1.0f);
+            Settings.ScaleY = (float)yScale.Value * (yFlip.Checked ? -1.0f : 1.0f) * (unitBaseMetric.Checked ? 2.54f : 1.0f);
+            Settings.ScaleZ = (float)zScale.Value * (zFlip.Checked ? -1.0f : 1.0f) * (unitBaseMetric.Checked ? 2.54f : 1.0f);
             Settings.SwapAxes = yzSwap.Checked;
             Settings.MirrorU = uFlip.Checked;
             Settings.MirrorV = vFlip.Checked;
