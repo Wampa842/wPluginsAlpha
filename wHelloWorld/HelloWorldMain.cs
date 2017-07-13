@@ -69,11 +69,11 @@ namespace wHelloWorld
 
             //You can also implement a constructor that gets these properties from arguments. They can be passed from other variables, or even methods.
             //I use it to read startup data from an XML file.
-            public Opt(bool p_register, string p_name, bool p_autorun)
+            public Opt(bool register, string name, bool autorun)
             {
-                RegisterMenuText = p_name;
-                RegisterMenu = p_register;
-                Bootup = p_autorun;
+                RegisterMenuText = name;
+                RegisterMenu = register;
+                Bootup = autorun;
             }
         }
         public IPEPluginOption Option { get { return new Opt(true, "wHelloWorld", false); } }

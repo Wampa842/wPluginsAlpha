@@ -33,6 +33,7 @@
             this.selectCheck = new System.Windows.Forms.CheckBox();
             this.matchModeRadio = new System.Windows.Forms.RadioButton();
             this.anyModeRadio = new System.Windows.Forms.RadioButton();
+            this.matchGroup = new System.Windows.Forms.GroupBox();
             this.modeGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,11 +96,24 @@
             this.anyModeRadio.Text = "Any";
             this.anyModeRadio.UseVisualStyleBackColor = true;
             // 
+            // matchGroup
+            // 
+            this.matchGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.matchGroup.Location = new System.Drawing.Point(12, 110);
+            this.matchGroup.Name = "matchGroup";
+            this.matchGroup.Size = new System.Drawing.Size(458, 155);
+            this.matchGroup.TabIndex = 2;
+            this.matchGroup.TabStop = false;
+            this.matchGroup.Text = "Match items:";
+            // 
             // MergeMaterialsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(488, 340);
+            this.Controls.Add(this.matchGroup);
             this.Controls.Add(this.modeGroup);
             this.Name = "MergeMaterialsForm";
             this.Text = "wMergeMaterials";
@@ -117,5 +131,6 @@
         private System.Windows.Forms.RadioButton matchModeRadio;
         private System.Windows.Forms.RadioButton anyModeRadio;
         private System.Windows.Forms.CheckBox selectCheck;
+        private System.Windows.Forms.GroupBox matchGroup;
     }
 }
