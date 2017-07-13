@@ -13,7 +13,7 @@ Developed by Wampa842
 Downloads: https://github.com/Wampa842/wPlugins/releases
 
 Source Code: https://github.com/Wampa842/wPlugins
-License: MIT (see LICENSE.txt)
+License: MIT (see LICENSE.TXT)
 
 ------------------------------------------------
 Contact info:
@@ -30,39 +30,62 @@ Currently functional plugins:
 	> wMorphScale:
 		Scale the offsets of a vertex, UV or bone morph.
 		Shortcuts to negative (-x) or inverse (1/x) transformations.
+
 	> wAverageVertexPosition:
 		Move selected vertices to the same location without welding them.
 		Options to set the position, normal, or both; and to only merge vertices within a set range.
+
 	> wApplyMorph:
 		Apply a vertex morph, or its negative, to the model in the editor.
+
 	> wObjIO:
 		An import/export plugin with a more advanced interface and robust error handling for Wavefront OBJ/MTL files.
-		The import plugin supports triangle- and quad-based meshes, materials, mesh groups, non-uniform scaling and mirroring,
-		conversion between imperial and metric base units and reversing faces.
-		Planned features are Z/Y axis swapping, material import options and asynchronous operation (progress bar without freezing).
+		Import features:
+			> Support for triangle- and quad-based mesh, vertex normals and texture coordinates
+			> Parsing material library, and breaking up the mesh according to groups and materials
+			> Scaling, uniform and non-uniform, and conversion between imperial and metric length units
+			> Mirroring X, Y, Z vertex and U, V texture coordinates
+			> Reversing face orientation
+			> Automatically creating the imported mesh on a new bone
+			> Settings are stored in a file
+		Export features:
+			> Mostly the same as import
+			> Only exports triangle mesh
+			> Copies bitmaps to the target location
+			> Settings are not yet stored in a file
+		Planned features:
+			> Conversion between Z-up (3DS Max) and Y-up (PMX) coordinate systems
+			> (import) Bitmap and material operations
 	
 Planned plugins:
 	> wMirrorSelected:
 		Mirror only selected objects instead of the entire model. Optionally, duplicate them.
+
 	> wBackup:
 		Automatic backup utility with configurable interval, backup location, naming, and notifications.
+
 	> wMeasuringTape:
 		Measure the distance between two selected objects.
 		Measure the angle between an axis and two selected objects, or a bone's look-at bone.
 		Built-in calculator with PMX-specific shortcuts.
-	> wTranslate:
-		A reimplementation of PMX's own utility with extras, in English.
+
+	> wNameUtil:
+		A reimplementation of PMX's own translation utility with extras, in English.
 		Crowdsourced translation database, pulled from the Internet.
+
 	> wSafeWeld:
 		A tool to weld/merge/join vertices with respect to UV and weight boundaries, and non-unified vertex normals.
 		Avoid unwanted smoothing, weight merging and UV warping.
+
 	> wHelloWorld:
 		A "hello world" type program, to show the basics of plugin creation. Mainly meant for programmers.
+
 Removed plugins:
 	> wPluginsSettings:
 		A centralised application to manage plugins' settings. Removed due to interfering with plugins' own settings.
+
 	> wModelCleanup:
-		
+		A utility to detect and clean up elements that would cause errors. Too complex for the PEPlugin interface.
 		
 ----------------------------
 ----    INSTALLATION    ----
