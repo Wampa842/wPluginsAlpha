@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.ComponentModel;
+using System.Xml;
 
 using PEPlugin;
 using PEPlugin.SDX;
@@ -13,16 +14,18 @@ using PEPlugin.Pmx;
 
 namespace wObjIO
 {
-    public struct ObjExportSettings
+    public class ObjExportSettings
     {
-        public float ScaleX { get; set; }
-        public float ScaleY { get; set; }
-        public float ScaleZ { get; set; }
-        public bool SwapAxes { get; set; }
-        public bool ReverseFaces { get; set; }
-        public bool MirrorU { get; set; }
-        public bool MirrorV { get; set; }
-        public bool CopyBitmaps { get; set; }
+        public float ScaleX { get; set; } = 1.0f;
+        public float ScaleY { get; set; } = 1.0f;
+        public float ScaleZ { get; set; } = 1.0f;
+        public bool SwapAxes { get; set; } = false;
+        public bool ReverseFaces { get; set; } = false;
+        public bool MirrorU { get; set; } = false;
+        public bool MirrorV { get; set; } = false;
+        public bool CopyBitmaps { get; set; } = true;
+
+        public ObjExportSettings() { }
     }
 
 

@@ -14,6 +14,8 @@ namespace wObjIO
 {
     public partial class ObjImportSettingsForm : Form
     {
+        public string SettingsXmlPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "wObjIO.xml");
+        public string SettingsXmlNode = "ObjImport";
         public ObjImportSettings Settings;
         public Dictionary<string, ObjImportSettings.MaterialName> MaterialName;
         public Dictionary<string, ObjImportSettings.BitmapAction> BitmapAction;
@@ -38,8 +40,8 @@ namespace wObjIO
         private void LoadSettingsFromXml()
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "settings.xml"));
-            XmlNode node = xml.DocumentElement["wObjIO"];
+            xml.Load(SettingsXmlPath);
+            XmlNode node = xml.DocumentElement[SettingsXmlNode];
 
             bool _useMetricUnits = false;
             bool _flipFaces = false;
@@ -74,7 +76,7 @@ namespace wObjIO
             bool.TryParse(node["MirrorV"].InnerText, out _mirrorV);
             vFlip.Checked = _mirrorV;
             bool.TryParse(node["WithBone"].InnerText, out _withBone);
-            vFlip.Checked = _mirrorV;
+            withBone.Checked = _withBone;
 
             float.TryParse(node["XScale"].InnerText, out _scaleX);
             xScale.Value = (decimal)_scaleX;
@@ -88,8 +90,8 @@ namespace wObjIO
         private void SaveSettingsToXml()
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "settings.xml"));
-            XmlNode n = xml.DocumentElement["wObjIO"];
+            xml.Load(SettingsXmlPath);
+            XmlNode n = xml.DocumentElement[SettingsXmlNode];
             n["MetricUnits"].InnerText = unitBaseMetric.Checked.ToString().ToLowerInvariant();
             n["FlipFaces"].InnerText = flipFacesCheck.Checked.ToString().ToLowerInvariant();
             n["SwapYZ"].InnerText = yzSwap.Checked.ToString().ToLowerInvariant();
@@ -99,12 +101,12 @@ namespace wObjIO
             n["MirrorZ"].InnerText = zFlip.Checked.ToString().ToLowerInvariant();
             n["MirrorU"].InnerText = uFlip.Checked.ToString().ToLowerInvariant();
             n["MirrorV"].InnerText = vFlip.Checked.ToString().ToLowerInvariant();
-            n["WithBone"].InnerText = vFlip.Checked.ToString().ToLowerInvariant();
+            n["WithBone"].InnerText = withBone.Checked.ToString().ToLowerInvariant();
 
             n["XScale"].InnerText = ((float)xScale.Value).ToString();
             n["YScale"].InnerText = ((float)yScale.Value).ToString();
             n["ZScale"].InnerText = ((float)zScale.Value).ToString();
-            xml.Save(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "settings.xml"));
+            xml.Save(SettingsXmlPath);
         }
 
         private void ScaleValue_ValueChanged(object sender, EventArgs e)

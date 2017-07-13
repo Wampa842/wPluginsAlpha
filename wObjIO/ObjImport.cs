@@ -20,18 +20,18 @@ namespace wObjIO
         public PolygonException(string message) : base(message) { }
         public PolygonException(string message, Exception inner) : base(message, inner) { }
     }
-    public struct ObjImportSettings
+    public class ObjImportSettings
     {
         public enum BitmapAction { None, Copy, ToPng, ToJpg, ToTga, ToDds };
         public enum MaterialName { Library, Bitmap, ObjNameNumbered, CustomNumbered };
-        public float ScaleX { get; set; }
-        public float ScaleY { get; set; }
-        public float ScaleZ { get; set; }
-        public bool SwapAxes { get; set; }
-        public bool ReverseFaces { get; set; }
-        public bool MirrorU { get; set; }
-        public bool MirrorV { get; set; }
-        public bool CreateBone { get; set; }
+        public float ScaleX { get; set; } = 1.0f;
+        public float ScaleY { get; set; } = 1.0f;
+        public float ScaleZ { get; set; } = 1.0f;
+        public bool SwapAxes { get; set; } = false;
+        public bool ReverseFaces { get; set; } = false;
+        public bool MirrorU { get; set; } = false;
+        public bool MirrorV { get; set; } = false;
+        public bool CreateBone { get; set; } = false;
         BitmapAction Bitmap { get; set; }
         MaterialName Material { get; set; }
     }

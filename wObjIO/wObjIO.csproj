@@ -79,6 +79,9 @@
       <DependentUpon>ObjImportSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="wObjIO.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /y "$(TargetPath)" "H:\MMD\PMX Editor\PmxEditor\_plugin\User\wPlugins\"</PostBuildEvent>
