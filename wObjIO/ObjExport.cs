@@ -22,6 +22,7 @@ namespace wObjIO
         public bool ReverseFaces { get; set; }
         public bool MirrorU { get; set; }
         public bool MirrorV { get; set; }
+        public bool CopyBitmaps { get; set; }
     }
 
 
@@ -105,8 +106,11 @@ namespace wObjIO
         private List<string> vnList;
         private List<WMaterial> materialList;
 
-        public ObjFileExport(IPXPmx pmx, ObjExportSettings settings)
+        private IPERunArgs args;
+
+        public ObjFileExport(IPXPmx pmx, ObjExportSettings settings, IPERunArgs p_args)
         {
+            args = p_args;
             List<IPXVertex> processedVerts = new List<IPXVertex>();
             vList = new List<string>();
             vtList = new List<string>();
@@ -157,7 +161,7 @@ namespace wObjIO
             }
         }
 
-        public void SaveMtl(string objPath, ObjExportProgress progress)
+        public void SaveMtl(string objPath, ObjExportSettings settings, ObjExportProgress progress)
         {
             using (StreamWriter mtl = File.CreateText(Path.Combine(Path.GetDirectoryName(objPath), Path.GetFileNameWithoutExtension(objPath) + ".mtl")))
             {
@@ -171,11 +175,36 @@ namespace wObjIO
                     mtlStr += "\n    Ka " + m.Ambient.R + ' ' + m.Ambient.G + ' ' + m.Ambient.B;
                     mtlStr += "\n    Ks " + m.Specular.R + ' ' + m.Specular.G + ' ' + m.Specular.B;
                     mtlStr += "\n    Kd " + m.Diffuse.R + ' ' + m.Diffuse.G + ' ' + m.Diffuse.B;
-                    mtlStr += "\n    map_Ka " + m.Bitmap;
-                    mtlStr += "\n    map_Kd " + m.Bitmap;
+                    if (!string.IsNullOrWhiteSpace(m.Bitmap))
+                    {
+                        mtlStr += "\n    map_Ka " + m.Bitmap;
+                        mtlStr += "\n    map_Kd " + m.Bitmap;
+                    }
                     mtlStr += "\n    d " + m.Opacity;
                     mtlStr += "\n    Ns " + m.Glossiness;
                     mtlStr += "\n    illum 2";
+
+                    
+                    if(settings.CopyBitmaps && !string.IsNullOrWhiteSpace(m.Bitmap))
+                    {
+                        string originalPath = Path.Combine(Path.GetDirectoryName(args.Host.Connector.Pmx.CurrentPath), m.Bitmap);
+                        string targetPath = Path.Combine(Path.GetDirectoryName(objPath), m.Bitmap);
+                        
+                        if (!File.Exists(targetPath) && File.Exists(originalPath))
+                        {
+                            try
+                            {
+                                File.Copy(originalPath, targetPath);
+                            }
+                            catch(Exception ex) when (ex is UnauthorizedAccessException || ex is PathTooLongException)
+                            {
+                                if(MessageBox.Show("Unable to copy bitmap. Make sure there is enough free space on the disc, the filename isn't too long, and you have permission to access the destination.\nWould you like to export the rest of the bitmaps?\n", "Can't copy bitmap", MessageBoxButtons.YesNo) == DialogResult.No)
+                                {
+                                    settings.CopyBitmaps = false;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 mtl.Write(mtlStr);
@@ -183,9 +212,9 @@ namespace wObjIO
             }
         }
 
-        public void SaveObj(string objPath, ObjExportProgress progress)
+        public void SaveObj(string objPath, ObjExportSettings settings, ObjExportProgress progress)
         {
-            SaveMtl(objPath, progress);
+            SaveMtl(objPath, settings, progress);
             using (StreamWriter obj = new StreamWriter(objPath))
             {
                 obj.WriteLine("# wObjIO OBJ Exporter - (c) 2017 Wampa842");
@@ -264,9 +293,9 @@ namespace wObjIO
                 {
                     ObjExportProgress report = new ObjExportProgress();
                     report.Show();
-                    ObjFileExport obj = new ObjFileExport(pmx, settingsForm.Settings);
+                    ObjFileExport obj = new ObjFileExport(pmx, settingsForm.Settings, args);
                     report.progressBar1.Maximum = obj.ItemCount;
-                    obj.SaveObj(path, report);
+                    obj.SaveObj(path, settingsForm.Settings, report);
                     report.Close();
                 }
             }

@@ -31,6 +31,7 @@ namespace wObjIO
             Settings.SwapAxes = yzSwap.Checked;
             Settings.MirrorU = uFlip.Checked;
             Settings.MirrorV = vFlip.Checked;
+            Settings.CopyBitmaps = copyBitmaps.Checked;
             DialogResult = DialogResult.OK;
             this.Close();
         }
