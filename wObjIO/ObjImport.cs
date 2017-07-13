@@ -9,6 +9,17 @@ using PEPlugin.SDX;
 
 namespace wObjIO
 {
+    public class PolygonException : Exception
+    {
+        public int VertexCount { get; set; } = 0;
+        public PolygonException() { }
+        public PolygonException(int vertexCount)
+        {
+            VertexCount = vertexCount;
+        }
+        public PolygonException(string message) : base(message) { }
+        public PolygonException(string message, Exception inner) : base(message, inner) { }
+    }
     public struct ObjImportSettings
     {
         public enum BitmapAction { None, Copy, ToPng, ToJpg, ToTga, ToDds };
@@ -31,17 +42,10 @@ namespace wObjIO
         {
             get
             {
-                /*
-                if (File.Exists(Path.Combine(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "_plugin\\System"), "ImportObj.dll")))  //check whether the stock plugin exists
-                {
-                    MessageBox.Show("A system plugin is preventing wObjIO from functioning.\nUnfortunately, PMX can't run two import/export plugins for the same extension concurrently, so you have to delete one of the following files:\n\nStock plugin:\n" + stockPluginPath + "\nwObjIO:\n" + wObjIOPath + "\n\nIf it helps you decide, the stock ObjImport.dll doesn't work on most systems and handles mesh transformation poorly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                */
-
                 return ".obj";
             }
         }
-        public string Caption { get { return "Wavefront OBJ (wPlugins importer)"; } }
+        public string Caption { get { return "wPlugins OBJ Importer"; } }
         //public string Ext { get { return ".obj"; } }
 
         private IPXPmxBuilder builder;
@@ -62,9 +66,16 @@ namespace wObjIO
                 if (settingsForm.ShowDialog() == DialogResult.OK)
                 {
                     //Create the import object and add it to the scene
-                    ObjFileImport import = new ObjFileImport(objPath, builder);
-                    import.RegisterInPmx(pmx, builder, settingsForm.Settings);
-                    pmx.ModelInfo.ModelName = pmx.ModelInfo.ModelNameE = import.ObjName;
+                    try
+                    {
+                        ObjFileImport import = new ObjFileImport(objPath, builder);
+                        import.RegisterInPmx(pmx, builder, settingsForm.Settings);
+                        pmx.ModelInfo.ModelName = pmx.ModelInfo.ModelNameE = import.ObjName;
+                    }
+                    catch(PolygonException ex)
+                    {
+                        MessageBox.Show("The mesh you're trying to import contains a polygon with " + ex.VertexCount + " vertices. This plugin only supports triangles and quads.", "Unsupported polygon");
+                    }
                 }
             }
             catch(Exception ex)
@@ -333,6 +344,11 @@ namespace wObjIO
                                             }
                                         }
                                     }
+                                }
+                                else
+                                {
+                                    //n>4-gon
+                                    throw new PolygonException(line.Length - 1);
                                 }
                                 break;
                             case "g":
