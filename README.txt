@@ -35,9 +35,11 @@ Currently functional plugins:
 		Options to set the position, normal, or both; and to only merge vertices within a set range.
 	> wApplyMorph:
 		Apply a vertex morph, or its negative, to the model in the editor.
-	> wPluginsSettings:
-		Settings utility for the plugins in the bundle.
-		Options to store settings in a file, and to auto-start plugins with PMX.
+	> wObjIO:
+		An import/export plugin with a more advanced interface and robust error handling for Wavefront OBJ/MTL files.
+		The import plugin supports triangle- and quad-based meshes, materials, mesh groups, non-uniform scaling and mirroring,
+		conversion between imperial and metric base units and reversing faces.
+		Planned features are Z/Y axis swapping, material import options and asynchronous operation (progress bar without freezing).
 	
 Planned plugins:
 	> wMirrorSelected:
@@ -56,6 +58,11 @@ Planned plugins:
 		Avoid unwanted smoothing, weight merging and UV warping.
 	> wHelloWorld:
 		A "hello world" type program, to show the basics of plugin creation. Mainly meant for programmers.
+Removed plugins:
+	> wPluginsSettings:
+		A centralised application to manage plugins' settings. Removed due to interfering with plugins' own settings.
+	> wModelCleanup:
+		
 		
 ----------------------------
 ----    INSTALLATION    ----
