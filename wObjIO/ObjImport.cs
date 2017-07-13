@@ -45,7 +45,13 @@ namespace wObjIO
                 return ".obj";
             }
         }
-        public string Caption { get { return "wPlugins OBJ Importer"; } }
+        public string Caption {
+            get
+            {
+                string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                return "wPlugins OBJ Importer (v" + version + ")";
+            }
+        }
         //public string Ext { get { return ".obj"; } }
 
         private IPXPmxBuilder builder;
@@ -347,7 +353,7 @@ namespace wObjIO
                                 }
                                 else
                                 {
-                                    //n>4-gon
+                                    //n>4 n-gon
                                     throw new PolygonException(line.Length - 1);
                                 }
                                 break;
@@ -400,18 +406,19 @@ namespace wObjIO
             }
             foreach (IPXVertex v in VertexList)
             {
+                /*
                 if(settings.SwapAxes)
-                {   /* 
-                    //For some reason, this doesn't process some vertices. I'll try transformation instead.
+                {
+                    TODO - current implementation swaps border vertices twice. Currently disabled in GUI.
                     float oldZ = v.Position.Z;
                     v.Position.Z = v.Position.Y;
                     v.Position.Y = oldZ;
-                    oldZ = v.Normal.Z;
+                    float oldNZ = v.Normal.Z;
                     v.Normal.Z = v.Normal.Y;
-                    v.Normal.Y = oldZ;
-                    */
+                    v.Normal.Y = oldNZ;
                 } 
-                
+                */
+
                 v.Position *= new V3(settings.ScaleX, settings.ScaleY, settings.ScaleZ);
                 v.UV *= new V2((settings.MirrorU ? -1 : 1), (settings.MirrorV ? -1 : 1));
 

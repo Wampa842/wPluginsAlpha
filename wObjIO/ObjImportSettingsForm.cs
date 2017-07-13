@@ -150,7 +150,6 @@ namespace wObjIO
             bitmapActionSelect.SelectedIndex = 0;
             materialNameSelect.SelectedIndex = 0;
             LoadSettingsFromXml();
-            
         }
     }
 }
