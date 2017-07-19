@@ -26,6 +26,7 @@ namespace wNameUtil
 
         public bool GetAutoStartSetting()
         {
+            /*
             bool AutoStart;
             XmlDocument Doc = new XmlDocument();
             string AssemblyPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -38,8 +39,8 @@ namespace wNameUtil
             catch (Exception)
             {
                 AutoStart = false;
-            }
-            return AutoStart;
+            }*/
+            return true;
         }
 
         private class Opt : IPEPluginOption

@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PEPlugin">
       <HintPath>H:\MMD\PMX Editor\PmxEditor\Lib\PEPlugin\PEPlugin.dll</HintPath>
     </Reference>
@@ -52,10 +53,20 @@
       <DependentUpon>NameUtilForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectByRegexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectByRegexForm.Designer.cs">
+      <DependentUpon>SelectByRegexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Translator.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NameUtilForm.resx">
       <DependentUpon>NameUtilForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectByRegexForm.resx">
+      <DependentUpon>SelectByRegexForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
