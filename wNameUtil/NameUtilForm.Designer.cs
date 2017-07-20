@@ -71,7 +71,7 @@
             this.modeBox.Location = new System.Drawing.Point(12, 170);
             this.modeBox.Name = "modeBox";
             this.modeBox.Size = new System.Drawing.Size(340, 115);
-            this.modeBox.TabIndex = 1;
+            this.modeBox.TabIndex = 9;
             this.modeBox.TabStop = false;
             this.modeBox.Tag = "";
             this.modeBox.Text = "Translation mode";
@@ -94,7 +94,7 @@
             this.modeTranslateJpEn.Location = new System.Drawing.Point(6, 42);
             this.modeTranslateJpEn.Name = "modeTranslateJpEn";
             this.modeTranslateJpEn.Size = new System.Drawing.Size(114, 17);
-            this.modeTranslateJpEn.TabIndex = 4;
+            this.modeTranslateJpEn.TabIndex = 1;
             this.modeTranslateJpEn.Tag = "3";
             this.modeTranslateJpEn.Text = "Translate JP to EN";
             this.modeTranslateJpEn.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             this.modeCopyUnknown.Location = new System.Drawing.Point(6, 65);
             this.modeCopyUnknown.Name = "modeCopyUnknown";
             this.modeCopyUnknown.Size = new System.Drawing.Size(298, 17);
-            this.modeCopyUnknown.TabIndex = 2;
+            this.modeCopyUnknown.TabIndex = 4;
             this.modeCopyUnknown.Text = "If there is no translation to a name, copy the name instead";
             this.modeCopyUnknown.UseVisualStyleBackColor = true;
             // 
@@ -116,7 +116,7 @@
             this.modeCopyJpEn.Location = new System.Drawing.Point(6, 19);
             this.modeCopyJpEn.Name = "modeCopyJpEn";
             this.modeCopyJpEn.Size = new System.Drawing.Size(94, 17);
-            this.modeCopyJpEn.TabIndex = 3;
+            this.modeCopyJpEn.TabIndex = 0;
             this.modeCopyJpEn.TabStop = true;
             this.modeCopyJpEn.Tag = "1";
             this.modeCopyJpEn.Text = "Copy JP to EN";
@@ -128,7 +128,7 @@
             this.modeTranslateEnJp.Location = new System.Drawing.Point(177, 42);
             this.modeTranslateEnJp.Name = "modeTranslateEnJp";
             this.modeTranslateEnJp.Size = new System.Drawing.Size(114, 17);
-            this.modeTranslateEnJp.TabIndex = 1;
+            this.modeTranslateEnJp.TabIndex = 3;
             this.modeTranslateEnJp.Tag = "4";
             this.modeTranslateEnJp.Text = "Translate EN to JP";
             this.modeTranslateEnJp.UseVisualStyleBackColor = true;
@@ -139,7 +139,7 @@
             this.modeCopyEnJp.Location = new System.Drawing.Point(177, 19);
             this.modeCopyEnJp.Name = "modeCopyEnJp";
             this.modeCopyEnJp.Size = new System.Drawing.Size(94, 17);
-            this.modeCopyEnJp.TabIndex = 0;
+            this.modeCopyEnJp.TabIndex = 2;
             this.modeCopyEnJp.Tag = "2";
             this.modeCopyEnJp.Text = "Copy EN to JP";
             this.modeCopyEnJp.UseVisualStyleBackColor = true;
@@ -156,15 +156,15 @@
             this.capitalizeSelect.Location = new System.Drawing.Point(12, 291);
             this.capitalizeSelect.Name = "capitalizeSelect";
             this.capitalizeSelect.Size = new System.Drawing.Size(340, 21);
-            this.capitalizeSelect.TabIndex = 3;
+            this.capitalizeSelect.TabIndex = 10;
             // 
             // updateFileButton
             // 
             this.updateFileButton.Location = new System.Drawing.Point(12, 12);
             this.updateFileButton.Name = "updateFileButton";
             this.updateFileButton.Size = new System.Drawing.Size(195, 23);
-            this.updateFileButton.TabIndex = 4;
-            this.updateFileButton.Text = "Update translation file";
+            this.updateFileButton.TabIndex = 0;
+            this.updateFileButton.Text = "Update dictionary file";
             this.updateFileButton.UseVisualStyleBackColor = true;
             this.updateFileButton.Click += new System.EventHandler(this.updateFileButton_Click);
             // 
@@ -180,7 +180,7 @@
             this.subjectSelect.Location = new System.Drawing.Point(12, 41);
             this.subjectSelect.Name = "subjectSelect";
             this.subjectSelect.Size = new System.Drawing.Size(340, 123);
-            this.subjectSelect.TabIndex = 5;
+            this.subjectSelect.TabIndex = 2;
             this.subjectSelect.TabStop = false;
             this.subjectSelect.Text = "Select subjects";
             // 
@@ -209,7 +209,6 @@
             // subjectBody
             // 
             this.subjectBody.AutoSize = true;
-            this.subjectBody.Enabled = false;
             this.subjectBody.Location = new System.Drawing.Point(6, 65);
             this.subjectBody.Name = "subjectBody";
             this.subjectBody.Size = new System.Drawing.Size(83, 17);
@@ -235,7 +234,7 @@
             this.subjectBone.Location = new System.Drawing.Point(154, 19);
             this.subjectBone.Name = "subjectBone";
             this.subjectBone.Size = new System.Drawing.Size(55, 17);
-            this.subjectBone.TabIndex = 2;
+            this.subjectBone.TabIndex = 1;
             this.subjectBone.Text = "Bones";
             this.subjectBone.UseVisualStyleBackColor = true;
             this.subjectBone.CheckedChanged += new System.EventHandler(this.SelectSubjects_CheckedChanged);
@@ -246,7 +245,7 @@
             this.subjectMorph.Location = new System.Drawing.Point(6, 42);
             this.subjectMorph.Name = "subjectMorph";
             this.subjectMorph.Size = new System.Drawing.Size(60, 17);
-            this.subjectMorph.TabIndex = 1;
+            this.subjectMorph.TabIndex = 2;
             this.subjectMorph.Text = "Morphs";
             this.subjectMorph.UseVisualStyleBackColor = true;
             this.subjectMorph.CheckedChanged += new System.EventHandler(this.SelectSubjects_CheckedChanged);
@@ -280,7 +279,7 @@
             this.selectList.MultiSelect = false;
             this.selectList.Name = "selectList";
             this.selectList.Size = new System.Drawing.Size(234, 301);
-            this.selectList.TabIndex = 6;
+            this.selectList.TabIndex = 4;
             this.selectList.UseCompatibleStateImageBehavior = false;
             this.selectList.View = System.Windows.Forms.View.Details;
             // 
@@ -302,7 +301,7 @@
             this.selectAll.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.selectAll.Name = "selectAll";
             this.selectAll.Size = new System.Drawing.Size(42, 23);
-            this.selectAll.TabIndex = 7;
+            this.selectAll.TabIndex = 5;
             this.selectAll.Text = "All";
             this.selectAll.UseVisualStyleBackColor = true;
             this.selectAll.Click += new System.EventHandler(this.selectAll_Click);
@@ -315,7 +314,7 @@
             this.selectRegex.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.selectRegex.Name = "selectRegex";
             this.selectRegex.Size = new System.Drawing.Size(74, 23);
-            this.selectRegex.TabIndex = 10;
+            this.selectRegex.TabIndex = 8;
             this.selectRegex.Text = "Regex...";
             this.selectRegex.UseVisualStyleBackColor = true;
             this.selectRegex.Click += new System.EventHandler(this.selectRegex_Click);
@@ -328,7 +327,7 @@
             this.selectInvert.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.selectInvert.Name = "selectInvert";
             this.selectInvert.Size = new System.Drawing.Size(48, 23);
-            this.selectInvert.TabIndex = 11;
+            this.selectInvert.TabIndex = 7;
             this.selectInvert.Text = "Invert";
             this.selectInvert.UseVisualStyleBackColor = true;
             this.selectInvert.Click += new System.EventHandler(this.selectInvert_Click);
@@ -341,7 +340,7 @@
             this.selectNone.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.selectNone.Name = "selectNone";
             this.selectNone.Size = new System.Drawing.Size(49, 23);
-            this.selectNone.TabIndex = 12;
+            this.selectNone.TabIndex = 6;
             this.selectNone.Text = "None";
             this.selectNone.UseVisualStyleBackColor = true;
             this.selectNone.Click += new System.EventHandler(this.selectNone_Click);
@@ -351,8 +350,8 @@
             this.applyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.applyButton.Location = new System.Drawing.Point(12, 318);
             this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(126, 23);
-            this.applyButton.TabIndex = 13;
+            this.applyButton.Size = new System.Drawing.Size(171, 23);
+            this.applyButton.TabIndex = 11;
             this.applyButton.Text = "Apply";
             this.applyButton.UseVisualStyleBackColor = true;
             this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
@@ -361,21 +360,22 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(236, 318);
+            this.cancelButton.Location = new System.Drawing.Point(259, 318);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(116, 23);
-            this.cancelButton.TabIndex = 14;
-            this.cancelButton.Text = "Cancel";
+            this.cancelButton.Size = new System.Drawing.Size(93, 23);
+            this.cancelButton.TabIndex = 13;
+            this.cancelButton.Text = "Close";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.refreshButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.refreshButton.Location = new System.Drawing.Point(163, 318);
+            this.refreshButton.Location = new System.Drawing.Point(189, 319);
             this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(67, 23);
-            this.refreshButton.TabIndex = 14;
+            this.refreshButton.Size = new System.Drawing.Size(64, 23);
+            this.refreshButton.TabIndex = 12;
             this.refreshButton.Text = "Refresh";
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
@@ -385,7 +385,7 @@
             this.openSettings.Location = new System.Drawing.Point(213, 12);
             this.openSettings.Name = "openSettings";
             this.openSettings.Size = new System.Drawing.Size(139, 23);
-            this.openSettings.TabIndex = 15;
+            this.openSettings.TabIndex = 1;
             this.openSettings.Text = "Settings...";
             this.openSettings.UseVisualStyleBackColor = true;
             this.openSettings.Click += new System.EventHandler(this.openSettings_Click);

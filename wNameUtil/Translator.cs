@@ -16,15 +16,20 @@ namespace wNameUtil
 {
     public static class Prefs
     {
-        private static string _prefsFilePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "wNameUtil.cfg");
+        private static string _pluginDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        private static string _prefsFilePath = Path.Combine(_pluginDirectory, "wNameUtil.cfg");
 
         public static Uri UpdateUri { get { return _updateUri; } set { _updateUri = value; } }
         public static bool AutoStart { get { return _autoStart; } set { _autoStart = value; } }
         public static bool AutoUpdate { get { return _autoUpdate; } set { _autoUpdate = value; } }
+        public static string CustomDictionaryPath { get { return _customDictPath; } set { _customDictPath = value; } }
+        public static string FactoryDictionaryPath { get { return _defaultDictPath; } set { _defaultDictPath = value; } }
 
         private static Uri _updateUri;
         private static bool _autoStart;
         private static bool _autoUpdate;
+        private static string _customDictPath;
+        private static string _defaultDictPath;
 
         public static void ReadPrefs()
         {
@@ -44,7 +49,7 @@ namespace wNameUtil
                     {
                         case "updateuri":
                             string uri = Uri.EscapeUriString(value);
-                            if (!Uri.IsWellFormedUriString(uri, UriKind.Absolute))
+                            if (!Uri.IsWellFormedUriString(uri, UriKind.Absolute) || string.IsNullOrWhiteSpace(value))
                             {
                                 MessageBox.Show("The dictionary file URL is incorrectly formatted. Make sure it starts with http:// and that it points to the correct file.");
                                 uri = "http://localhost";
@@ -59,6 +64,18 @@ namespace wNameUtil
                         case "autoupdate":
                             if (!bool.TryParse(value, out _autoUpdate))
                                 _autoUpdate = false;
+                            break;
+                        case "customdictionary":
+                            if (!string.IsNullOrWhiteSpace(value))
+                                _customDictPath = value;
+                            else
+                                _customDictPath = @"_plugins\wPlugins\CustomDictionary.csv";
+                            break;
+                        case "factorydictionary":
+                            if (!string.IsNullOrWhiteSpace(value))
+                                _defaultDictPath = value;
+                            else
+                                _defaultDictPath = @"_data\śaëpĽ¤ŐĚ.txt";
                             break;
                         default:
                             break;
@@ -123,9 +140,11 @@ namespace wNameUtil
         public static List<string[]> Dictionary;
         public static bool DictionaryUpToDate = false;
 
-        public static void ReadDictionary(string path)
+        public static void ReadDictionary(string path, string customPath)
         {
             Dictionary = new List<string[]>();
+            //Read the default 
+
             try
             {
                 using (TextFieldParser parser = new TextFieldParser(path))
@@ -157,18 +176,34 @@ namespace wNameUtil
             }
             DictionaryUpToDate = true;
         }
-        /*
-        public static void WriteDictionary(string path)
+        
+        /*public static void AppendDictionary(string path)
         {
-            if (Dictionary.Count <= 0)
-                return;
-            using 
-            foreach(string[] entry in Dictionary)
+            Uri url = Prefs.UpdateUri;
+            byte[] result;
+            try
             {
-
+                string[] existingLines, downloadedLines;
+                using (WebClient client = new WebClient())
+                {
+                    result = client.DownloadData(url);
+                    downloadedLines = Encoding.UTF8.GetString(result).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                }
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    existingLines = reader.ReadToEnd().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                }
+                using (StreamWriter writer = new StreamWriter(path, true, Encoding.UTF8))
+                {
+                    foreach()
+                }
             }
-        }
-        */
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }*/
+
         public static string EnToJp(string en)
         {
             foreach(string[] entry in Dictionary)
@@ -195,23 +230,28 @@ namespace wNameUtil
 
         public static void UpdateDictionary(string path)
         {
-            Uri url = Prefs.UpdateUri;
+            Uri uri = Prefs.UpdateUri;
             byte[] result;
             try
             {
                 using (WebClient client = new WebClient())
                 {
-                    result = client.DownloadData(url);
+                    result = client.DownloadData(uri);
                 }
                 using (StreamWriter writer = new StreamWriter(path, false, Encoding.UTF8))
                 {
                     string dataStr = Encoding.UTF8.GetString(result);
                     writer.Write(dataStr);
                 }
+                MessageBox.Show("Dictionary updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch(Exception ex)
+            catch(WebException ex) when (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.NotFound)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Online dictionary file not found at:\n" + uri.AbsoluteUri);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         

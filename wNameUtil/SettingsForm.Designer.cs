@@ -34,6 +34,8 @@
             this.okButton = new System.Windows.Forms.Button();
             this.autoStartCheck = new System.Windows.Forms.CheckBox();
             this.autoUpdateCheck = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.customDictionary = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // updateUrlText
@@ -58,7 +60,7 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(217, 117);
+            this.cancelButton.Location = new System.Drawing.Point(217, 157);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
@@ -69,7 +71,7 @@
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.Location = new System.Drawing.Point(136, 117);
+            this.okButton.Location = new System.Drawing.Point(136, 157);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 3;
@@ -97,13 +99,34 @@
             this.autoUpdateCheck.Text = "Update the dictionary when the plugin is started";
             this.autoUpdateCheck.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 112);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Custom dictionary location:";
+            // 
+            // customDictionary
+            // 
+            this.customDictionary.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customDictionary.Enabled = false;
+            this.customDictionary.Location = new System.Drawing.Point(12, 128);
+            this.customDictionary.Name = "customDictionary";
+            this.customDictionary.Size = new System.Drawing.Size(280, 20);
+            this.customDictionary.TabIndex = 6;
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(304, 152);
+            this.ClientSize = new System.Drawing.Size(304, 192);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.customDictionary);
             this.Controls.Add(this.autoUpdateCheck);
             this.Controls.Add(this.autoStartCheck);
             this.Controls.Add(this.okButton);
@@ -129,5 +152,7 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.CheckBox autoStartCheck;
         private System.Windows.Forms.CheckBox autoUpdateCheck;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox customDictionary;
     }
 }

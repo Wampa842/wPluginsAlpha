@@ -22,10 +22,12 @@ namespace wNameUtil
             updateUrlText.Text = Prefs.UpdateUri.AbsoluteUri;
             autoStartCheck.Checked = Prefs.AutoStart;
             autoUpdateCheck.Checked = Prefs.AutoUpdate;
+            customDictionary.Text = Prefs.CustomDictionaryPath;
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            bool error = false;
             if (Uri.IsWellFormedUriString(updateUrlText.Text, UriKind.Absolute))
             {
                 Prefs.UpdateUri = new Uri(Uri.EscapeUriString(updateUrlText.Text));
@@ -33,11 +35,14 @@ namespace wNameUtil
             else
             {
                 MessageBox.Show("The update URL is the wrong format.");
+                error = true;
             }
+            Prefs.CustomDictionaryPath = customDictionary.Text;
             Prefs.AutoStart = autoStartCheck.Checked;
             Prefs.AutoUpdate = autoUpdateCheck.Checked;
             Prefs.WritePrefs();
-            this.Close();
+            if(!error)
+                this.Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

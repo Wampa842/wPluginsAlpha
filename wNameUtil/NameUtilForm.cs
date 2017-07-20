@@ -25,6 +25,7 @@ namespace wNameUtil
             IPXPmx scene = args.Host.Connector.Pmx.GetCurrentState();
             ListView.ListViewItemCollection list = listView.Items;
 
+            //The list for storing selections between populations
             List<int> selected = new List<int>();
             foreach(int item in listView.CheckedIndices)
             {
@@ -33,6 +34,7 @@ namespace wNameUtil
 
             list.Clear();
 
+            //Depending on the checked radio button, populate the listview with items. Japanese name in the text field, and English in the sub-item's text field.
             if(subjectBone.Checked)
             {
                 foreach(IPXBone item in scene.Bone)
@@ -94,6 +96,7 @@ namespace wNameUtil
                 }
             }
 
+            //Restore previously selected indices
             foreach(int item in selected)
             {
                 if(item < listView.Items.Count)
@@ -103,7 +106,10 @@ namespace wNameUtil
 
         private void TranslatePmx(IPXPmx scene)
         {
-            Translator.ReadDictionary(translationFilePath);
+            //Read the dictionary file
+            Translator.ReadDictionary(translationFilePath, Prefs.CustomDictionaryPath);
+
+            //Convert the radio button selection to a byte.
             byte nameMode = byte.Parse((string)modeBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Tag);
             if (subjectBone.Checked)
             {
@@ -573,6 +579,11 @@ namespace wNameUtil
         {
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.ShowDialog();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
         #endregion
     }
