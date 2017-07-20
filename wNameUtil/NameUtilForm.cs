@@ -22,7 +22,6 @@ namespace wNameUtil
 
         private void PopulateListView(ListView listView)
         {
-            MessageBox.Show("");
             IPXPmx scene = args.Host.Connector.Pmx.GetCurrentState();
             ListView.ListViewItemCollection list = listView.Items;
 
@@ -31,8 +30,6 @@ namespace wNameUtil
             {
                 selected.Add(item);
             }
-
-            MessageBox.Show(listView.CheckedIndices.Count.ToString() + " " + selected.Count.ToString());
 
             list.Clear();
 
@@ -119,37 +116,45 @@ namespace wNameUtil
                         {
                             case 1:
                                 {
-                                    item.NameE = item.Name;
+                                    if(string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                        item.NameE = item.Name;
                                     break;
                                 }
                             case 2:
                                 {
-                                    item.Name = item.NameE;
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                        item.Name = item.NameE;
                                     break;
                                 }
                             case 3:
                                 {
-                                    string translated = Translator.JpToEn(item.Name);
-                                    if (!string.IsNullOrWhiteSpace(translated))
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
                                     {
-                                        item.NameE = translated;
-                                    }
-                                    else if (modeCopyUnknown.Checked)
-                                    {
-                                        item.NameE = item.Name;
+                                        string translated = Translator.JpToEn(item.Name);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.NameE = translated;
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.NameE = item.Name;
+                                        }
                                     }
                                     break;
                                 }
                             case 4:
                                 {
-                                    string translated = Translator.EnToJp(item.NameE);
-                                    if (!string.IsNullOrWhiteSpace(translated))
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
                                     {
-                                        item.Name = translated;
-                                    }
-                                    else if (modeCopyUnknown.Checked)
-                                    {
-                                        item.Name = item.NameE;
+                                        string translated = Translator.EnToJp(item.NameE);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.Name = translated;
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.Name = item.NameE;
+                                        }
                                     }
                                     break;
                                 }
@@ -196,10 +201,12 @@ namespace wNameUtil
         }
 
         //Event handlers
+        #region EVENT_HANDLERS
 
         public NameUtilForm(IPERunArgs runArgs)
         {
             args = runArgs;
+            Prefs.ReadPrefs();
             InitializeComponent();
         }
 
@@ -236,6 +243,20 @@ namespace wNameUtil
         private void selectRegex_Click(object sender, EventArgs e)
         {
             SelectByRegexForm regexSelect = new SelectByRegexForm();
+            if(regexSelect.ShowDialog() == DialogResult.OK)
+            {
+                foreach (ListViewItem item in selectList.Items)
+                {
+                    if (regexSelect.MatchBy.MatchEnglish)
+                    {
+                        item.Checked = regexSelect.MatchBy.Match(item.SubItems[1].Text);
+                    }
+                    else
+                    {
+                        item.Checked = regexSelect.MatchBy.Match(item.Text);
+                    }
+                }
+            }
         }
 
         private void affectSelected_CheckedChanged(object sender, EventArgs e)
@@ -263,5 +284,12 @@ namespace wNameUtil
         {
             PopulateListView(selectList);
         }
+
+
+        private void updateFileButton_Click(object sender, EventArgs e)
+        {
+            Translator.UpdateDictionary(translationFilePath);
+        }
+        #endregion
     }
 }

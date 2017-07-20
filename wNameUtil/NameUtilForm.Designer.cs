@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.modeBox = new System.Windows.Forms.GroupBox();
+            this.keepExisting = new System.Windows.Forms.CheckBox();
             this.modeTranslateJpEn = new System.Windows.Forms.RadioButton();
             this.modeCopyUnknown = new System.Windows.Forms.CheckBox();
             this.modeCopyJpEn = new System.Windows.Forms.RadioButton();
@@ -54,12 +55,14 @@
             this.applyButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
+            this.updateStatus = new System.Windows.Forms.Label();
             this.modeBox.SuspendLayout();
             this.subjectSelect.SuspendLayout();
             this.SuspendLayout();
             // 
             // modeBox
             // 
+            this.modeBox.Controls.Add(this.keepExisting);
             this.modeBox.Controls.Add(this.modeTranslateJpEn);
             this.modeBox.Controls.Add(this.modeCopyUnknown);
             this.modeBox.Controls.Add(this.modeCopyJpEn);
@@ -67,11 +70,23 @@
             this.modeBox.Controls.Add(this.modeCopyEnJp);
             this.modeBox.Location = new System.Drawing.Point(12, 170);
             this.modeBox.Name = "modeBox";
-            this.modeBox.Size = new System.Drawing.Size(340, 93);
+            this.modeBox.Size = new System.Drawing.Size(340, 115);
             this.modeBox.TabIndex = 1;
             this.modeBox.TabStop = false;
             this.modeBox.Tag = "";
             this.modeBox.Text = "Translation mode";
+            // 
+            // keepExisting
+            // 
+            this.keepExisting.AutoSize = true;
+            this.keepExisting.Checked = true;
+            this.keepExisting.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.keepExisting.Location = new System.Drawing.Point(6, 88);
+            this.keepExisting.Name = "keepExisting";
+            this.keepExisting.Size = new System.Drawing.Size(123, 17);
+            this.keepExisting.TabIndex = 5;
+            this.keepExisting.Text = "Keep existing names";
+            this.keepExisting.UseVisualStyleBackColor = true;
             // 
             // modeTranslateJpEn
             // 
@@ -138,7 +153,7 @@
             "Convert to lowercase",
             "Convert to lowercase with uppercase initial",
             "Convert to uppercase"});
-            this.capitalizeSelect.Location = new System.Drawing.Point(12, 269);
+            this.capitalizeSelect.Location = new System.Drawing.Point(12, 291);
             this.capitalizeSelect.Name = "capitalizeSelect";
             this.capitalizeSelect.Size = new System.Drawing.Size(340, 21);
             this.capitalizeSelect.TabIndex = 3;
@@ -151,6 +166,7 @@
             this.updateFileButton.TabIndex = 4;
             this.updateFileButton.Text = "Update translation file";
             this.updateFileButton.UseVisualStyleBackColor = true;
+            this.updateFileButton.Click += new System.EventHandler(this.updateFileButton_Click);
             // 
             // subjectSelect
             // 
@@ -262,7 +278,7 @@
             this.selectList.Location = new System.Drawing.Point(358, 12);
             this.selectList.MultiSelect = false;
             this.selectList.Name = "selectList";
-            this.selectList.Size = new System.Drawing.Size(254, 289);
+            this.selectList.Size = new System.Drawing.Size(234, 301);
             this.selectList.TabIndex = 6;
             this.selectList.UseCompatibleStateImageBehavior = false;
             this.selectList.View = System.Windows.Forms.View.Details;
@@ -281,7 +297,7 @@
             // 
             this.selectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.selectAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.selectAll.Location = new System.Drawing.Point(402, 307);
+            this.selectAll.Location = new System.Drawing.Point(382, 319);
             this.selectAll.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.selectAll.Name = "selectAll";
             this.selectAll.Size = new System.Drawing.Size(42, 23);
@@ -294,7 +310,7 @@
             // 
             this.selectRegex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.selectRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.selectRegex.Location = new System.Drawing.Point(541, 307);
+            this.selectRegex.Location = new System.Drawing.Point(521, 319);
             this.selectRegex.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.selectRegex.Name = "selectRegex";
             this.selectRegex.Size = new System.Drawing.Size(74, 23);
@@ -307,7 +323,7 @@
             // 
             this.selectInvert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.selectInvert.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.selectInvert.Location = new System.Drawing.Point(493, 307);
+            this.selectInvert.Location = new System.Drawing.Point(473, 319);
             this.selectInvert.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.selectInvert.Name = "selectInvert";
             this.selectInvert.Size = new System.Drawing.Size(48, 23);
@@ -320,7 +336,7 @@
             // 
             this.selectNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.selectNone.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.selectNone.Location = new System.Drawing.Point(444, 307);
+            this.selectNone.Location = new System.Drawing.Point(424, 319);
             this.selectNone.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.selectNone.Name = "selectNone";
             this.selectNone.Size = new System.Drawing.Size(49, 23);
@@ -331,7 +347,8 @@
             // 
             // applyButton
             // 
-            this.applyButton.Location = new System.Drawing.Point(12, 307);
+            this.applyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.applyButton.Location = new System.Drawing.Point(12, 318);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(126, 23);
             this.applyButton.TabIndex = 13;
@@ -341,8 +358,9 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(236, 307);
+            this.cancelButton.Location = new System.Drawing.Point(236, 318);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(116, 23);
             this.cancelButton.TabIndex = 14;
@@ -351,8 +369,9 @@
             // 
             // refreshButton
             // 
+            this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.refreshButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.refreshButton.Location = new System.Drawing.Point(163, 307);
+            this.refreshButton.Location = new System.Drawing.Point(163, 318);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(67, 23);
             this.refreshButton.TabIndex = 14;
@@ -360,12 +379,22 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
+            // updateStatus
+            // 
+            this.updateStatus.AutoSize = true;
+            this.updateStatus.Location = new System.Drawing.Point(187, 17);
+            this.updateStatus.Name = "updateStatus";
+            this.updateStatus.Size = new System.Drawing.Size(139, 13);
+            this.updateStatus.TabIndex = 15;
+            this.updateStatus.Text = "On-line update not available";
+            // 
             // NameUtilForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(624, 342);
+            this.ClientSize = new System.Drawing.Size(604, 352);
+            this.Controls.Add(this.updateStatus);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.applyButton);
@@ -378,7 +407,7 @@
             this.Controls.Add(this.updateFileButton);
             this.Controls.Add(this.capitalizeSelect);
             this.Controls.Add(this.modeBox);
-            this.MinimumSize = new System.Drawing.Size(570, 380);
+            this.MinimumSize = new System.Drawing.Size(620, 390);
             this.Name = "NameUtilForm";
             this.Text = "wNameUtil";
             this.Load += new System.EventHandler(this.NameUtilForm_Load);
@@ -387,6 +416,7 @@
             this.subjectSelect.ResumeLayout(false);
             this.subjectSelect.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -417,5 +447,7 @@
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.CheckBox keepExisting;
+        private System.Windows.Forms.Label updateStatus;
     }
 }

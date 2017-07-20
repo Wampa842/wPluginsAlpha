@@ -7,12 +7,44 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 using System.Windows.Forms;
+using System.Net;
 using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.FileIO;
 
 
 namespace wNameUtil
 {
+    public static class Prefs
+    {
+        private static string _prefsFilePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "wNameUtil.cfg");
+
+        public static Uri UpdateUri { get { return _updateUri; } }
+
+        private static Uri _updateUri;
+
+        public static void ReadPrefs()
+        {
+            using (StreamReader read = new StreamReader(_prefsFilePath))
+            {
+                while(!read.EndOfStream)
+                {
+                    string[] line = read.ReadLine().Split('=');
+                    string key = line[0].Trim().ToLowerInvariant();
+                    string value = line[1].Trim().ToLowerInvariant();
+
+                    switch (key)
+                    {
+                        case "updateuri":
+                            _updateUri = new Uri(Uri.EscapeUriString(value));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
     public static class Translator
     {
         public static List<string[]> Dictionary;
@@ -21,15 +53,33 @@ namespace wNameUtil
         public static void ReadTranslationFile(string path)
         {
             Dictionary = new List<string[]>();
-            using (TextFieldParser parser = new TextFieldParser(path))
+            try
             {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(",");
-                while(!parser.EndOfData)
+                using (TextFieldParser parser = new TextFieldParser(path))
                 {
-                    string[] row = parser.ReadFields();
-                    //MessageBox.Show(row[0] + ", " + row[1]);
-                    Dictionary.Add(row);
+                    parser.TextFieldType = FieldType.Delimited;
+                    parser.SetDelimiters(",");
+                    parser.CommentTokens = new string[] { "#" };
+                    while (!parser.EndOfData)
+                    {
+                        string[] row = parser.ReadFields();
+                        Dictionary.Add(row);
+                    }
+                }
+            }
+            catch(FileNotFoundException)
+            {
+                MessageBox.Show("Dictionary file not found!\nA new file has been created at:\n" + path);
+                try
+                {
+                    using (StreamWriter w = new StreamWriter(path, false, Encoding.UTF8))
+                    {
+                        w.WriteLine("# This file contains dictionary entries encapsulated in double quotes (\"...\"), separated by commas. Japanese first, English second. One per line.");
+                    }
+                }
+                catch(IOException)
+                {
+                    MessageBox.Show("Failed to create dictionary file. Make sure you have permission to write to the plugin folder.", "Failed to write file", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             DictionaryUpToDate = true;
@@ -58,40 +108,51 @@ namespace wNameUtil
             }
             return "";
         }
+
+        public static void UpdateDictionary(string path)
+        {
+            Uri url = Prefs.UpdateUri;
+            byte[] result;
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    result = client.DownloadData(url);
+                }
+                using (StreamWriter writer = new StreamWriter(path, false, Encoding.UTF8))
+                {
+                    string dataStr = Encoding.UTF8.GetString(result);
+                    writer.Write(dataStr);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 
     public class Matcher
     {
-        public enum MatcherMethod { Simple, Extended, Regex };
-        public enum MatchLanguage { Japanese, English };
+        public bool MatchEnglish { get { return _matchEnglish; } }
 
-        public MatchLanguage Language { get { return _language; } }
-
-        private MatcherMethod _method;
+        private bool _useRegex;
         private string _matchString;
-        private MatchLanguage _language;
+        private bool _matchEnglish;
         
         public Matcher(string match, bool useRegex, bool matchEnglish)
         {
-            _method = useRegex ? MatcherMethod.Regex : MatcherMethod.Simple;
+            _useRegex = useRegex;
             _matchString = match;
-            _language = matchEnglish ? MatchLanguage.English : MatchLanguage.Japanese;
+            _matchEnglish = matchEnglish;
         }
 
         public bool Match(string s)
         {
-            switch (_method)
-            {
-                case MatcherMethod.Simple:
-                    return s.ToLowerInvariant().Contains(_matchString.ToLowerInvariant());
-                case MatcherMethod.Extended:
-                    break;
-                case MatcherMethod.Regex:
-                    return Regex.IsMatch(s, _matchString);
-                default:
-                    break;
-            }
-            return false;
+            if (_useRegex)
+                return s.ToLowerInvariant().Contains(_matchString.ToLowerInvariant());
+            else
+                return Regex.IsMatch(s, _matchString);
         }
     }
 }

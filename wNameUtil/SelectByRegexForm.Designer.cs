@@ -60,13 +60,13 @@
             this.matchEnglish.Name = "matchEnglish";
             this.matchEnglish.Size = new System.Drawing.Size(59, 17);
             this.matchEnglish.TabIndex = 1;
-            this.matchEnglish.TabStop = true;
             this.matchEnglish.Text = "English";
             this.matchEnglish.UseVisualStyleBackColor = true;
             // 
             // matchJapanese
             // 
             this.matchJapanese.AutoSize = true;
+            this.matchJapanese.Checked = true;
             this.matchJapanese.Location = new System.Drawing.Point(6, 19);
             this.matchJapanese.Name = "matchJapanese";
             this.matchJapanese.Size = new System.Drawing.Size(71, 17);
@@ -93,13 +93,13 @@
             this.matchRegex.Name = "matchRegex";
             this.matchRegex.Size = new System.Drawing.Size(115, 17);
             this.matchRegex.TabIndex = 1;
-            this.matchRegex.TabStop = true;
             this.matchRegex.Text = "Regular expression";
             this.matchRegex.UseVisualStyleBackColor = true;
             // 
             // matchSimple
             // 
             this.matchSimple.AutoSize = true;
+            this.matchSimple.Checked = true;
             this.matchSimple.Location = new System.Drawing.Point(6, 19);
             this.matchSimple.Name = "matchSimple";
             this.matchSimple.Size = new System.Drawing.Size(56, 17);
@@ -145,6 +145,7 @@
             this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // SelectByRegexForm
             // 

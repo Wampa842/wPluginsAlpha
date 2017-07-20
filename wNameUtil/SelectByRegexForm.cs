@@ -12,7 +12,7 @@ namespace wNameUtil
 {
     public partial class SelectByRegexForm : Form
     {
-        public Matcher MatchBy;
+        public Matcher MatchBy { get; set; }
         public SelectByRegexForm()
         {
             InitializeComponent();
@@ -22,6 +22,15 @@ namespace wNameUtil
         {
             string matchString = matchText.Text;
             MatchBy = new Matcher(matchString, matchRegex.Checked, matchEnglish.Checked);
+            DialogResult = DialogResult.OK;
+
+            Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }
