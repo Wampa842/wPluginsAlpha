@@ -55,7 +55,7 @@
             this.applyButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
-            this.updateStatus = new System.Windows.Forms.Label();
+            this.openSettings = new System.Windows.Forms.Button();
             this.modeBox.SuspendLayout();
             this.subjectSelect.SuspendLayout();
             this.SuspendLayout();
@@ -162,7 +162,7 @@
             // 
             this.updateFileButton.Location = new System.Drawing.Point(12, 12);
             this.updateFileButton.Name = "updateFileButton";
-            this.updateFileButton.Size = new System.Drawing.Size(169, 23);
+            this.updateFileButton.Size = new System.Drawing.Size(195, 23);
             this.updateFileButton.TabIndex = 4;
             this.updateFileButton.Text = "Update translation file";
             this.updateFileButton.UseVisualStyleBackColor = true;
@@ -209,6 +209,7 @@
             // subjectBody
             // 
             this.subjectBody.AutoSize = true;
+            this.subjectBody.Enabled = false;
             this.subjectBody.Location = new System.Drawing.Point(6, 65);
             this.subjectBody.Name = "subjectBody";
             this.subjectBody.Size = new System.Drawing.Size(83, 17);
@@ -379,14 +380,15 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
-            // updateStatus
+            // openSettings
             // 
-            this.updateStatus.AutoSize = true;
-            this.updateStatus.Location = new System.Drawing.Point(187, 17);
-            this.updateStatus.Name = "updateStatus";
-            this.updateStatus.Size = new System.Drawing.Size(139, 13);
-            this.updateStatus.TabIndex = 15;
-            this.updateStatus.Text = "On-line update not available";
+            this.openSettings.Location = new System.Drawing.Point(213, 12);
+            this.openSettings.Name = "openSettings";
+            this.openSettings.Size = new System.Drawing.Size(139, 23);
+            this.openSettings.TabIndex = 15;
+            this.openSettings.Text = "Settings...";
+            this.openSettings.UseVisualStyleBackColor = true;
+            this.openSettings.Click += new System.EventHandler(this.openSettings_Click);
             // 
             // NameUtilForm
             // 
@@ -394,7 +396,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(604, 352);
-            this.Controls.Add(this.updateStatus);
+            this.Controls.Add(this.openSettings);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.applyButton);
@@ -416,7 +418,6 @@
             this.subjectSelect.ResumeLayout(false);
             this.subjectSelect.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -448,6 +449,6 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.CheckBox keepExisting;
-        private System.Windows.Forms.Label updateStatus;
+        private System.Windows.Forms.Button openSettings;
     }
 }

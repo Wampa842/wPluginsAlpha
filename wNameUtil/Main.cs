@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO;
 
 using PEPlugin;
 
@@ -13,6 +14,7 @@ namespace wNameUtil
     public class Main : IPEPlugin
     {
         string PluginName = "wNameUtil";
+        private string _prefsFilePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "wNameUtil.cfg");
         public void Run(IPERunArgs args)
         {
             NameUtilForm mainForm = new NameUtilForm(args);
@@ -26,21 +28,26 @@ namespace wNameUtil
 
         public bool GetAutoStartSetting()
         {
-            /*
-            bool AutoStart;
-            XmlDocument Doc = new XmlDocument();
-            string AssemblyPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            Doc.Load(System.IO.Path.Combine(AssemblyPath, "settings.xml"));
-            try
+            bool autoStart = false;
+            using (StreamReader read = new StreamReader(_prefsFilePath))
             {
-                AutoStart = bool.Parse(Doc.DocumentElement[PluginName].Attributes["autostart"].InnerText);
+                while (!read.EndOfStream)
+                {
+                    string line = read.ReadLine();
+                    if (string.IsNullOrWhiteSpace(line) || line.Trim()[0] == '#')
+                        continue;
+                    string[] kvp = line.Split('=');
+                    string key = kvp[0].Trim().ToLowerInvariant();
+                    string value = kvp[1].Trim().ToLowerInvariant();
+
+                    if(key == "autostart")
+                    {
+                        bool.TryParse(value, out autoStart);
+                    }
+                }
             }
-            //Sorry about this.
-            catch (Exception)
-            {
-                AutoStart = false;
-            }*/
-            return true;
+
+            return autoStart;
         }
 
         private class Opt : IPEPluginOption

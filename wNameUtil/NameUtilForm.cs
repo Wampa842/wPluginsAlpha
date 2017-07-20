@@ -103,7 +103,7 @@ namespace wNameUtil
 
         private void TranslatePmx(IPXPmx scene)
         {
-            Translator.ReadTranslationFile(translationFilePath);
+            Translator.ReadDictionary(translationFilePath);
             byte nameMode = byte.Parse((string)modeBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Tag);
             if (subjectBone.Checked)
             {
@@ -117,13 +117,13 @@ namespace wNameUtil
                             case 1:
                                 {
                                     if(string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
-                                        item.NameE = item.Name;
+                                        item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
                                     break;
                                 }
                             case 2:
                                 {
                                     if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
-                                        item.Name = item.NameE;
+                                        item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
                                     break;
                                 }
                             case 3:
@@ -133,11 +133,11 @@ namespace wNameUtil
                                         string translated = Translator.JpToEn(item.Name);
                                         if (!string.IsNullOrWhiteSpace(translated))
                                         {
-                                            item.NameE = translated;
+                                            item.NameE = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
                                         }
                                         else if (modeCopyUnknown.Checked)
                                         {
-                                            item.NameE = item.Name;
+                                            item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
                                         }
                                     }
                                     break;
@@ -149,11 +149,11 @@ namespace wNameUtil
                                         string translated = Translator.EnToJp(item.NameE);
                                         if (!string.IsNullOrWhiteSpace(translated))
                                         {
-                                            item.Name = translated;
+                                            item.Name = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
                                         }
                                         else if (modeCopyUnknown.Checked)
                                         {
-                                            item.Name = item.NameE;
+                                            item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
                                         }
                                     }
                                     break;
@@ -169,33 +169,312 @@ namespace wNameUtil
             }
             else if (subjectMorph.Checked)
             {
+                int i = 0;
                 foreach (IPXMorph item in scene.Morph)
                 {
-                    
+                    if (selectList.Items[i].Checked || !affectSelected.Checked)
+                    {
+                        switch (nameMode)
+                        {
+                            case 1:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                        item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                        item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.JpToEn(item.Name);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.NameE = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.EnToJp(item.NameE);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.Name = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
+                    }
+                    i++;
                 }
             }
             else if (subjectGroup.Checked)
             {
+                int i = 0;
                 foreach (IPXNode item in scene.Node)
                 {
+                    if (selectList.Items[i].Checked || !affectSelected.Checked)
+                    {
+                        switch (nameMode)
+                        {
+                            case 1:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                        item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                        item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.JpToEn(item.Name);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.NameE = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.EnToJp(item.NameE);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.Name = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
+                    }
+                    i++;
                 }
             }
             else if (subjectBody.Checked)
             {
+                int i = 0;
                 foreach (IPXBody item in scene.Body)
                 {
+                    if (selectList.Items[i].Checked || !affectSelected.Checked)
+                    {
+                        switch (nameMode)
+                        {
+                            case 1:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                        item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                        item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.JpToEn(item.Name);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.NameE = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.EnToJp(item.NameE);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.Name = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
+                    }
+                    i++;
                 }
             }
             else if (subjectJoint.Checked)
             {
+                int i = 0;
                 foreach (IPXJoint item in scene.Joint)
                 {
+                    if (selectList.Items[i].Checked || !affectSelected.Checked)
+                    {
+                        switch (nameMode)
+                        {
+                            case 1:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                        item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                        item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.JpToEn(item.Name);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.NameE = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.EnToJp(item.NameE);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.Name = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
+                    }
+                    i++;
                 }
             }
             else
             {
+                int i = 0;
                 foreach (IPXMaterial item in scene.Material)
                 {
+                    if (selectList.Items[i].Checked || !affectSelected.Checked)
+                    {
+                        switch (nameMode)
+                        {
+                            case 1:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                        item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                        item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.NameE) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.JpToEn(item.Name);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.NameE = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.NameE = Translator.Capitalize(item.Name, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    if (string.IsNullOrWhiteSpace(item.Name) || !keepExisting.Checked)
+                                    {
+                                        string translated = Translator.EnToJp(item.NameE);
+                                        if (!string.IsNullOrWhiteSpace(translated))
+                                        {
+                                            item.Name = Translator.Capitalize(translated, capitalizeSelect.SelectedIndex);
+                                        }
+                                        else if (modeCopyUnknown.Checked)
+                                        {
+                                            item.Name = Translator.Capitalize(item.NameE, capitalizeSelect.SelectedIndex);
+                                        }
+                                    }
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
+                    }
+                    i++;
                 }
             }
         }
@@ -285,10 +564,15 @@ namespace wNameUtil
             PopulateListView(selectList);
         }
 
-
         private void updateFileButton_Click(object sender, EventArgs e)
         {
             Translator.UpdateDictionary(translationFilePath);
+        }
+
+        private void openSettings_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.ShowDialog();
         }
         #endregion
     }

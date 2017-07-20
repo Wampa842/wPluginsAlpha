@@ -59,6 +59,12 @@
     <Compile Include="SelectByRegexForm.Designer.cs">
       <DependentUpon>SelectByRegexForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Translator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +73,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectByRegexForm.resx">
       <DependentUpon>SelectByRegexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

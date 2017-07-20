@@ -18,29 +18,102 @@ namespace wNameUtil
     {
         private static string _prefsFilePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "wNameUtil.cfg");
 
-        public static Uri UpdateUri { get { return _updateUri; } }
+        public static Uri UpdateUri { get { return _updateUri; } set { _updateUri = value; } }
+        public static bool AutoStart { get { return _autoStart; } set { _autoStart = value; } }
+        public static bool AutoUpdate { get { return _autoUpdate; } set { _autoUpdate = value; } }
 
         private static Uri _updateUri;
+        private static bool _autoStart;
+        private static bool _autoUpdate;
 
         public static void ReadPrefs()
         {
+            bool openSettings = false;
             using (StreamReader read = new StreamReader(_prefsFilePath))
             {
                 while(!read.EndOfStream)
                 {
-                    string[] line = read.ReadLine().Split('=');
-                    string key = line[0].Trim().ToLowerInvariant();
-                    string value = line[1].Trim().ToLowerInvariant();
+                    string line = read.ReadLine();
+                    if (string.IsNullOrWhiteSpace(line) || line.Trim()[0] == '#')
+                        continue;
+                    string[] kvp = line.Split('=');
+                    string key = kvp[0].Trim().ToLowerInvariant();
+                    string value = kvp[1].Trim().ToLowerInvariant();
 
                     switch (key)
                     {
                         case "updateuri":
-                            _updateUri = new Uri(Uri.EscapeUriString(value));
+                            string uri = Uri.EscapeUriString(value);
+                            if (!Uri.IsWellFormedUriString(uri, UriKind.Absolute))
+                            {
+                                MessageBox.Show("The dictionary file URL is incorrectly formatted. Make sure it starts with http:// and that it points to the correct file.");
+                                uri = "http://localhost";
+                                openSettings = true;
+                            }
+                            _updateUri = new Uri(uri);
+                            break;
+                        case "autostart":
+                            if (!bool.TryParse(value, out _autoStart))
+                                _autoStart = false;
+                            break;
+                        case "autoupdate":
+                            if (!bool.TryParse(value, out _autoUpdate))
+                                _autoUpdate = false;
                             break;
                         default:
                             break;
                     }
                 }
+            }
+            if(openSettings)
+            {
+                SettingsForm settingsForm = new SettingsForm();
+                settingsForm.ShowDialog();
+            }
+        }
+
+        public static void WritePrefs()
+        {
+            try
+            {
+                string[] lines;
+                using (StreamReader reader = new StreamReader(_prefsFilePath, Encoding.UTF8))
+                {
+                    string all = reader.ReadToEnd();
+                    lines = all.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                }
+
+                using (StreamWriter writer = new StreamWriter(_prefsFilePath))
+                {
+                    foreach(string line in lines)
+                    {
+                        if(string.IsNullOrWhiteSpace(line) ||  line.Trim()[0] == '#')
+                        {
+                            writer.WriteLine(line);
+                            continue;
+                        }
+                        string key = line.Split('=')[0].Trim().ToLowerInvariant();
+                        switch (key)
+                        {
+                            case "updateuri":
+                                writer.WriteLine(key + " = " + _updateUri.AbsoluteUri);
+                                break;
+                            case "autostart":
+                                writer.WriteLine(key + " = " + _autoStart.ToString().ToLowerInvariant());
+                                break;
+                            case "autoupdate":
+                                writer.WriteLine(key + " = " + _autoUpdate.ToString().ToLowerInvariant());
+                                break;
+                            default:
+                                writer.WriteLine(line);
+                                break;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
     }
@@ -50,7 +123,7 @@ namespace wNameUtil
         public static List<string[]> Dictionary;
         public static bool DictionaryUpToDate = false;
 
-        public static void ReadTranslationFile(string path)
+        public static void ReadDictionary(string path)
         {
             Dictionary = new List<string[]>();
             try
@@ -84,7 +157,18 @@ namespace wNameUtil
             }
             DictionaryUpToDate = true;
         }
+        /*
+        public static void WriteDictionary(string path)
+        {
+            if (Dictionary.Count <= 0)
+                return;
+            using 
+            foreach(string[] entry in Dictionary)
+            {
 
+            }
+        }
+        */
         public static string EnToJp(string en)
         {
             foreach(string[] entry in Dictionary)
@@ -128,6 +212,21 @@ namespace wNameUtil
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+        
+        public static string Capitalize(string s, int mode)
+        {
+            switch (mode)
+            {
+                case 1:
+                    return s.ToLowerInvariant();
+                case 2:
+                    return s.First().ToString().ToUpperInvariant() + s.Substring(1);
+                case 3:
+                    return s.ToUpperInvariant();
+                default:
+                    return s;
             }
         }
     }
