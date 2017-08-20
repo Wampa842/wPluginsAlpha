@@ -273,6 +273,7 @@ namespace wObjIO
                         string type = line[0].Trim();
                         int v, vt, vn;
                         float x, y, z;
+                        bool lastWasG = false;
                         switch (type)
                         {
                             case "v":
@@ -280,17 +281,20 @@ namespace wObjIO
                                 float.TryParse(line[2], out y);
                                 float.TryParse(line[3], out z);
                                 _posList.Add(new V3(x, y, -z));
+                                lastWasG = false;
                                 break;
                             case "vt":
                                 float.TryParse(line[1].Trim(), out x);
                                 float.TryParse(line[2].Trim(), out y);
                                 _uvList.Add(new V2(x, -y));
+                                lastWasG = false;
                                 break;
                             case "vn":
                                 float.TryParse(line[1].Trim(), out x);
                                 float.TryParse(line[2].Trim(), out y);
                                 float.TryParse(line[3].Trim(), out z);
                                 _normalList.Add(new V3(x, y, -z));
+                                lastWasG = false;
                                 break;
                             case "f":
                                 if (line.Length == 4)
@@ -356,6 +360,7 @@ namespace wObjIO
                                     //n>4 n-gon
                                     throw new PolygonException(line.Length - 1);
                                 }
+                                lastWasG = false;
                                 break;
                             case "g":
                                 if (line.Length >= 2)
@@ -365,10 +370,12 @@ namespace wObjIO
                                     material.NameE = line[1].Trim();
                                     MaterialList.Add(material.Name, material);
                                 }
+                                lastWasG = true;
                                 break;
                             case "usemtl":
                                 if (line.Length >= 2 && AvailableMaterials != null)
                                 {
+
                                     string name = line[1].Trim();
                                     if (AvailableMaterials.ContainsKey(name))
                                     {
@@ -381,6 +388,7 @@ namespace wObjIO
                                         material.Power = baseMaterial.Power;
                                     }
                                 }
+                                lastWasG = false;
                                 break;
                             case "mtllib":
                                 string mtlPath = Path.Combine(Path.GetDirectoryName(path), line[1].Trim());

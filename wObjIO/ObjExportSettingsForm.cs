@@ -33,6 +33,7 @@ namespace wObjIO
             Settings.MirrorV = vFlip.Checked;
             Settings.CopyBitmaps = copyBitmaps.Checked;
             DialogResult = DialogResult.OK;
+
             this.Close();
         }
 
@@ -58,6 +59,12 @@ namespace wObjIO
                 yScale.Value = xScale.Value;
                 zScale.Value = xScale.Value;
             }
+        }
+
+        private void ObjExportSettingsForm_Load(object sender, EventArgs e)
+        {
+            ObjExportSettings settings = new ObjExportSettings();
+            settings.ReadSettingsFile(null);
         }
     }
 }

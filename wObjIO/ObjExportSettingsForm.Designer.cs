@@ -32,6 +32,9 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.exportButton = new System.Windows.Forms.Button();
             this.settingsBox = new System.Windows.Forms.GroupBox();
+            this.flipFaces = new System.Windows.Forms.CheckBox();
+            this.copyBitmaps = new System.Windows.Forms.CheckBox();
+            this.yzSwap = new System.Windows.Forms.CheckBox();
             this.scaleGroup = new System.Windows.Forms.GroupBox();
             this.vFlip = new System.Windows.Forms.CheckBox();
             this.uFlip = new System.Windows.Forms.CheckBox();
@@ -45,9 +48,6 @@
             this.xFlip = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.xScale = new System.Windows.Forms.NumericUpDown();
-            this.yzSwap = new System.Windows.Forms.CheckBox();
-            this.copyBitmaps = new System.Windows.Forms.CheckBox();
-            this.flipFaces = new System.Windows.Forms.CheckBox();
             this.settingsBox.SuspendLayout();
             this.scaleGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zScale)).BeginInit();
@@ -103,6 +103,36 @@
             this.settingsBox.TabIndex = 11;
             this.settingsBox.TabStop = false;
             this.settingsBox.Text = "Settings";
+            // 
+            // flipFaces
+            // 
+            this.flipFaces.AutoSize = true;
+            this.flipFaces.Location = new System.Drawing.Point(6, 64);
+            this.flipFaces.Name = "flipFaces";
+            this.flipFaces.Size = new System.Drawing.Size(71, 17);
+            this.flipFaces.TabIndex = 1;
+            this.flipFaces.Text = "Flip faces";
+            this.flipFaces.UseVisualStyleBackColor = true;
+            // 
+            // copyBitmaps
+            // 
+            this.copyBitmaps.AutoSize = true;
+            this.copyBitmaps.Location = new System.Drawing.Point(6, 41);
+            this.copyBitmaps.Name = "copyBitmaps";
+            this.copyBitmaps.Size = new System.Drawing.Size(89, 17);
+            this.copyBitmaps.TabIndex = 1;
+            this.copyBitmaps.Text = "Copy bitmaps";
+            this.copyBitmaps.UseVisualStyleBackColor = true;
+            // 
+            // yzSwap
+            // 
+            this.yzSwap.AutoSize = true;
+            this.yzSwap.Location = new System.Drawing.Point(6, 19);
+            this.yzSwap.Name = "yzSwap";
+            this.yzSwap.Size = new System.Drawing.Size(100, 17);
+            this.yzSwap.TabIndex = 0;
+            this.yzSwap.Text = "Swap Y/Z axes";
+            this.yzSwap.UseVisualStyleBackColor = true;
             // 
             // scaleGroup
             // 
@@ -272,36 +302,6 @@
             0});
             this.xScale.ValueChanged += new System.EventHandler(this.ScaleValue_ValueChanged);
             // 
-            // yzSwap
-            // 
-            this.yzSwap.AutoSize = true;
-            this.yzSwap.Location = new System.Drawing.Point(6, 19);
-            this.yzSwap.Name = "yzSwap";
-            this.yzSwap.Size = new System.Drawing.Size(100, 17);
-            this.yzSwap.TabIndex = 0;
-            this.yzSwap.Text = "Swap Y/Z axes";
-            this.yzSwap.UseVisualStyleBackColor = true;
-            // 
-            // copyBitmaps
-            // 
-            this.copyBitmaps.AutoSize = true;
-            this.copyBitmaps.Location = new System.Drawing.Point(6, 41);
-            this.copyBitmaps.Name = "copyBitmaps";
-            this.copyBitmaps.Size = new System.Drawing.Size(89, 17);
-            this.copyBitmaps.TabIndex = 1;
-            this.copyBitmaps.Text = "Copy bitmaps";
-            this.copyBitmaps.UseVisualStyleBackColor = true;
-            // 
-            // flipFaces
-            // 
-            this.flipFaces.AutoSize = true;
-            this.flipFaces.Location = new System.Drawing.Point(6, 64);
-            this.flipFaces.Name = "flipFaces";
-            this.flipFaces.Size = new System.Drawing.Size(71, 17);
-            this.flipFaces.TabIndex = 1;
-            this.flipFaces.Text = "Flip faces";
-            this.flipFaces.UseVisualStyleBackColor = true;
-            // 
             // ObjExportSettingsForm
             // 
             this.AcceptButton = this.exportButton;
@@ -315,12 +315,12 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.exportButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ObjExportSettingsForm";
             this.ShowInTaskbar = false;
             this.Text = "Obj export settings";
+            this.Load += new System.EventHandler(this.ObjExportSettingsForm_Load);
             this.settingsBox.ResumeLayout(false);
             this.settingsBox.PerformLayout();
             this.scaleGroup.ResumeLayout(false);

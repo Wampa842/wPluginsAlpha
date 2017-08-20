@@ -16,6 +16,7 @@ namespace wObjIO
 {
     public class ObjExportSettings
     {
+        private string _settingsFilePath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "wObjIO.cfg");
         public float ScaleX { get; set; } = 1.0f;
         public float ScaleY { get; set; } = 1.0f;
         public float ScaleZ { get; set; } = 1.0f;
@@ -25,7 +26,92 @@ namespace wObjIO
         public bool MirrorV { get; set; } = false;
         public bool CopyBitmaps { get; set; } = true;
 
-        public ObjExportSettings() { }
+        public void ReadSettingsFile(string path)
+        {
+            bool uniformScale = false;
+            bool reverseFaces = false;
+            bool swap = false;
+            float xScale = 1.0f;
+            float yScale = 1.0f;
+            float zScale = 1.0f;
+            bool mirrorU = false;
+            bool mirrorV = false;
+            bool copyBitmaps = false;
+            try
+            {
+                using (StreamReader reader = new StreamReader(path, Encoding.UTF8))
+                {
+                    while(!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        if (string.IsNullOrWhiteSpace(line) || line[0] == '#')
+                            continue;
+                        string key = line.Split('=')[0].Trim();
+                        string value = line.Split('=')[1].Trim();
+
+                        switch (key)
+                        {
+                            case "oUniformScale":
+                                if (!bool.TryParse(value, out uniformScale))
+                                    uniformScale = false;
+                                break;
+                            case "oFlipFaces":
+                                if (!bool.TryParse(value, out reverseFaces))
+                                    reverseFaces = false;
+                                break;
+                            case "oSwapYZ":
+                                if (!bool.TryParse(value, out swap))
+                                    swap = false;
+                                break;
+                            case "oXScale":
+                                if (!float.TryParse(value, out xScale))
+                                    xScale = 1.0f;
+                                break;
+                            case "oYScale":
+                                if (!float.TryParse(value, out yScale))
+                                    yScale = 1.0f;
+                                break;
+                            case "oZScale":
+                                if (!float.TryParse(value, out zScale))
+                                    zScale = 1.0f;
+                                break;
+                            case "oMirrorU":
+                                if (!bool.TryParse(value, out mirrorU))
+                                    mirrorU = false;
+                                break;
+                            case "oMirrorV":
+                                if (!bool.TryParse(value, out mirrorV))
+                                    mirrorV = false;
+                                break;
+                            case "oCopyBitmaps":
+                                if (!bool.TryParse(value, out copyBitmaps))
+                                    copyBitmaps = false;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            this.ScaleX = xScale;
+            this.ScaleY = uniformScale ? xScale : yScale;
+            this.ScaleZ = uniformScale ? xScale : zScale;
+            this.SwapAxes = swap;
+            this.ReverseFaces = reverseFaces;
+            this.MirrorU = mirrorU;
+            this.MirrorV = MirrorV;
+            this.CopyBitmaps = copyBitmaps;
+        }
+
+        public void WriteSettingsFile(string path)
+        {
+
+        }
     }
 
 

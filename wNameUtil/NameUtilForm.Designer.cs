@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NameUtilForm));
             this.modeBox = new System.Windows.Forms.GroupBox();
             this.keepExisting = new System.Windows.Forms.CheckBox();
             this.modeTranslateJpEn = new System.Windows.Forms.RadioButton();
@@ -409,9 +410,10 @@
             this.Controls.Add(this.updateFileButton);
             this.Controls.Add(this.capitalizeSelect);
             this.Controls.Add(this.modeBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(620, 390);
             this.Name = "NameUtilForm";
-            this.Text = "wNameUtil";
+            this.Text = "wNameUtil - Translation and naming utilities";
             this.Load += new System.EventHandler(this.NameUtilForm_Load);
             this.modeBox.ResumeLayout(false);
             this.modeBox.PerformLayout();
