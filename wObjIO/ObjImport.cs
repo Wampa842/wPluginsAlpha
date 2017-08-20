@@ -391,7 +391,8 @@ namespace wObjIO
                                 lastWasG = false;
                                 break;
                             case "mtllib":
-                                string mtlPath = Path.Combine(Path.GetDirectoryName(path), line[1].Trim());
+                                string mtlFileName = lineStr.Substring(7, lineStr.Length - 7);
+                                string mtlPath = Path.Combine(Path.GetDirectoryName(path), mtlFileName);
                                 AvailableMaterials = new Dictionary<string, IPXMaterial>();
                                 AvailableMaterials = ReadMaterialLibrary(mtlPath, bld);
                                 break;
