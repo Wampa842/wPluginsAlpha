@@ -152,6 +152,25 @@ namespace wObjIO
 
         public Dictionary<string, IPXMaterial> ReadMaterialLibrary(string path, IPXPmxBuilder bld)
         {
+            if (!File.Exists(path))
+            {
+                DialogResult warningRes = MessageBox.Show("Material library file not found at\n" + path + "\n\nWould you like to locate it manually?", "File not found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (warningRes == DialogResult.Yes)
+                {
+                    OpenFileDialog browseMtl = new OpenFileDialog();
+                    browseMtl.Multiselect = false;
+                    browseMtl.Filter = "Wavefront Material Library|*.mtl|All files|*.*";
+                    browseMtl.InitialDirectory = Path.GetDirectoryName(path);
+                    if (browseMtl.ShowDialog() == DialogResult.OK)
+                    {
+                        path = browseMtl.FileName;
+                    }
+                    else
+                        return new Dictionary<string, IPXMaterial>();
+                }
+                else
+                    return new Dictionary<string, IPXMaterial>();
+            }
             //Read and parse the mtl file
             Dictionary<string, IPXMaterial> materials = new Dictionary<string, IPXMaterial>();
             IPXMaterial mat = null;
