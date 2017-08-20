@@ -66,6 +66,12 @@
       <DependentUpon>ObjImportSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjImport.cs" />
+    <Compile Include="ObjImportSubMaterialWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjImportSubMaterialWarning.Designer.cs">
+      <DependentUpon>ObjImportSubMaterialWarning.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,12 +84,14 @@
     <EmbeddedResource Include="ObjImportSettingsForm.resx">
       <DependentUpon>ObjImportSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ObjImportSubMaterialWarning.resx">
+      <DependentUpon>ObjImportSubMaterialWarning.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="wObjIO.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="wObjIO.ini" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
