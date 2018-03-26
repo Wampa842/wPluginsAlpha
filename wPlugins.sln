@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wNameUtil", "wNameUtil\wNam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wObjIO", "wObjIO\wObjIO.csproj", "{E5307E04-A78A-473C-9B72-4BA1CB5E47BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wMaterialUtil", "wMaterialUtil\wMaterialUtil.csproj", "{0C6820A9-A984-457A-A8FA-84D513E3F00A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{E5307E04-A78A-473C-9B72-4BA1CB5E47BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5307E04-A78A-473C-9B72-4BA1CB5E47BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5307E04-A78A-473C-9B72-4BA1CB5E47BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C6820A9-A984-457A-A8FA-84D513E3F00A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C6820A9-A984-457A-A8FA-84D513E3F00A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C6820A9-A984-457A-A8FA-84D513E3F00A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C6820A9-A984-457A-A8FA-84D513E3F00A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -411,6 +411,8 @@
             this.Controls.Add(this.capitalizeSelect);
             this.Controls.Add(this.modeBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(620, 390);
             this.Name = "NameUtilForm";
             this.Text = "wNameUtil - Translation and naming utilities";

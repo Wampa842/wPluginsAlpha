@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Xml;
 
 using PEPlugin;
+using PEPlugin.Pmx;
 
 namespace wMorphScale
 {
@@ -18,6 +19,7 @@ namespace wMorphScale
         {
             MorphScaleForm Main = new MorphScaleForm(args);
             Main.Show();
+
         }
 
         public string Name { get { return PluginName; } }
